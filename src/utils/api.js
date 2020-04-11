@@ -6,10 +6,15 @@ import {
 } from './_DATA';
 
 export const getInitialData = () => {
-    return Promise.all([_getUsers, _getQuestions])
-        .then(([users, questions]) => ({
-            users, questions
-        }));
+    return Promise.all([
+        _getUsers(), 
+        _getQuestions()
+    ]).then(([users, questions]) => (
+        {
+            users, 
+            questions
+        }
+    ));
 }
 
 export const saveQuestion = (question) => {

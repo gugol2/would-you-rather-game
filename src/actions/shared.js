@@ -9,7 +9,7 @@ const LOGGED_USER = 'johndoe';
 
 export const handleReceiveData = () => {
     return (dispatch) => {
-        getInitialData.then(({users, questions}) => {
+        getInitialData().then(({users, questions}) => {
             dispatch(receiveUsers(users));
             dispatch(receiveQuestions(questions));
             dispatch(setLoggedUser(LOGGED_USER))
