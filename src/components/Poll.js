@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { PollHeader } from './PollHeader';
+
 
 const Poll = (props) => {
     const [selectedOption, setSelectedOption] = useState('optionOne');
 
     const { question, pollAuthor } = props;
-    const { author, optionOne, optionTwo } = question;
+    const { optionOne, optionTwo } = question;
     
     const handleChange = (event) => {
         setSelectedOption(event.target.value)
@@ -17,9 +19,7 @@ const Poll = (props) => {
 
     return (
         <div className='pool'>
-            <div className='pool__header'>
-                {author && `${author} asks:`}
-            </div>
+            <PollHeader author={pollAuthor}/>
 
             <div className='pool__body'>
                 <img 
