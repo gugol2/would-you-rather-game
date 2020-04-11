@@ -8,7 +8,7 @@ const App = (props) => {
   useEffect(() => {
     dispatch(handleReceiveData());
     
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="App">
