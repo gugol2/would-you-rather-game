@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const PollList = (props) => {
-    const { unAnsweredQuestions, answeredQuestions } = props;
+    const { unAnsweredQuestions, answeredQuestions, users } = props;
 
     return (
         <div>
@@ -11,7 +11,32 @@ const PollList = (props) => {
                 <ul>
                     {unAnsweredQuestions.map(uq => (
                         <li key={uq.id}>
-                            {uq.id}
+                            <div className='pool-brief'>
+                                <div className='pool-brief__header'>
+                                    {`${uq.author} asks:`}
+                                </div>
+                                
+                                <div className='pool-brief__body'>
+                                    <img 
+                                        src={users[uq.author].avatarURL} 
+                                        alt={uq.author}
+                                        className='avatar-img'
+                                    />
+
+                                    <div className='pool-brief__question'>
+                                        <strong>Would your rather</strong>
+                                        <div className='pool-brief__question-text'>
+                                            {`...${uq.optionOne.text}...`}
+                                        </div>
+                                        <button 
+                                            type="submit"
+                                            className='center'    
+                                        >View Poll</button>
+                                    </div>
+
+                                </div>
+                                
+                            </div>
                         </li>
                     ))}
                 </ul>
@@ -22,7 +47,32 @@ const PollList = (props) => {
                 <ul>
                     {answeredQuestions.map(aq => (
                         <li key={aq.id}>
-                            {aq.id}
+                            <div className='pool-brief'>
+                                <div className='pool-brief__header'>
+                                    {`${aq.author} asks:`}
+                                </div>
+                                
+                                <div className='pool-brief__body'>
+                                    <img 
+                                        src={users[aq.author].avatarURL} 
+                                        alt={aq.author}
+                                        className='avatar-img'
+                                    />
+
+                                    <div className='pool-brief__question'>
+                                        <strong>Would your rather</strong>
+                                        <div className='pool-brief__question-text'>
+                                            {`...${aq.optionOne.text}...`}
+                                        </div>
+                                        <button 
+                                            type="submit"
+                                            className='center'    
+                                        >View Poll</button>
+                                    </div>
+
+                                </div>
+                                
+                            </div>
                         </li>
                     ))}
                 </ul>
