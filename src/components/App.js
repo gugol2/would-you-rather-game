@@ -16,6 +16,7 @@ const App = (props) => {
     <div className="App">
       Would you rather...?
       <ConnectedPoll />
+      <ConnectedPollDashboard />
     </div>
   );
 }

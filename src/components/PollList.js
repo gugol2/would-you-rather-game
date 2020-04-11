@@ -1,5 +1,6 @@
 import React from 'react';
 import { PollHeader } from './PollHeader';
+import { AvatarImage } from './AvatarImage';
 
 export const PollList = (props) => {
     const { questions, users } = props;
@@ -12,11 +13,7 @@ export const PollList = (props) => {
                         <PollHeader author={users[uq.author]}/>
                         
                         <div className='pool__body'>
-                            <img 
-                                src={users[uq.author].avatarURL} 
-                                alt={uq.author}
-                                className='avatar-img'
-                            />
+                            <AvatarImage user={users[uq.author]}/>
 
                             <div className='pool__question'>
                                 <strong>Would your rather</strong>

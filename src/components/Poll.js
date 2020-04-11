@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { PollHeader } from './PollHeader';
+import { AvatarImage } from './AvatarImage';
 
 
 const Poll = (props) => {
@@ -22,11 +23,7 @@ const Poll = (props) => {
             <PollHeader author={pollAuthor}/>
 
             <div className='pool__body'>
-                <img 
-                    src={pollAuthor.avatarURL} 
-                    alt={pollAuthor.id}
-                    className='avatar-img'
-                />
+                <AvatarImage user={pollAuthor}/>
 
                 <form className='pool__question'>
                     <strong>Would your rather</strong>
