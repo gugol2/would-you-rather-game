@@ -7,21 +7,21 @@ export const PollList = (props) => {
         <ul>
             {questions.map(uq => (
                     <li key={uq.id}>
-                        <div className='pool-brief'>
-                            <div className='pool-brief__header'>
+                        <div className='pool'>
+                            <div className='pool__header'>
                                 {`${uq.author} asks:`}
                             </div>
                             
-                            <div className='pool-brief__body'>
+                            <div className='pool__body'>
                                 <img 
                                     src={users[uq.author].avatarURL} 
                                     alt={uq.author}
                                     className='avatar-img'
                                 />
 
-                                <div className='pool-brief__question'>
+                                <div className='pool__question'>
                                     <strong>Would your rather</strong>
-                                    <div className='pool-brief__question-text'>
+                                    <div className='pool__question-text'>
                                         {`...${uq.optionOne.text}...`}
                                     </div>
                                     <button 
