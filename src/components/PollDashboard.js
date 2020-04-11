@@ -1,27 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { PollList } from './PollList';
 
 const PollDasboard = (props) => {
+    const [unansweredTab, setunansweredTab] = useState(true);    
     const { unAnsweredQuestions, answeredQuestions, users } = props;
 
+    const toggleTab = (value) => {
+        setunansweredTab(value)
+    }
+
     return (
-        <div>
-            <div>
-                <h3>Unanswered Questions</h3>
-                <PollList 
-                    users={users}
-                    questions={unAnsweredQuestions}
-                />
+        <div className='poll-dashboard'>
+            <div className='poll-dashboard__tabs'>
+                <h3 
+                    onClick={() => toggleTab(true)}
+                    className={unansweredTab ? 'active' : ''}
+                >Unanswered Questions</h3>
+                <h3 
+                    onClick={() => toggleTab(false)}
+                    className={unansweredTab ? '' : 'active'}
+                >Answered Questions</h3>
             </div>
 
-            <div>
-                <h3>Answered Questions</h3>
-                <PollList 
-                    users={users}
-                    questions={answeredQuestions}
-                />
-            </div>
+            <PollList 
+                users={users}
+                questions={unansweredTab ? unAnsweredQuestions : answeredQuestions}
+            />
         </div>
     )
 }

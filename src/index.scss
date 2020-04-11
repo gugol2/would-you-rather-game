@@ -13,6 +13,24 @@ code {
 }
 
 /* my css code */
+li {
+  list-style-type: none;
+  padding: 10px;
+  text-decoration: none;
+}
+
+ul {
+  padding-left: 0;
+}
+
+.center {
+  text-align: center;
+}
+
+.active {
+  background-color: lightgray;
+}
+
 .avatar-img {
   height: 50px;
   border-radius: 25px;
@@ -48,12 +66,20 @@ code {
   }
 }
 
-li {
-  list-style-type: none;
+.poll-dashboard {
   padding: 10px;
-  text-decoration: none;
-}
+  margin: 20px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
 
-.center {
-  text-align: center;
+  &__tabs {
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+
+    h3 {
+      border: 1px solid lightgray;
+      padding: 8px;
+    }
+  }
 }
