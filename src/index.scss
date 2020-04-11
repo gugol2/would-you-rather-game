@@ -1,0 +1,59 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* my css code */
+.avatar-img {
+  height: 50px;
+  border-radius: 25px;
+  margin: 10px;
+}
+
+.pool-brief {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+
+  &__header{
+    padding: 10px;
+    font-weight: 600;
+  }
+
+  &__body {
+    display: flex;
+    align-items: center;
+    border-top: 1px solid lightgray;
+  }
+
+  &__question {
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid lightgray;
+    padding: 16px;
+  }
+
+  &__question-text {
+    margin: 16px 0;
+  }
+}
+
+li {
+  list-style-type: none;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.center {
+  text-align: center;
+}
