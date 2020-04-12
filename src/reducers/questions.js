@@ -1,4 +1,4 @@
-import { RECEIVE_QUESTIONS, SAVE_ANSWER_TO_QUESTION, REMOVE_ANSWER_TO_QUESTION } from "../actions/questions";
+import { RECEIVE_QUESTIONS, SAVE_ANSWER_TO_QUESTION, REMOVE_ANSWER_TO_QUESTION, SAVE_QUESTION } from "../actions/questions";
 
 export const questions = (state = {}, action) => {
     switch (action.type) {
@@ -31,6 +31,13 @@ export const questions = (state = {}, action) => {
                     }
                 }
             }
+
+        case SAVE_QUESTION:
+            return {
+                ...state,
+                [action.question.id]: action.question
+            }
+
         default:
             return state;
     }

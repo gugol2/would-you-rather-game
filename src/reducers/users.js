@@ -1,5 +1,5 @@
 import { RECEIVE_USERS } from "../actions/users";
-import { SAVE_ANSWER_TO_QUESTION, REMOVE_ANSWER_TO_QUESTION } from "../actions/questions";
+import { SAVE_ANSWER_TO_QUESTION, REMOVE_ANSWER_TO_QUESTION, SAVE_QUESTION } from "../actions/questions";
 
 export const users = (state = {}, action) => {
     switch (action.type) {
@@ -32,6 +32,15 @@ export const users = (state = {}, action) => {
                 [action.authedUser]: {
                     ...state[action.authedUser],
                     answers: restAnswers
+                }
+            }
+
+        case SAVE_QUESTION: 
+            return {
+                ...state,
+                [action.question.author]: {
+                    ...state[action.question.author],
+                    questions: [...state[action.question.author].questions, action.question.id]
                 }
             }
     

@@ -4,7 +4,7 @@ import { handleReceiveData } from '../actions/shared';
 import { ConnectedPollDashboard } from './PollDashboard';
 import { ConnectedPoll } from './Poll';
 import { ConnectedPollResults } from './PollResults';
-import { AddPoll } from './AddPoll';
+import { ConnectedAddPoll } from './AddPoll';
 
 const App = (props) => {
   const { dispatch } = props;
@@ -19,7 +19,7 @@ const App = (props) => {
       Would you rather...?
       <ConnectedPoll />
       <ConnectedPollResults />
-      <AddPoll />
+      <ConnectedAddPoll />
       <ConnectedPollDashboard />
     </div>
   );

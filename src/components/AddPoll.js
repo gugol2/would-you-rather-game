@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { handleSaveNewQuestion } from '../actions/questions';
 
-export const AddPoll = (props) => {
+const AddPoll = (props) => {
     const [optionTexts, setOptionTexts] = useState({
         optionOneText: '',
         optionTwoText: ''
@@ -16,9 +18,13 @@ export const AddPoll = (props) => {
     };
 
     const handleSubmit = (event) => {
+        debugger;
         event.preventDefault();
 
-        // todo: add poll to the DB
+        const { dispatch, authedUser } = props;
+        const { optionOneText, optionTwoText } = optionTexts;
+        debugger;
+        dispatch(handleSaveNewQuestion({ optionOneText, optionTwoText, author:authedUser }));
     }
 
     return (
@@ -35,7 +41,10 @@ export const AddPoll = (props) => {
                     Would you rather...
                 </div>
 
-                <form onSubmit={handleSubmit}>
+                <form 
+                    onSubmit={handleSubmit}
+                    className='poll-add__body-form'
+                >
                     <input
                         type="text"
                         name="optionOneText"
@@ -44,6 +53,9 @@ export const AddPoll = (props) => {
                         value={optionTexts.optionOneText}
                         onChange={handleoOtionTexts}
                     />
+
+                    <div>OR</div>
+
                     <input
                         type="text"
                         name="optionTwoText"
@@ -54,7 +66,7 @@ export const AddPoll = (props) => {
                     />
 
                     <input 
-                        type="button" 
+                        type="submit" 
                         value="Submit"
                         disabled={!optionTexts.optionOneText || !optionTexts.optionTwoText}
                     />
@@ -63,3 +75,11 @@ export const AddPoll = (props) => {
         </div>
     )
 }
+
+const mapStateToProps = ({authedUser}) => {
+    return {
+        authedUser
+    }
+};
+
+export const ConnectedAddPoll = connect(mapStateToProps)(AddPoll);
