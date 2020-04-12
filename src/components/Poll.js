@@ -21,13 +21,15 @@ const Poll = (props) => {
     }
 
     return (
-        <div className='pool'>
+        <div className='poll'>
             <PollHeader author={pollAuthor}/>
 
-            <div className='pool__body'>
-                <AvatarImage user={pollAuthor}/>
+            <div className='poll__body'>
+                <div className="poll__left">
+                    <AvatarImage user={pollAuthor}/>
+                </div>
 
-                <form className='pool__question' onSubmit={saveQuestionAnswer} >
+                <form className='poll__question' onSubmit={saveQuestionAnswer} >
                     <strong>Would your rather</strong>
                     <label>
                         <input 
@@ -62,7 +64,7 @@ const Poll = (props) => {
 }
 
 const mapStateToProps = ({questions, authedUser, users}, {qid}) => {
-    const id = 'loxhs1bqm25b708cmbf3g';
+    const id = qid || 'loxhs1bqm25b708cmbf3g';
     const question = questions[id] || {};
 
     return {

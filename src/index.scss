@@ -37,7 +37,7 @@ ul {
   margin: 10px;
 }
 
-.pool {
+.poll {
   display: flex;
   flex-direction: column;
   border: 1px solid lightgray;
@@ -47,19 +47,22 @@ ul {
   &__header{
     padding: 10px;
     font-weight: 600;
+    border-bottom: 1px solid lightgray;
   }
 
   &__body {
     display: flex;
     align-items: center;
-    border-top: 1px solid lightgray;
   }
 
   &__question {
     display: flex;
     flex-direction: column;
-    border-left: 1px solid lightgray;
     padding: 16px;
+  }
+
+  &__left {
+    border-right: 1px solid lightgray;
   }
 
   &__question-text {
@@ -80,5 +83,23 @@ ul {
       border: 1px solid lightgray;
       padding: 8px;
     }
+  }
+}
+
+.poll-results {
+  margin: 10px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+
+  display: flex;
+  flex-direction: column;
+
+  &__body {
+    display: flex;
+    align-items: center;
+  }
+
+  &__left {
+    border-right: 1px solid lightgray;
   }
 }
