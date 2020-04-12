@@ -31,10 +31,10 @@ const PollDasboard = (props) => {
     )
 }
 
-const mapStateToProps = ({users, questions, setAuthedUser}) => {
+const mapStateToProps = ({users, questions, authedUser}) => {
     const {answeredQuestions, unAnsweredQuestions} = Object.values(questions).reduce(
         (acc, cur) => {
-            if(cur.optionOne.votes.includes(setAuthedUser) || cur.optionTwo.votes.includes(setAuthedUser)){
+            if(cur.optionOne.votes.includes(authedUser) || cur.optionTwo.votes.includes(authedUser)){
                 return { 
                     ...acc, 
                     'answeredQuestions': [...acc.answeredQuestions || [], cur]
@@ -53,7 +53,7 @@ const mapStateToProps = ({users, questions, setAuthedUser}) => {
         users,
         answeredQuestions: answeredQuestions || [],
         unAnsweredQuestions: unAnsweredQuestions || [],
-        setAuthedUser
+        authedUser
     }
 }
 
