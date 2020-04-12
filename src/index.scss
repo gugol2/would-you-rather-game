@@ -102,4 +102,16 @@ ul {
   &__left {
     border-right: 1px solid lightgray;
   }
+
+  &__right {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__option {
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 8px;
+    margin: 4px;
+  }
 }

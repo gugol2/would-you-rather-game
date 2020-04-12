@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { handleReceiveData } from '../actions/shared';
 import { ConnectedPollDashboard } from './PollDashboard';
 import { ConnectedPoll } from './Poll';
+import { ConnectedPollResults } from './PollResults';
 
 const App = (props) => {
   const { dispatch } = props;
@@ -16,6 +17,7 @@ const App = (props) => {
     <div className="App">
       Would you rather...?
       <ConnectedPoll />
+      <ConnectedPollResults />
       <ConnectedPollDashboard />
     </div>
   );
