@@ -13,6 +13,7 @@ const PollResults = (props) => {
         totalVotes,
         percentageOptionOne,
         percentageOptionTwo,
+        authedUser
     } = props;
 
     const { optionOne, optionTwo } = question;
@@ -27,12 +28,12 @@ const PollResults = (props) => {
                 </div>
 
                 <div className="poll-results__right">
-
                     <PollResultOption 
                         option={optionOne}
                         percentageOption={percentageOptionOne}
                         votesOption={votesOptionOne}
                         totalVotes={totalVotes}
+                        authedUser={authedUser}
                     />
 
                     <PollResultOption 
@@ -40,6 +41,7 @@ const PollResults = (props) => {
                         percentageOption={percentageOptionTwo}
                         votesOption={votesOptionTwo}
                         totalVotes={totalVotes}
+                        authedUser={authedUser}
                     />
                 </div>
             </div>
@@ -56,7 +58,6 @@ const mapStateToProps = ({questions, authedUser, users}, {qid}) => {
     let totalVotes = 0;
     let percentageOptionOne = 0;
     let percentageOptionTwo = 0;
-    let authedUserOption = '';
 
     const calculatePercentage = (votesFromOption, votesTotal) => {
         const figure = (parseFloat(votesFromOption/votesTotal) *100).toPrecision(3);
@@ -71,11 +72,9 @@ const mapStateToProps = ({questions, authedUser, users}, {qid}) => {
         percentageOptionTwo = calculatePercentage(question.optionTwo.votes.length, totalVotes);
     }
     
-    debugger;
     return {
         question,
         authedUser,
-        authedUserOption,
         pollAuthor: users[question.author] || {},
         votesOptionOne,
         votesOptionTwo,
