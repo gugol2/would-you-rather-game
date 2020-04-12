@@ -2,6 +2,7 @@ import { saveQuestionAnswer } from "../utils/api";
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
 export const SAVE_ANSWER_TO_QUESTION = 'SAVE_ANSWER_TO_QUESTION';
+export const REMOVE_ANSWER_TO_QUESTION = 'REMOVE_ANSWER_TO_QUESTION';
 
 export const receiveQuestions = (questions) => {
     return {
@@ -19,17 +20,30 @@ const saveAnswerToQuestion = ({ authedUser, qid, answer }) => {
     }
 };
 
+const removeAnswerToQuestion = ({ authedUser, qid, answer }) => {
+    return {
+        type: REMOVE_ANSWER_TO_QUESTION,
+        qid,
+        answer,
+        authedUser
+    }
+};
+
 export const handleSaveAnswerToQuestion = ({ authedUser, qid, answer }) => {
     return (dispatch, getState) => {
         const { users } = getState();
         const pollAlreadyVoted = users[authedUser].answers.hasOwnProperty(qid);
 
         if(!pollAlreadyVoted) {
-            saveQuestionAnswer({ authedUser, qid, answer }).then(() => {
-                dispatch(saveAnswerToQuestion({ authedUser, qid, answer }));
+            // Answer question optimistically
+            dispatch(saveAnswerToQuestion({ authedUser, qid, answer }));
+
+            saveQuestionAnswer({ authedUser, qid, answer }).catch(() => {
+                dispatch(removeAnswerToQuestion({ authedUser, qid, answer }));
+                alert('Your answer could not be save, please try again!!');
             });
         } else {
-            alert('You alredy voted this poll my friend, try another poll!!')
+            alert('You alredy voted this poll my friend, try another poll!!');
         }
     }
 };
