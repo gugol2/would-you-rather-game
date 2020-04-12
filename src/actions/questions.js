@@ -20,9 +20,16 @@ const saveAnswerToQuestion = ({ authedUser, qid, answer }) => {
 };
 
 export const handleSaveAnswerToQuestion = ({ authedUser, qid, answer }) => {
-    return (dispatch) => {
-        saveQuestionAnswer({ authedUser, qid, answer }).then(() => {
-            dispatch(saveAnswerToQuestion({ authedUser, qid, answer }));
-        });
+    return (dispatch, getState) => {
+        const { users } = getState();
+        const pollAlreadyVoted = users[authedUser].answers.hasOwnProperty(qid);
+
+        if(!pollAlreadyVoted) {
+            saveQuestionAnswer({ authedUser, qid, answer }).then(() => {
+                dispatch(saveAnswerToQuestion({ authedUser, qid, answer }));
+            });
+        } else {
+            alert('You alredy voted this poll my friend, try another poll!!')
+        }
     }
 };
