@@ -120,3 +120,46 @@ ul {
     margin: 4px;
   }
 }
+
+.poll-add {
+  margin: 10px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  
+  &__header {
+    align-self: center;
+    padding: 10px;
+    font-weight: 600;
+    font-size: x-large;
+    border-bottom: 1px solid lightgray;
+  }
+
+  &__body {
+    padding: 8px;
+  }
+
+  &__body-title {
+    font-weight: 600;
+    font-size: large;
+    margin-top: 16px;
+  }
+
+  &__body-form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__body-form-or {
+    align-self: center;
+  }
+
+  &__body-form-input {
+    margin: 8px 0;
+  }
+
+  &__body-form-button {
+    margin: 8px 0;
+  }
+}

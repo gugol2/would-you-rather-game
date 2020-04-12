@@ -52,9 +52,10 @@ const AddPoll = (props) => {
                         placeholder='Enter Option One Text Here'
                         value={optionTexts.optionOneText}
                         onChange={handleoOtionTexts}
+                        className='poll-add__body-form-input'
                     />
 
-                    <div>OR</div>
+                    <div className='poll-add__body-form-or'>OR</div>
 
                     <input
                         type="text"
@@ -63,12 +64,14 @@ const AddPoll = (props) => {
                         placeholder='Enter Option Two Text Here'
                         value={optionTexts.optionTwoText}
                         onChange={handleoOtionTexts}
+                        className='poll-add__body-form-input'
                     />
 
                     <input 
                         type="submit" 
                         value="Submit"
                         disabled={!optionTexts.optionOneText || !optionTexts.optionTwoText}
+                        className='poll-add__body-form-button'
                     />
                 </form>
             </div>
