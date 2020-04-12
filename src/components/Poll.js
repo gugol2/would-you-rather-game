@@ -60,11 +60,11 @@ const Poll = (props) => {
     )
 }
 
-const mapStateToProps = ({questions, loggedUser, users}, {qid}) => {
+const mapStateToProps = ({questions, setAuthedUser, users}, {qid}) => {
     const question = questions['vthrdm985a262al8qx3do'] || {};
     return {
         question,
-        loggedUser,
+        setAuthedUser,
         pollAuthor: users[question.author] || {}
     }
 }

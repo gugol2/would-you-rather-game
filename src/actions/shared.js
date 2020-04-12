@@ -1,6 +1,6 @@
 import { receiveUsers } from './users';
 import { receiveQuestions } from './questions';
-import { setLoggedUser } from './loggedUser';
+import { setAuthedUser } from './authedUser';
 import { getInitialData } from '../utils/api';
 
 export const RECEIVE_DATA = 'RECEIVE_DATA';
@@ -12,7 +12,7 @@ export const handleReceiveData = () => {
         getInitialData().then(({users, questions}) => {
             dispatch(receiveUsers(users));
             dispatch(receiveQuestions(questions));
-            dispatch(setLoggedUser(LOGGED_USER))
+            dispatch(setAuthedUser(LOGGED_USER))
         });
 
     }
