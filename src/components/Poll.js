@@ -62,7 +62,7 @@ const Poll = (props) => {
 }
 
 const mapStateToProps = ({questions, authedUser, users}, {qid}) => {
-    const id = 'vthrdm985a262al8qx3do';
+    const id = 'loxhs1bqm25b708cmbf3g';
     const question = questions[id] || {};
 
     return {
