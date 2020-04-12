@@ -2,20 +2,22 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { PollHeader } from './PollHeader';
 import { AvatarImage } from './AvatarImage';
-
+import { handleSaveAnswerToQuestion } from '../actions/questions';
 
 const Poll = (props) => {
     const [selectedOption, setSelectedOption] = useState('optionOne');
 
-    const { question, pollAuthor } = props;
+    const { question, pollAuthor, dispatch, authedUser } = props;
     const { optionOne, optionTwo } = question;
     
     const handleChange = (event) => {
         setSelectedOption(event.target.value)
     }
 
-    const saveQuestionAnswer = () => {
-        // TODO: save answer 
+    const saveQuestionAnswer = (event) => {
+        event.preventDefault();
+
+        dispatch(handleSaveAnswerToQuestion({ authedUser, qid: question.id, answer: selectedOption}));
     }
 
     return (
@@ -25,7 +27,7 @@ const Poll = (props) => {
             <div className='pool__body'>
                 <AvatarImage user={pollAuthor}/>
 
-                <form className='pool__question'>
+                <form className='pool__question' onSubmit={saveQuestionAnswer} >
                     <strong>Would your rather</strong>
                     <label>
                         <input 
@@ -50,7 +52,6 @@ const Poll = (props) => {
                     <button 
                         type="submit"
                         className='center'
-                        onSubmit={saveQuestionAnswer}    
                     >Submit</button>
                 </form>
 
@@ -60,11 +61,13 @@ const Poll = (props) => {
     )
 }
 
-const mapStateToProps = ({questions, setAuthedUser, users}, {qid}) => {
-    const question = questions['vthrdm985a262al8qx3do'] || {};
+const mapStateToProps = ({questions, authedUser, users}, {qid}) => {
+    const id = 'vthrdm985a262al8qx3do';
+    const question = questions[id] || {};
+
     return {
         question,
-        setAuthedUser,
+        authedUser,
         pollAuthor: users[question.author] || {}
     }
 }
