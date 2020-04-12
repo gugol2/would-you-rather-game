@@ -28,6 +28,9 @@ const PollResults = (props) => {
                 </div>
 
                 <div className="poll-results__right">
+                    <div className="poll-results__right-title">
+                        Results:
+                    </div>
                     <PollResultOption 
                         option={optionOne}
                         percentageOption={percentageOptionOne}

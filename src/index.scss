@@ -108,6 +108,11 @@ ul {
     flex-direction: column;
   }
 
+  &__right-title {
+    font-weight: 600;
+    margin: 4px;
+  }
+
   &__option {
     border: 1px solid lightgray;
     border-radius: 5px;
