@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { PollHeader } from './PollHeader';
 import { AvatarImage } from './AvatarImage';
+import { PollResultOption } from './PollResultOption';
 
 const PollResults = (props) => {
     const { 
@@ -26,30 +27,20 @@ const PollResults = (props) => {
                 </div>
 
                 <div className="poll-results__right">
-                    <div className="poll-results__option">
-                        <div className="poll-results__option-text">
-                            {optionOne && optionOne.text}
-                        </div>
-                        <div className="poll-results__option-percent">
-                            {percentageOptionOne}
-                        </div>
-                        <div className="poll-results__option-number">
-                            {`${votesOptionOne} out of ${totalVotes}`}
-                        </div>
-                    </div>
 
-                    <div className="poll-results__option">
-                        <div className="poll-results__option-text">
-                            {optionTwo && optionTwo.text}
-                        </div>
-                        <div className="poll-results__option-percent">
-                            {percentageOptionTwo}
-                        </div>
-                        <div className="poll-results__option-number">
-                            {`${votesOptionTwo} out of ${totalVotes}`}
-                        </div>
-                    </div>
-                    
+                    <PollResultOption 
+                        option={optionOne}
+                        percentageOption={percentageOptionOne}
+                        votesOption={votesOptionOne}
+                        totalVotes={totalVotes}
+                    />
+
+                    <PollResultOption 
+                        option={optionTwo}
+                        percentageOption={percentageOptionTwo}
+                        votesOption={votesOptionTwo}
+                        totalVotes={totalVotes}
+                    />
                 </div>
             </div>
         </div>
