@@ -1,12 +1,11 @@
 import React from 'react';
 import { AvatarImage } from './AvatarImage';
 import { connect } from 'react-redux';
+import { logOutAuthedUser } from '../actions/authedUser';
 
-export const LoggingInfo = ({userLogged}) => {
+export const LoggingInfo = ({userLogged, dispatch}) => {
     const logOut = () => {
-        console.log('logged out user:', userLogged.name);
-
-        // todo: log out authed user
+        dispatch(logOutAuthedUser());
     }
 
     return (
