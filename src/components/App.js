@@ -32,10 +32,8 @@ const App = (props) => {
           <ConnectedLeaderBoard />
         </Route>
 
-        <Route 
-          path='/questions/:question_id'
-          component={PollDetails}
-        >
+        <Route path='/questions/:question_id'>
+          <PollDetails />
         </Route>
       </div>
     </Router>
