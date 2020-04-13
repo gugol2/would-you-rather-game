@@ -4,9 +4,10 @@ import { handleReceiveData } from '../actions/shared';
 import { ConnectedPollDashboard } from './PollDashboard';
 import { ConnectedAddPoll } from './AddPoll';
 import { ConnectedLeaderBoard } from './LeaderBoard';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { NavBar } from './NavBar';
 import { PollDetails } from './PollDetails';
+import { NoMatch } from './NoMatch';
 
 const App = (props) => {
   const { dispatch } = props;
@@ -19,23 +20,31 @@ const App = (props) => {
   return (
     <Router className="App">
       <NavBar />
-      <div>
-        <Route exact path='/'>
-          <ConnectedPollDashboard />
-        </Route>
 
-        <Route path='/add'>
-          <ConnectedAddPoll />
-        </Route>
+      <div className='container'>
+        <Switch>
+          <Route exact path='/'>
+            <ConnectedPollDashboard />
+          </Route>
 
-        <Route path='/leaderboard'>
-          <ConnectedLeaderBoard />
-        </Route>
+          <Route path='/add'>
+            <ConnectedAddPoll />
+          </Route>
 
-        <Route path='/questions/:question_id'>
-          <PollDetails />
-        </Route>
+          <Route path='/leaderboard'>
+            <ConnectedLeaderBoard />
+          </Route>
+
+          <Route path='/questions/:question_id'>
+            <PollDetails />
+          </Route>
+
+          <Route path="*">
+              <NoMatch />
+          </Route>
+        </Switch>
       </div>
+
     </Router>
   );
 }
