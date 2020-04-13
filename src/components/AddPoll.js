@@ -24,7 +24,13 @@ const AddPoll = (props) => {
         const { dispatch, authedUser } = props;
         const { optionOneText, optionTwoText } = optionTexts;
         debugger;
-        dispatch(handleSaveNewQuestion({ optionOneText, optionTwoText, author:authedUser }));
+        dispatch(handleSaveNewQuestion({ optionOneText, optionTwoText, author:authedUser }))
+            .then(() => {
+                setOptionTexts({
+                    optionOneText: '',
+                    optionTwoText: ''
+                });
+            })
     }
 
     return (

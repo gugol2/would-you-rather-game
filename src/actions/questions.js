@@ -39,7 +39,7 @@ export const handleSaveAnswerToQuestion = ({ authedUser, qid, answer }) => {
             // Answer question optimistically
             dispatch(saveAnswerToQuestion({ authedUser, qid, answer }));
 
-            saveQuestionAnswer({ authedUser, qid, answer }).catch(() => {
+            return saveQuestionAnswer({ authedUser, qid, answer }).catch(() => {
                 dispatch(removeAnswerToQuestion({ authedUser, qid, answer }));
                 alert('Your answer could not be save, please try again!!');
             });
@@ -58,7 +58,7 @@ const saveNewQuestion = (question) => {
 
 export const handleSaveNewQuestion = ({ optionOneText, optionTwoText, author }) => {
     return (dispatch) => {
-        saveQuestion({ optionOneText, optionTwoText, author }).then(question => {
+        return saveQuestion({ optionOneText, optionTwoText, author }).then(question => {
             dispatch(saveNewQuestion(question))
         })
     }
