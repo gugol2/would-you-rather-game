@@ -10,7 +10,7 @@ const LeaderBoard = (props) => {
     return (
         <div className='leader-board'>
             {userList.map(user => (
-                <div className="leader-board-item">
+                <div className="leader-board-item" key={user.id}>
                     <div className="leader-board-item__left">
                             <AvatarImage user={user}/>
                     </div>

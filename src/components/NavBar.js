@@ -17,7 +17,7 @@ export const NavBar = () => {
                 </li>
                 <li>
                     <NavLink to='/leaderboard' activeClassName='active'>
-                        New Question
+                        LeaderBoard
                     </NavLink>
                 </li>
             </ul>
