@@ -6,6 +6,7 @@ import { ConnectedPoll } from './Poll';
 import { ConnectedPollResults } from './PollResults';
 import { ConnectedAddPoll } from './AddPoll';
 import { ConnectedLeaderBoard } from './LeaderBoard';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 const App = (props) => {
   const { dispatch } = props;
@@ -16,14 +17,23 @@ const App = (props) => {
   }, [dispatch]);
 
   return (
-    <div className="App">
-      Would you rather...?
-      <ConnectedPoll />
-      <ConnectedPollResults />
-      <ConnectedLeaderBoard />
-      <ConnectedAddPoll />
-      <ConnectedPollDashboard />
-    </div>
+    <Router className="App">
+      <div>
+        <Route exact path='/'>
+          <ConnectedPollDashboard />
+        </Route>
+
+        <Route path='/add'>
+          <ConnectedAddPoll />
+        </Route>
+
+        <Route path='/leaderboard'>
+          <ConnectedLeaderBoard />
+        </Route>
+      </div>
+      {/* <ConnectedPoll />
+      <ConnectedPollResults /> */}
+    </Router>
   );
 }
 
