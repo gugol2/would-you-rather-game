@@ -9,6 +9,7 @@ import { NavBar } from './NavBar';
 import { PollDetails } from './PollDetails';
 import { NoMatch } from './NoMatch';
 import { ConnectedLoggingInfo } from './LoggedUserInfo';
+import { LogIn } from './LogIn';
 
 const App = (props) => {
   const { dispatch, logged } = props;
@@ -24,6 +25,10 @@ const App = (props) => {
       {logged && (<ConnectedLoggingInfo />)}
       <div className='container'>
         <Switch>
+          <Route exact path='/login'>
+            <LogIn />
+          </Route>
+
           <Route exact path='/'>
             <ConnectedPollDashboard />
           </Route>

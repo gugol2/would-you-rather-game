@@ -2,10 +2,14 @@ import React from 'react';
 import { AvatarImage } from './AvatarImage';
 import { connect } from 'react-redux';
 import { logOutAuthedUser } from '../actions/authedUser';
+import { useHistory } from 'react-router-dom';
 
 export const LoggedUserInfo = ({userLogged, dispatch}) => {
+    let history = useHistory();
+
     const logOut = () => {
         dispatch(logOutAuthedUser());
+        history.push('/login')
     }
 
     return (
