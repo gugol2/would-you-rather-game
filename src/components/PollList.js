@@ -6,10 +6,6 @@ import { Link } from 'react-router-dom';
 export const PollList = (props) => {
     const { questions, users, unAnswered } = props;
 
-    const checkPoll = (event, qid) => {
-        debugger;
-    }
-
     return (
         <ul>
             {questions.map(uq => (
@@ -28,9 +24,6 @@ export const PollList = (props) => {
                                     {`...${uq.optionOne.text}...`}
                                 </div>
                                 <Link
-                                    type='button'
-                                    className='center'
-                                    // onClick={(e) => checkPoll(e, uq.id)} 
                                     to={{
                                         pathname: `/questions/${uq.id}`,
                                         state: { 
@@ -38,7 +31,12 @@ export const PollList = (props) => {
                                             unAnswered
                                         }
                                     }}
-                                >View Poll</Link>
+                                >
+                                    <button
+                                        type='button'
+                                        className='center'
+                                    >View Poll</button>
+                                </Link>
                             </div>
 
                         </div>
