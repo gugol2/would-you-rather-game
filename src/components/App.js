@@ -8,9 +8,10 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { NavBar } from './NavBar';
 import { PollDetails } from './PollDetails';
 import { NoMatch } from './NoMatch';
+import { ConnectedLoggingInfo } from './LoggingInfo';
 
 const App = (props) => {
-  const { dispatch } = props;
+  const { dispatch, logged } = props;
 
   useEffect(() => {
     dispatch(handleReceiveData());
@@ -20,7 +21,7 @@ const App = (props) => {
   return (
     <Router className="App">
       <NavBar />
-
+      {logged && (<ConnectedLoggingInfo />)}
       <div className='container'>
         <Switch>
           <Route exact path='/'>
@@ -49,5 +50,11 @@ const App = (props) => {
   );
 }
 
-export const ConnectedApp = connect()(App);
+const mapStateToProps = ({authedUser}) => {
+  return {
+    logged: authedUser !== null
+  }
+};
+
+export const ConnectedApp = connect(mapStateToProps)(App);
 
