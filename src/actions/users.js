@@ -1,3 +1,5 @@
+import { getUsers } from "../utils/api";
+
 export const RECEIVE_USERS = 'RECEIVE_USERS';
 
 export const receiveUsers = (users) => {
@@ -6,3 +8,11 @@ export const receiveUsers = (users) => {
         users
     }
 };
+
+export const handleReceiveUsers = () => {
+    return (dispatch) => {
+        return getUsers().then(users => {
+            dispatch(receiveUsers(users))
+        })
+    }
+}

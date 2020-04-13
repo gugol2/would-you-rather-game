@@ -12,17 +12,17 @@ import { ConnectedLoggingInfo } from './LoggedUserInfo';
 import { ConnectedHome } from './Home';
 
 const App = (props) => {
-  const { dispatch, logged } = props;
+  const { dispatch, authedUser } = props;
 
-  useEffect(() => {
-    dispatch(handleReceiveData());
+  // useEffect(() => {
+  //   dispatch(handleReceiveData());
     
-  }, [dispatch]);
+  // }, [dispatch]);
 
   return (
     <Router className="App">
       <NavBar />
-      {logged && (<ConnectedLoggingInfo />)}
+      {authedUser && (<ConnectedLoggingInfo />)}
       <div className='container'>
         <Switch>
           <Route exact path='/'>
@@ -53,7 +53,7 @@ const App = (props) => {
 
 const mapStateToProps = ({authedUser}) => {
   return {
-    logged: authedUser !== null
+    authedUser
   }
 };
 

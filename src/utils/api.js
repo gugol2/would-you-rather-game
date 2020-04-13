@@ -17,6 +17,14 @@ export const getInitialData = () => {
     ));
 }
 
+export const getUsers = () => {
+    return _getUsers();
+}
+
+export const getQuestions = () => {
+    return _getQuestions();
+}
+
 export const saveQuestion = (question) => {
     return _saveQuestion(question);
 }
