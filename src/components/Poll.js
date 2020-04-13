@@ -26,53 +26,57 @@ const Poll = (props) => {
                     { 
                         qid: question.id,
                         unAnswered: false,
-                        authedUser
                     }
                 );
             })
     }
 
-    return (
-        <div className='poll'>
-            <PollHeader author={pollAuthor}/>
-
-            <div className='poll__body'>
-                <div className="poll__left">
-                    <AvatarImage user={pollAuthor}/>
+    if(authedUser) {
+        return (
+            <div className='poll'>
+                <PollHeader author={pollAuthor}/>
+    
+                <div className='poll__body'>
+                    <div className="poll__left">
+                        <AvatarImage user={pollAuthor}/>
+                    </div>
+    
+                    <form className='poll__question' onSubmit={saveQuestionAnswer} >
+                        <strong>Would your rather</strong>
+                        <label>
+                            <input 
+                                type="radio" 
+                                value='optionOne' 
+                                checked={selectedOption === 'optionOne'}
+                                onChange={handleChange}
+                                />
+                            {optionOne && optionOne.text}
+                        </label>
+    
+                        <label>
+                            <input
+                                type="radio"
+                                value='optionTwo'
+                                checked={selectedOption === 'optionTwo'}
+                                onChange={handleChange}
+                                />
+                            {optionTwo && optionTwo.text}
+                        </label>
+    
+                        <button 
+                            type="submit"
+                            className='center'
+                        >Submit</button>
+                    </form>
+    
                 </div>
-
-                <form className='poll__question' onSubmit={saveQuestionAnswer} >
-                    <strong>Would your rather</strong>
-                    <label>
-                        <input 
-                            type="radio" 
-                            value='optionOne' 
-                            checked={selectedOption === 'optionOne'}
-                            onChange={handleChange}
-                            />
-                        {optionOne && optionOne.text}
-                    </label>
-
-                    <label>
-                        <input
-                            type="radio"
-                            value='optionTwo'
-                            checked={selectedOption === 'optionTwo'}
-                            onChange={handleChange}
-                            />
-                        {optionTwo && optionTwo.text}
-                    </label>
-
-                    <button 
-                        type="submit"
-                        className='center'
-                    >Submit</button>
-                </form>
-
+    
             </div>
+        )
+    } else {
+        return null;
+    }
 
-        </div>
-    )
 }
 
 const mapStateToProps = ({questions, authedUser, users}, {qid}) => {

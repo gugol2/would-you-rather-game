@@ -5,7 +5,7 @@ import { handleReceiveQuestions } from '../actions/questions';
 
 const PollDasboard = (props) => {
     const [unansweredTab, setunansweredTab] = useState(true); 
-    const { unAnsweredQuestions, answeredQuestions, users, dispatch, authedUser } = props;
+    const { unAnsweredQuestions, answeredQuestions, users, dispatch } = props;
     
     useEffect(() => {
         dispatch(handleReceiveQuestions());
@@ -34,7 +34,6 @@ const PollDasboard = (props) => {
                 users={users}
                 questions={unansweredTab ? unAnsweredQuestions : answeredQuestions}
                 unAnswered={unansweredTab ? true : false}
-                authedUser={authedUser}
             />
         </div>
     )

@@ -2,13 +2,14 @@ import React from 'react';
 import { ConnectedPoll } from './Poll';
 import { ConnectedPollResults } from './PollResults';
 import { useLocation, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-export const PollDetails = () => {
+const PollDetails = ({authedUser}) => {
     let location = useLocation();
     const { state } = location;
 
     if(state) {
-        const { qid, unAnswered, authedUser } = state;
+        const { qid, unAnswered } = state;
 
         if(authedUser) {
             return (
@@ -33,3 +34,11 @@ export const PollDetails = () => {
     }
 
 }
+
+const mapStateToProps = ({authedUser}) => {
+    return {
+        authedUser
+    }
+}
+
+export const ConnectedPollDetails = connect(mapStateToProps)(PollDetails);

@@ -4,7 +4,7 @@ import { AvatarImage } from './AvatarImage';
 import { Link } from 'react-router-dom';
 
 export const PollList = (props) => {
-    const { questions, users, unAnswered, authedUser } = props;
+    const { questions, users, unAnswered } = props;
 
     return (
         <ul>
@@ -29,7 +29,6 @@ export const PollList = (props) => {
                                         state: { 
                                             qid: uq.id,
                                             unAnswered,
-                                            authedUser
                                         }
                                     }}
                                 >
