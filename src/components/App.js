@@ -13,10 +13,10 @@ const App = (props) => {
   const { authedUser } = props;
 
   return (
-    <Router className="App">
+    <Router>
+      <div className='container'>
       <NavBar />
       {authedUser && (<ConnectedLoggingInfo />)}
-      <div className='container'>
         <Switch>
           <Route exact path='/'>
             <ConnectedHome />

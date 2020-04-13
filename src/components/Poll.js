@@ -25,7 +25,8 @@ const Poll = (props) => {
                     `/questions/${question.id}`, 
                     { 
                         qid: question.id,
-                        unAnswered: false
+                        unAnswered: false,
+                        authedUser
                     }
                 );
             })
