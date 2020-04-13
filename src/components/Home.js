@@ -4,8 +4,6 @@ import { ConnectedPollDashboard } from './PollDashboard';
 import { ConnectedSignIn } from './SignIn';
 
 const Home = ({authedUser}) => {
-    debugger;
-    
     if(authedUser) {
         return (
             <ConnectedPollDashboard />

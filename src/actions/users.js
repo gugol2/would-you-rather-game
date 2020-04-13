@@ -2,7 +2,7 @@ import { getUsers } from "../utils/api";
 
 export const RECEIVE_USERS = 'RECEIVE_USERS';
 
-export const receiveUsers = (users) => {
+const receiveUsers = (users) => {
     return {
         type: RECEIVE_USERS,
         users

@@ -1,7 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { handleReceiveData } from '../actions/shared';
-import { ConnectedPollDashboard } from './PollDashboard';
 import { ConnectedAddPoll } from './AddPoll';
 import { ConnectedLeaderBoard } from './LeaderBoard';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
@@ -12,12 +10,7 @@ import { ConnectedLoggingInfo } from './LoggedUserInfo';
 import { ConnectedHome } from './Home';
 
 const App = (props) => {
-  const { dispatch, authedUser } = props;
-
-  // useEffect(() => {
-  //   dispatch(handleReceiveData());
-    
-  // }, [dispatch]);
+  const { authedUser } = props;
 
   return (
     <Router className="App">

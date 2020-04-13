@@ -5,7 +5,7 @@ export const SAVE_ANSWER_TO_QUESTION = 'SAVE_ANSWER_TO_QUESTION';
 export const REMOVE_ANSWER_TO_QUESTION = 'REMOVE_ANSWER_TO_QUESTION';
 export const SAVE_QUESTION = 'SAVE_QUESTION';
 
-export const receiveQuestions = (questions) => {
+const receiveQuestions = (questions) => {
     return {
         type: RECEIVE_QUESTIONS,
         questions
