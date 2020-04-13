@@ -1,32 +1,51 @@
 import React from 'react';
-// import { AvatarImage } from './AvatarImage';
+import { connect } from 'react-redux';
+import { AvatarImage } from './AvatarImage';
 
-export const LeaderBoard = (props) => {
+const LeaderBoard = (props) => {
+    const { users } = props;
+
+    const userList = Object.values(users);
+
     return (
         <div className='leader-board'>
-            <div className="leader-board'__left">
-                    {/* <AvatarImage user={}/> */}
-            </div>
-            <div className="leader-board__center">
-                <h4>User name</h4>
+            {userList.map(user => (
+                <div className="leader-board-item">
+                    <div className="leader-board-item__left">
+                            <AvatarImage user={user}/>
+                    </div>
+                    
+                    <div className="leader-board-item__middle">
+                        <div className="leader-board-item__user">{user.name}</div>
 
-                <div className="leader-board__answered">
-                    Answered Questions
-                </div>
+                        <div className="leader-board-item__answered">
+                            <div>Answered Questions</div>
+                            <div>{Object.keys(user.answers).length}</div>
+                        </div>
 
-                <div className="leader-board__created">
-                    Created Questions
-                </div>
-            </div>
+                        <div className="leader-board-item__created">
+                            <div>Created Questions</div>
+                            <div>{user.questions.length}</div>
+                        </div>
+                    </div>
 
-            <div className="leader-board__right">
-                <div className='leader-board__right-title'>Score</div>
-                <div className="leader-board__right-score">
-                    10
+                    <div className="leader-board-item__right">
+                        <div className='leader-board-item__right-title'>Score</div>
+                        <div className="leader-board-item__right-score">
+                            {Object.keys(user.answers).length + user.questions.length}
+                        </div>
+                    </div>
                 </div>
-            </div>
-            
+            ))}
         </div>
     )
 }
 
+const mapStateToProps = ({users, authedUser}) => {
+    return {
+        users,
+        authedUser
+    }
+}
+
+export const ConnectedLeaderBoard = connect(mapStateToProps)(LeaderBoard);

@@ -5,7 +5,7 @@ import { ConnectedPollDashboard } from './PollDashboard';
 import { ConnectedPoll } from './Poll';
 import { ConnectedPollResults } from './PollResults';
 import { ConnectedAddPoll } from './AddPoll';
-import { LeaderBoard } from './LeaderBoard';
+import { ConnectedLeaderBoard } from './LeaderBoard';
 
 const App = (props) => {
   const { dispatch } = props;
@@ -20,7 +20,7 @@ const App = (props) => {
       Would you rather...?
       <ConnectedPoll />
       <ConnectedPollResults />
-      <LeaderBoard />
+      <ConnectedLeaderBoard />
       <ConnectedAddPoll />
       <ConnectedPollDashboard />
     </div>
