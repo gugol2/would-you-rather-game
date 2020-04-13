@@ -57,4 +57,4 @@ const mapStateToProps = ({users}) => {
     }
 }
 
-export const ConnectedLogIn = connect(mapStateToProps)(SignIn);
+export const ConnectedSignIn = connect(mapStateToProps)(SignIn);

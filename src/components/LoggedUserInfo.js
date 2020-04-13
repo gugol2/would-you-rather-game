@@ -9,7 +9,7 @@ export const LoggedUserInfo = ({userLogged, dispatch}) => {
 
     const logOut = () => {
         dispatch(logOutAuthedUser());
-        history.push('/login')
+        history.push('/')
     }
 
     return (
