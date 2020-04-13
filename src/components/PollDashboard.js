@@ -1,10 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { PollList } from './PollList';
+import { handleReceiveQuestions } from '../actions/questions';
 
 const PollDasboard = (props) => {
-    const [unansweredTab, setunansweredTab] = useState(true);    
-    const { unAnsweredQuestions, answeredQuestions, users } = props;
+    const [unansweredTab, setunansweredTab] = useState(true); 
+    const { unAnsweredQuestions, answeredQuestions, users, dispatch } = props;
+    
+    useEffect(() => {
+        dispatch(handleReceiveQuestions());
+    
+    }, [dispatch])
+
 
     const toggleTab = (value) => {
         setunansweredTab(value)

@@ -6,13 +6,12 @@ const imagesPath = process.env.PUBLIC_URL + '/images/';
 
 const SignIn = ({users, dispatch}) => {
     const [selectedUser, setSelectedUser] = useState('');
+    
     useEffect(() => {
         dispatch(handleReceiveUsers());
-        
     }, [dispatch]);
 
     const handleSelection = (event) => {
-        debugger;
         setSelectedUser(event.target.value)
     }
 

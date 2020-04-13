@@ -1,4 +1,4 @@
-import { saveQuestionAnswer, saveQuestion } from "../utils/api";
+import { saveQuestionAnswer, saveQuestion, getQuestions } from "../utils/api";
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
 export const SAVE_ANSWER_TO_QUESTION = 'SAVE_ANSWER_TO_QUESTION';
@@ -11,6 +11,14 @@ export const receiveQuestions = (questions) => {
         questions
     }
 };
+
+export const handleReceiveQuestions = () => {
+    return (dispatch) => {
+        return getQuestions().then(questions => {
+            dispatch(receiveQuestions(questions))
+        })
+    }
+}
 
 const saveAnswerToQuestion = ({ authedUser, qid, answer }) => {
     return {
