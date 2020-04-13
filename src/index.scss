@@ -223,3 +223,14 @@ ul {
     padding: 4px 8px;
   }
 }
+
+.navbar ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  text-decoration: none;
+}
+
+.navbar li:first-child {
+  padding-left: 0;
+}
