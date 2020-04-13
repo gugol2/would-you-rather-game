@@ -3,18 +3,18 @@ import { AvatarImage } from './AvatarImage';
 import { connect } from 'react-redux';
 import { logOutAuthedUser } from '../actions/authedUser';
 
-export const LoggingInfo = ({userLogged, dispatch}) => {
+export const LoggedUserInfo = ({userLogged, dispatch}) => {
     const logOut = () => {
         dispatch(logOutAuthedUser());
     }
 
     return (
-        <div className='login-info'>
+        <div className='logged-user-info'>
             <div>
                 {`Hello, ${userLogged.name}`}
             </div>
 
-            <div className='login-info-image'>
+            <div className='logged-user-info__image'>
                 <AvatarImage user={userLogged}/>
             </div>
 
@@ -32,5 +32,5 @@ const mapStateToProps = ({users, authedUser}) => {
     }
 }
 
-export const ConnectedLoggingInfo = connect(mapStateToProps)(LoggingInfo);
+export const ConnectedLoggingInfo = connect(mapStateToProps)(LoggedUserInfo);
 

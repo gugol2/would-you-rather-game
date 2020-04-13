@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { NavBar } from './NavBar';
 import { PollDetails } from './PollDetails';
 import { NoMatch } from './NoMatch';
-import { ConnectedLoggingInfo } from './LoggingInfo';
+import { ConnectedLoggingInfo } from './LoggedUserInfo';
 
 const App = (props) => {
   const { dispatch, logged } = props;

@@ -39,7 +39,7 @@ ul {
 
 .avatar-img {
   height: 50px;
-  border-radius: 25px;
+  border-radius: 50%;
   margin: 10px;
 }
 
@@ -240,3 +240,16 @@ ul {
 .navbar li:first-child {
   padding-left: 0;
 }
+
+// LoggedUserInfo Component
+.logged-user-info {
+  display: flex;
+  align-items: center;
+
+  &__image {
+    img {
+      height: 25px;
+    }
+  }
+}
+
