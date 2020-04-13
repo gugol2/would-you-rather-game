@@ -2,12 +2,11 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { handleReceiveData } from '../actions/shared';
 import { ConnectedPollDashboard } from './PollDashboard';
-import { ConnectedPoll } from './Poll';
-import { ConnectedPollResults } from './PollResults';
 import { ConnectedAddPoll } from './AddPoll';
 import { ConnectedLeaderBoard } from './LeaderBoard';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { NavBar } from './NavBar';
+import { PollDetails } from './PollDetails';
 
 const App = (props) => {
   const { dispatch } = props;
@@ -32,9 +31,13 @@ const App = (props) => {
         <Route path='/leaderboard'>
           <ConnectedLeaderBoard />
         </Route>
+
+        <Route 
+          path='/questions/:question_id'
+          component={PollDetails}
+        >
+        </Route>
       </div>
-      {/* <ConnectedPoll />
-      <ConnectedPollResults /> */}
     </Router>
   );
 }

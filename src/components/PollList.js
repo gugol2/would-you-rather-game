@@ -1,9 +1,14 @@
 import React from 'react';
 import { PollHeader } from './PollHeader';
 import { AvatarImage } from './AvatarImage';
+import { Link } from 'react-router-dom';
 
 export const PollList = (props) => {
-    const { questions, users } = props;
+    const { questions, users, unAnswered } = props;
+
+    const checkPoll = (event, qid) => {
+        debugger;
+    }
 
     return (
         <ul>
@@ -22,10 +27,18 @@ export const PollList = (props) => {
                                 <div className='poll__question-text'>
                                     {`...${uq.optionOne.text}...`}
                                 </div>
-                                <button 
-                                    type="submit"
-                                    className='center'    
-                                >View Poll</button>
+                                <Link
+                                    type='button'
+                                    className='center'
+                                    // onClick={(e) => checkPoll(e, uq.id)} 
+                                    to={{
+                                        pathname: `/questions/${uq.id}`,
+                                        state: { 
+                                            qid: uq.id,
+                                            unAnswered
+                                        }
+                                    }}
+                                >View Poll</Link>
                             </div>
 
                         </div>
