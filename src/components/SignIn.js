@@ -26,10 +26,10 @@ const SignIn = ({users, dispatch}) => {
     return (
         <div className='sign-in'>
             <div className="sign-in__header">
-                <div className="sign-in_header-title">
+                <div className="sign-in__header-title">
                     Welcome to the 'Would You Rather...' App!!
                 </div>
-                <div className="sign-in_header-subtitle">
+                <div className="sign-in__header-subtitle">
                     Please sign in to continue
                 </div>
             </div>
@@ -37,13 +37,15 @@ const SignIn = ({users, dispatch}) => {
             <div className="sign-in__body">
                 <img src={`${imagesPath}default_avatar.png`} alt=""/>
 
-                <form onSubmit={signInUser}>
+                <form onSubmit={signInUser} className="sign-in__body-form">
+
                     <select onChange={handleSelection} value={selectedUser}>
                         <option value='' key='0'></option>
                         {Object.values(users).map(user => (
                             <option value={user.id} key={user.id}>{user.name}</option>
                         ))}
                     </select>
+
                     <input 
                         type="submit" 
                         value="Sign In"

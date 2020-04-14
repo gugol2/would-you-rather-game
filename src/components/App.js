@@ -15,9 +15,12 @@ const App = (props) => {
 
   return (
     <Router>
+      <div className='header'>
+        <NavBar />
+        {authedUser && (<ConnectedLoggingInfo />)}
+      </div>
+
       <div className='container'>
-      <NavBar />
-      {authedUser && (<ConnectedLoggingInfo />)}
         <Switch>
           <Route exact path='/'>
             {authedUser ? 

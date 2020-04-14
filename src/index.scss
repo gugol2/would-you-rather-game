@@ -251,3 +251,47 @@ ul {
   }
 }
 
+// Header of the app
+.header {
+  margin: 0 auto;
+  padding: 10px 10px 0 10px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 3px solid green;
+}
+
+// SignIn Component
+.sign-in {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    border-bottom: 1px solid lightgray;
+    background-color: lighten($color: lightgray, $amount: 10);
+    text-align: center;
+    padding: 10px;
+  }
+
+  &__header-title {
+    font-weight: 600;
+    font-size: larger;
+  }
+
+  &__body {
+    align-self: center;
+  }
+
+  &__body-form {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+
+    input {
+      margin-top: 5px;
+      background-color: lighten($color: green, $amount: 15);
+    }
+  }
+
+}
