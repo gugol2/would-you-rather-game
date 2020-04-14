@@ -48,7 +48,6 @@ ul {
   flex-direction: column;
   border: 1px solid lightgray;
   border-radius: 5px;
-  margin: 10px;
 
   &__header{
     padding: 10px;
@@ -77,7 +76,6 @@ ul {
 }
 
 .poll-dashboard {
-  margin: 10px;
   border: 1px solid lightgray;
   border-radius: 5px;
 
@@ -93,7 +91,6 @@ ul {
 }
 
 .poll-results {
-  margin: 10px;
   border: 1px solid lightgray;
   border-radius: 5px;
 
@@ -127,8 +124,8 @@ ul {
   }
 }
 
+// Add Poll Component
 .poll-add {
-  margin: 10px;
   border: 1px solid lightgray;
   border-radius: 5px;
   display: flex;
@@ -170,8 +167,9 @@ ul {
   }
 }
 
+// LeatherBoard Component
 .leader-board-item {
-  margin: 10px;
+  margin: 10px 0;
   padding: 8px 8px 8px 0;
   border: 1px solid lightgray;
   border-radius: 5px;
