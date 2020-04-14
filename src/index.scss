@@ -86,11 +86,13 @@ ul {
   &__tabs {
     display: flex;
     justify-content: space-around;
+    border-bottom: 1px solid lightgray;
+  }
 
-    h3 {
-      border: 1px solid lightgray;
-      padding: 8px;
-    }
+  &__tab {
+    padding: 15px;
+    width: 50%;
+    text-align: center;
   }
 }
 

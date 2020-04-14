@@ -21,14 +21,14 @@ const PollDasboard = (props) => {
         return (
             <div className='poll-dashboard'>
                 <div className='poll-dashboard__tabs'>
-                    <h3 
+                    <div 
                         onClick={() => toggleTab(true)}
-                        className={unansweredTab ? 'active' : ''}
-                    >Unanswered Questions</h3>
-                    <h3 
+                        className={unansweredTab ? 'poll-dashboard__tab active' : 'poll-dashboard__tab'}
+                    >Unanswered Questions</div>
+                    <div 
                         onClick={() => toggleTab(false)}
-                        className={unansweredTab ? '' : 'active'}
-                    >Answered Questions</h3>
+                        className={unansweredTab ? 'poll-dashboard__tab' : 'poll-dashboard__tab active'}
+                    >Answered Questions</div>
                 </div>
     
                 <PollList 
