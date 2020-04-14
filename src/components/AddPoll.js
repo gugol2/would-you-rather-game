@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { handleSaveNewQuestion } from '../actions/questions';
+import { useHistory } from 'react-router-dom';
 
 const AddPoll = (props) => {
     const [optionTexts, setOptionTexts] = useState({
         optionOneText: '',
         optionTwoText: ''
     });
+
+    let history = useHistory();
 
     const { dispatch, authedUser } = props;
 
@@ -29,6 +32,7 @@ const AddPoll = (props) => {
                     optionOneText: '',
                     optionTwoText: ''
                 });
+                history.push('/');
             })
     }
 
