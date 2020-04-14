@@ -23,3 +23,5 @@
 // };
 
 // export const ConnectedHome = connect(mapStateToProps)(Home);
+
+// TODO: delete this component
