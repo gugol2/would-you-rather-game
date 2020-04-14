@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { setAuthedUser } from '../actions/authedUser';
 import { handleReceiveUsers } from '../actions/users';
+import { useHistory } from 'react-router-dom';
 const imagesPath = process.env.PUBLIC_URL + '/images/';
 
 const SignIn = ({users, dispatch}) => {
     const [selectedUser, setSelectedUser] = useState('');
+    let history = useHistory();
     
     useEffect(() => {
         dispatch(handleReceiveUsers());
@@ -15,9 +17,10 @@ const SignIn = ({users, dispatch}) => {
         setSelectedUser(event.target.value)
     }
 
-    const signInUser = (event) => {
+    const signInUser = async (event) => {
         event.preventDefault();
-        dispatch(setAuthedUser(selectedUser));
+        await dispatch(setAuthedUser(selectedUser));
+        history.push('/');
     }
 
     return (

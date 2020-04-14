@@ -2,12 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { ConnectedAddPoll } from './AddPoll';
 import { ConnectedLeaderBoard } from './LeaderBoard';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import { NavBar } from './NavBar';
 import { ConnectedPollDetails } from './PollDetails';
 import { NoMatch } from './NoMatch';
 import { ConnectedLoggingInfo } from './LoggedUserInfo';
-import { ConnectedHome } from './Home';
+import { ConnectedPollDashboard } from './PollDashboard';
+import { ConnectedSignIn } from './SignIn';
 
 const App = (props) => {
   const { authedUser } = props;
@@ -19,19 +20,39 @@ const App = (props) => {
       {authedUser && (<ConnectedLoggingInfo />)}
         <Switch>
           <Route exact path='/'>
-            <ConnectedHome />
+            {authedUser ? 
+              <ConnectedPollDashboard /> 
+              : 
+              <Redirect to='/login' />
+            }
+          </Route>
+
+          <Route path='/login'>
+            <ConnectedSignIn />
           </Route>
 
           <Route path='/add'>
-            <ConnectedAddPoll />
+            {authedUser ? 
+              <ConnectedAddPoll />
+              : 
+              <Redirect to='/login' />
+            }
           </Route>
 
           <Route path='/leaderboard'>
-            <ConnectedLeaderBoard />
+            {authedUser ? 
+              <ConnectedLeaderBoard />
+              : 
+              <Redirect to='/login' />
+            }
           </Route>
 
           <Route path='/questions/:question_id'>
-            <ConnectedPollDetails />
+            {authedUser ? 
+              <ConnectedPollDetails />
+              : 
+              <Redirect to='/login' />
+            }
           </Route>
 
           <Route path="*">
