@@ -28,7 +28,11 @@ const App = (props) => {
           </Route>
 
           <Route path='/login'>
-            <ConnectedSignIn />
+            {!authedUser ? 
+              <ConnectedSignIn /> 
+              : 
+              <Redirect to='/' />
+            }
           </Route>
 
           <Route path='/add'>
