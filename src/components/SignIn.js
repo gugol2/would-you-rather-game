@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { setAuthedUser } from '../actions/authedUser';
 import { handleReceiveUsers } from '../actions/users';
 import { useHistory } from 'react-router-dom';
-const imagesPath = process.env.PUBLIC_URL + '/images/';
+import { AvatarImage } from './AvatarImage';
 
 const SignIn = ({users, dispatch}) => {
     const [selectedUser, setSelectedUser] = useState('');
@@ -35,7 +35,7 @@ const SignIn = ({users, dispatch}) => {
             </div>
 
             <div className="sign-in__body">
-                <img src={`${imagesPath}default_avatar.png`} alt=""/>
+                <AvatarImage user={users[selectedUser]} modifier='large'/> 
 
                 <form onSubmit={signInUser} className="sign-in__body-form">
 
