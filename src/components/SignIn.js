@@ -42,7 +42,7 @@ const SignIn = ({users, dispatch}) => {
                     <div className="sign-in__body-form-title">Sign In</div>
                     
                     <select onChange={handleSelection} value={selectedUser}>
-                        <option value='' key='0'></option>
+                        <option value='' key='0' disabled>Choose an user!</option>
                         {Object.values(users).map(user => (
                             <option value={user.id} key={user.id}>{user.name}</option>
                         ))}
