@@ -56,6 +56,7 @@ export const handleSaveAnswerToQuestion = ({ authedUser, qid, answer }) => {
             });
         } else {
             alert('You alredy voted this poll my friend, try another poll!!');
+            return Promise.resolve();
         }
     }
 };
