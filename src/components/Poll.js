@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import { PollHeader } from './PollHeader';
 import { AvatarImage } from './AvatarImage';
 import { handleSaveAnswerToQuestion } from '../actions/questions';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 
 const Poll = (props) => {
     const [selectedOption, setSelectedOption] = useState('optionOne');
 
     const { question, pollAuthor, dispatch, authedUser } = props;
-    const { optionOne, optionTwo } = question;
+    const { optionOne, optionTwo, id } = question;
     let history = useHistory();
     
     const handleChange = (event) => {
@@ -31,7 +31,7 @@ const Poll = (props) => {
             })
     }
 
-    if(authedUser) {
+    if(id) {
         return (
             <div className='poll'>
                 <PollHeader author={pollAuthor}/>
@@ -74,14 +74,15 @@ const Poll = (props) => {
             </div>
         )
     } else {
-        return null;
+        return (
+            <Redirect to='/404' />
+        );
     }
 
 }
 
 const mapStateToProps = ({questions, authedUser, users}, {qid}) => {
-    const id = qid || 'loxhs1bqm25b708cmbf3g';
-    const question = questions[id] || {};
+    const question = questions[qid] || {};
 
     return {
         question,

@@ -28,7 +28,7 @@ export const PollList = (props) => {
                                         pathname: `/questions/${uq.id}`,
                                         state: { 
                                             qid: uq.id,
-                                            unAnswered,
+                                            unAnswered
                                         }
                                     }}
                                 >

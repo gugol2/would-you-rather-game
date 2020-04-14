@@ -6,36 +6,29 @@ import { connect } from 'react-redux';
 
 const PollDetails = ({authedUser}) => {
     let location = useLocation();
-    const { state } = location;
 
-    if(state) {
+    if(authedUser) {
+        const { state } = location;
         const { qid, unAnswered } = state;
 
-        if(authedUser) {
-            return (
-                <div>
-                    {unAnswered ? 
-                        <ConnectedPoll qid={qid} /> 
-                        : 
-                        <ConnectedPollResults qid={qid} />}
-                </div>
-            )
-        } else {
-            return null;
-        }
+        return (
+            <div>
+                {unAnswered ? 
+                    <ConnectedPoll qid={qid}/> 
+                    :
+                    <ConnectedPollResults qid={qid} />
+                }
+            </div>
+        )
     } else {
         return (
-            <Redirect
-                to={{
-                    pathname: "/404",
-                }}
-            />
-        )
+            <Redirect to='/' />
+        );
     }
-
 }
 
 const mapStateToProps = ({authedUser}) => {
+
     return {
         authedUser
     }
