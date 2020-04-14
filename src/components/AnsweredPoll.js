@@ -4,7 +4,7 @@ import { PollHeader } from './PollHeader';
 import { AvatarImage } from './AvatarImage';
 import { PollResultOption } from './PollResultOption';
 
-const PollResults = (props) => {
+const AnsweredPoll = (props) => {
     const { 
         question, 
         pollAuthor, 
@@ -89,4 +89,4 @@ const mapStateToProps = ({questions, authedUser, users}, {qid}) => {
     }
 }
 
-export const ConnectedPollResults = connect(mapStateToProps)(PollResults);
+export const ConnectedAnsweredPoll = connect(mapStateToProps)(AnsweredPoll);

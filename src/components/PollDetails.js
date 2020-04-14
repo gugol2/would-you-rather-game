@@ -1,6 +1,6 @@
 import React from 'react';
-import { ConnectedPoll } from './Poll';
-import { ConnectedPollResults } from './PollResults';
+import { ConnectedUnansweredPoll } from './UnansweredPoll';
+import { ConnectedAnsweredPoll } from './AnsweredPoll';
 import { useLocation } from 'react-router-dom';
 
 export const PollDetails = () => {
@@ -12,9 +12,9 @@ export const PollDetails = () => {
     return (
         <div>
             {unAnswered ? 
-                <ConnectedPoll qid={qid}/> 
+                <ConnectedUnansweredPoll qid={qid}/> 
                 :
-                <ConnectedPollResults qid={qid} />
+                <ConnectedAnsweredPoll qid={qid} />
             }
         </div>
     )

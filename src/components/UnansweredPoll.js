@@ -5,7 +5,7 @@ import { AvatarImage } from './AvatarImage';
 import { handleSaveAnswerToQuestion } from '../actions/questions';
 import { useHistory, Redirect } from 'react-router-dom';
 
-const Poll = (props) => {
+const UnansweredPoll = (props) => {
     const [selectedOption, setSelectedOption] = useState('optionOne');
 
     const { question, pollAuthor, dispatch, authedUser } = props;
@@ -91,4 +91,4 @@ const mapStateToProps = ({questions, authedUser, users}, {qid}) => {
     }
 }
 
-export const ConnectedPoll = connect(mapStateToProps)(Poll);
+export const ConnectedUnansweredPoll = connect(mapStateToProps)(UnansweredPoll);
