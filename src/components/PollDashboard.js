@@ -4,8 +4,8 @@ import { PollList } from './PollList';
 import { handleReceiveQuestions } from '../actions/questions';
 
 const PollDasboard = (props) => {
-    const [unansweredTab, setunansweredTab] = useState(true); 
-    const { unAnsweredQuestions, answeredQuestions, users, dispatch } = props;
+    const [ unansweredTab, setunansweredTab ] = useState(true); 
+    const { unAnsweredQuestions, answeredQuestions, users, dispatch, loadingBar } = props;
     
     useEffect(() => {
         dispatch(handleReceiveQuestions());
@@ -17,29 +17,34 @@ const PollDasboard = (props) => {
         setunansweredTab(value)
     }
 
-    return (
-        <div className='poll-dashboard'>
-            <div className='poll-dashboard__tabs'>
-                <h3 
-                    onClick={() => toggleTab(true)}
-                    className={unansweredTab ? 'active' : ''}
-                >Unanswered Questions</h3>
-                <h3 
-                    onClick={() => toggleTab(false)}
-                    className={unansweredTab ? '' : 'active'}
-                >Answered Questions</h3>
+    if(loadingBar.default === 0) {
+        return (
+            <div className='poll-dashboard'>
+                <div className='poll-dashboard__tabs'>
+                    <h3 
+                        onClick={() => toggleTab(true)}
+                        className={unansweredTab ? 'active' : ''}
+                    >Unanswered Questions</h3>
+                    <h3 
+                        onClick={() => toggleTab(false)}
+                        className={unansweredTab ? '' : 'active'}
+                    >Answered Questions</h3>
+                </div>
+    
+                <PollList 
+                    users={users}
+                    questions={unansweredTab ? unAnsweredQuestions : answeredQuestions}
+                    unAnswered={unansweredTab ? true : false}
+                />
             </div>
+        )
+    } else {
+        return null;
+    }
 
-            <PollList 
-                users={users}
-                questions={unansweredTab ? unAnsweredQuestions : answeredQuestions}
-                unAnswered={unansweredTab ? true : false}
-            />
-        </div>
-    )
 }
 
-const mapStateToProps = ({users, questions, authedUser}) => {
+const mapStateToProps = ({users, questions, authedUser, loadingBar}) => {
     const {answeredQuestions, unAnsweredQuestions} = Object.values(questions).reduce(
         (acc, cur) => {
             if(cur.optionOne.votes.includes(authedUser) || cur.optionTwo.votes.includes(authedUser)){
@@ -61,7 +66,7 @@ const mapStateToProps = ({users, questions, authedUser}) => {
         users,
         answeredQuestions: answeredQuestions ? answeredQuestions.sort((a, b) => b.timestamp - a.timestamp) : [],
         unAnsweredQuestions: unAnsweredQuestions ? unAnsweredQuestions.sort((a, b) => b.timestamp - a.timestamp) : [],
-        authedUser
+        loadingBar
     }
 }
 
