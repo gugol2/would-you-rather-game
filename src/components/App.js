@@ -9,6 +9,7 @@ import { NoMatch } from './NoMatch';
 import { ConnectedLoggingInfo } from './LoggedUserInfo';
 import { ConnectedPollDashboard } from './PollDashboard';
 import { ConnectedSignIn } from './SignIn';
+import LoadingBar from 'react-redux-loading';
 
 const App = (props) => {
   const { authedUser } = props;
@@ -19,7 +20,7 @@ const App = (props) => {
         <NavBar />
         {authedUser && (<ConnectedLoggingInfo />)}
       </div>
-
+      <LoadingBar />
       <div className='container'>
         <Switch>
           <Route exact path='/'>
