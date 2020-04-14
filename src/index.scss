@@ -295,7 +295,22 @@ ul {
     input {
       margin-top: 5px;
       background-color: lighten($color: green, $amount: 15);
+      height: 30px;
+      border-radius: 5px;
     }
+
+    select {
+      height: 30px;
+      border-radius: 5px;
+    }
+  }
+
+  &__body-form-title {
+    align-self: center;
+    font-weight: bold;
+    font-size: x-large;
+    padding: 8px;
+    color: green;
   }
 
 }
