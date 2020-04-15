@@ -16,9 +16,9 @@ const PollDetails = ({answered, qid}) => {
     )
 }
 
-const mapStateToProps = ({ authedUser, questions }, { params }) => {
-    const { question_id } = params;
-    const question = questions[question_id];
+const mapStateToProps = ({ authedUser, questions }, { match }) => {
+    const { params } = match
+    const question = questions[params.question_id];
     const answered = question.optionOne.votes.includes(authedUser) || question.optionTwo.votes.includes(authedUser);
 
     return {

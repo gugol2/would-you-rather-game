@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { ConnectedAddPoll } from './AddPoll';
 import { ConnectedLeaderBoard } from './LeaderBoard';
-import { BrowserRouter as Router, Route, Switch, Redirect, HashRouter } from 'react-router-dom'
+import { Switch, HashRouter, Route } from 'react-router-dom'
 import { NavBar } from './NavBar';
 import { ConnectedPollDetails } from './PollDetails';
 import { NoMatch } from './NoMatch';
@@ -10,6 +10,7 @@ import { ConnectedLoggingInfo } from './LoggedUserInfo';
 import { ConnectedPollDashboard } from './PollDashboard';
 import { ConnectedSignIn } from './SignIn';
 import LoadingBar from 'react-redux-loading';
+import { PrivateRoute } from './PrivateRoute';
 
 const App = (props) => {
   const { authedUser } = props;
@@ -23,61 +24,40 @@ const App = (props) => {
       <LoadingBar />
       <div className='container'>
         <Switch>
-          <Route exact path='/'>
-            {/* <ConnectedPollDashboard />  */}
+          <PrivateRoute 
+            exact path='/'
+            component={ConnectedPollDashboard}
+            authedUser={authedUser}
+          />
 
-            {authedUser ? 
-              <ConnectedPollDashboard /> 
-              : 
-              <Redirect to='/login' />
-            }
-          </Route>
+          <PrivateRoute 
+            path='/add' 
+            component={ConnectedAddPoll}
+            authedUser={authedUser}
+          />
 
-          <Route path='/login'>
-            {/* <ConnectedSignIn />  */}
+          <Route
+            path='/login' 
+            component={ConnectedSignIn}
+          />
 
-            {!authedUser ? 
-              <ConnectedSignIn /> 
-              : 
-              <Redirect to='/' />
-            }
-          </Route>
-
-          <Route path='/add'>
-            {/* <ConnectedAddPoll /> */}
-
-            {authedUser ? 
-              <ConnectedAddPoll />
-              : 
-              <Redirect to='/login' />
-            }
-          </Route>
-
-          <Route path='/leaderboard'>
-            {/* <ConnectedLeaderBoard /> */}
-
-            {authedUser ? 
-              <ConnectedLeaderBoard />
-              : 
-              <Redirect to='/login' />
-            }
-          </Route>
-
-          <Route 
+          <PrivateRoute 
             path='/questions/:question_id'
-            render={({match}) => 
-              authedUser ? 
-                <ConnectedPollDetails {...match}/>
-                : 
-                <Redirect to='/login' />
-            }
-            // component={ConnectedPollDetails}
-          >
-          </Route>
+            component={ConnectedPollDetails}
+            authedUser={authedUser}
+          />
 
-          <Route path="*">
-              <NoMatch />
-          </Route>
+          <PrivateRoute 
+            path='/leaderboard'
+            component={ConnectedLeaderBoard}
+            authedUser={authedUser}
+          />
+
+          <PrivateRoute 
+            path='*'
+            component={NoMatch}
+            authedUser={authedUser}
+          />
         </Switch>
       </div>
 
