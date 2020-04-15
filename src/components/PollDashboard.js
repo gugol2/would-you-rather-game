@@ -34,7 +34,6 @@ const PollDasboard = (props) => {
                 <PollList 
                     users={users}
                     questions={unansweredTab ? unAnsweredQuestions : answeredQuestions}
-                    unAnswered={unansweredTab ? true : false}
                 />
             </div>
         )
