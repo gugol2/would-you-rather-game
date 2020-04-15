@@ -53,7 +53,7 @@ const UnansweredPoll = (props) => {
 
                     <button 
                         type="submit"
-                        className='center'
+                        className='poll__button'
                     >Submit</button>
                 </form>
 

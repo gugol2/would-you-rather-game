@@ -37,10 +37,28 @@ ul {
   background-color: lightgray;
 }
 
+.btn {
+  border: 1px solid lightgray;
+  cursor: pointer;
+  background: #fff;
+  text-align: center;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  border-color: rgba(0,0,0,.5);
+  text-decoration: none;
+}
+
 .avatar-img {
   height: 50px;
   border-radius: 50%;
   margin: 10px;
+
+  &--medium {
+    height: 100px;
+  }
 
   &--large {
     height: 200px;
@@ -61,21 +79,34 @@ ul {
 
   &__body {
     display: flex;
-    align-items: center;
-  }
-
-  &__question {
-    display: flex;
-    flex-direction: column;
-    padding: 16px;
   }
 
   &__left {
     border-right: 1px solid lightgray;
+    align-self: center;
+    padding: 4px 16px;
+  }
+
+  &__question {
+    flex-grow: 1;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    padding: 16px;
   }
 
   &__question-text {
     margin: 16px 0;
+  }
+
+  &__button {
+    width: 100%;
+    border-radius: 5px;
+    border-color: lighten($color: green, $amount: 15);
+    color: lighten($color: green, $amount: 15);
+    padding: 5px 0;
   }
 }
 
