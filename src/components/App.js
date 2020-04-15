@@ -4,7 +4,7 @@ import { ConnectedAddPoll } from './AddPoll';
 import { ConnectedLeaderBoard } from './LeaderBoard';
 import { BrowserRouter as Router, Route, Switch, Redirect, HashRouter } from 'react-router-dom'
 import { NavBar } from './NavBar';
-import { PollDetails } from './PollDetails';
+import { ConnectedPollDetails } from './PollDetails';
 import { NoMatch } from './NoMatch';
 import { ConnectedLoggingInfo } from './LoggedUserInfo';
 import { ConnectedPollDashboard } from './PollDashboard';
@@ -63,14 +63,16 @@ const App = (props) => {
             }
           </Route>
 
-          <Route path='/questions/:question_id'>
-            {/* <PollDetails /> */}
-
-            {authedUser ? 
-              <PollDetails />
-              : 
-              <Redirect to='/login' />
+          <Route 
+            path='/questions/:question_id'
+            render={({match}) => 
+              authedUser ? 
+                <ConnectedPollDetails {...match}/>
+                : 
+                <Redirect to='/login' />
             }
+            // component={ConnectedPollDetails}
+          >
           </Route>
 
           <Route path="*">

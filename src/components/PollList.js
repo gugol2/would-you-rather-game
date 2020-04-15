@@ -23,15 +23,7 @@ export const PollList = (props) => {
                                 <div className='poll__question-text'>
                                     {`...${uq.optionOne.text}...`}
                                 </div>
-                                <Link
-                                    to={{
-                                        pathname: `/questions/${uq.id}`,
-                                        state: { 
-                                            qid: uq.id,
-                                            unAnswered
-                                        }
-                                    }}
-                                >
+                                <Link to={`/questions/${uq.id}`}>
                                     <button
                                         type='button'
                                         className='center'

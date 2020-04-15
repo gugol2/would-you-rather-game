@@ -21,16 +21,11 @@ const UnansweredPoll = (props) => {
 
         dispatch(handleSaveAnswerToQuestion({ authedUser, qid: question.id, answer: selectedOption}))
             .then(() => {
-                history.push(
-                    `/questions/${question.id}`, 
-                    { 
-                        qid: question.id,
-                        unAnswered: false,
-                    }
-                );
+                history.push(`/questions/${question.id}`);
             })
     }
-
+    
+    debugger;
     if(id) {
         return (
             <div className='poll'>
