@@ -47,7 +47,7 @@ const AddPoll = (props) => {
                     Complete the question:
                 </div>
                 <div className="poll-add__body-title">
-                    Would you rather...
+                    Would you rather ...
                 </div>
 
                 <form 
@@ -58,7 +58,7 @@ const AddPoll = (props) => {
                         type="text"
                         name="optionOneText"
                         id="optionOneText"
-                        placeholder='Enter Option One Text Here'
+                        placeholder='Enter Option One Text Here...'
                         value={optionTexts.optionOneText}
                         onChange={handleoOtionTexts}
                         className='poll-add__body-form-input'
@@ -70,7 +70,7 @@ const AddPoll = (props) => {
                         type="text"
                         name="optionTwoText"
                         id="optionTwoText"
-                        placeholder='Enter Option Two Text Here'
+                        placeholder='Enter Option Two Text Here...'
                         value={optionTexts.optionTwoText}
                         onChange={handleoOtionTexts}
                         className='poll-add__body-form-input'
@@ -80,7 +80,7 @@ const AddPoll = (props) => {
                         type="submit" 
                         value="Submit"
                         disabled={!optionTexts.optionOneText || !optionTexts.optionTwoText}
-                        className='poll-add__body-form-button'
+                        className='btn poll__button'
                     />
                 </form>
             </div>

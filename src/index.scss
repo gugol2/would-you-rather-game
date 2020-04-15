@@ -172,12 +172,16 @@ ul {
   }
 
   &__body-form-input {
-    margin: 8px 0;
+    margin: 10px 0;
+    font-size: 16px;
+    border-radius: 5px;
+    padding: 5px;
+    border: 1px solid lightgray;
   }
 
-  &__body-form-button {
-    margin: 8px 0;
-  }
+  // &__body-form-button {
+  //   margin: 8px 0;
+  // }
 }
 
 // LeatherBoard Component
