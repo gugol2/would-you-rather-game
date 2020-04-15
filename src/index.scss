@@ -138,11 +138,11 @@ ul {
   flex-direction: column;
   
   &__header {
-    align-self: center;
     padding: 10px;
     font-weight: 600;
     font-size: x-large;
     border-bottom: 1px solid lightgray;
+    text-align: center;
   }
 
   &__body {
