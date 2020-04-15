@@ -26,12 +26,12 @@ const UnansweredPoll = (props) => {
 
             <div className='poll__body'>
                 <div className="poll__left">
-                    <AvatarImage user={pollAuthor}/>
+                    <AvatarImage user={pollAuthor} modifier='medium' />
                 </div>
 
                 <form className='poll__question' onSubmit={saveQuestionAnswer} >
                     <strong>Would your rather</strong>
-                    <label>
+                    <label className='poll__question-text'>
                         <input 
                             type="radio" 
                             value='optionOne' 
@@ -41,7 +41,7 @@ const UnansweredPoll = (props) => {
                         {optionOne && optionOne.text}
                     </label>
 
-                    <label>
+                    <label className='poll__question-text'>
                         <input
                             type="radio"
                             value='optionTwo'
@@ -53,7 +53,7 @@ const UnansweredPoll = (props) => {
 
                     <button 
                         type="submit"
-                        className='poll__button'
+                        className='btn poll__button'
                     >Submit</button>
                 </form>
 

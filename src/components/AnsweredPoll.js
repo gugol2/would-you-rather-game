@@ -19,18 +19,17 @@ const AnsweredPoll = (props) => {
     const { optionOne, optionTwo } = question;
 
     return (
-        <div className='poll-results'>
+        <div className='poll'>
             <PollHeader author={pollAuthor}/>
 
-            <div className='poll-results__body'>
-                <div className="poll-results__left">
-                    <AvatarImage user={pollAuthor}/>
+            <div className='poll__body'>
+                <div className="poll__left">
+                    <AvatarImage user={pollAuthor} modifier='medium' />
                 </div>
 
-                <div className="poll-results__right">
-                    <div className="poll-results__right-title">
-                        Results:
-                    </div>
+                <div className="poll__question">
+                    <strong>Results:</strong>
+
                     <PollResultOption 
                         option={optionOne}
                         percentageOption={percentageOptionOne}
