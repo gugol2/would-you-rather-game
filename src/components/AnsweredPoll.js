@@ -18,8 +18,6 @@ const AnsweredPoll = (props) => {
 
     const { optionOne, optionTwo } = question;
 
-    debugger;
-
     return (
         <div className='poll-results'>
             <PollHeader author={pollAuthor}/>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { PollList } from './PollList';
 import { handleReceiveQuestions } from '../actions/questions';
+import { PollBrief } from './PollBrief';
 
 const PollDasboard = (props) => {
     const [ unansweredTab, setunansweredTab ] = useState(true); 
@@ -17,6 +17,8 @@ const PollDasboard = (props) => {
         setunansweredTab(value)
     }
 
+    const questionsFromTab= unansweredTab ? unAnsweredQuestions : answeredQuestions;
+
     if(loadingBar.default === 0) {
         return (
             <div className='poll-dashboard'>
@@ -30,11 +32,14 @@ const PollDasboard = (props) => {
                         className={unansweredTab ? 'poll-dashboard__tab' : 'poll-dashboard__tab active'}
                     >Answered Questions</div>
                 </div>
-    
-                <PollList 
-                    users={users}
-                    questions={unansweredTab ? unAnsweredQuestions : answeredQuestions}
-                />
+
+                <ul>
+                    {questionsFromTab.map(question => (
+                        <li key={question.id}>
+                            <PollBrief qauthor={users[question.author]} question={question}/>
+                        </li>
+                    ))}
+                </ul>
             </div>
         )
     } else {
