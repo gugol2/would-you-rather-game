@@ -14,3 +14,5 @@ export const PublicRoute = ({component: Component, authedUser, ...rest}) => {
         )} />
     );
 };
+
+// TODO: check if you should delete this component

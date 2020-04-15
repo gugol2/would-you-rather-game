@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { ConnectedAddPoll } from './AddPoll';
 import { ConnectedLeaderBoard } from './LeaderBoard';
-import { Switch, HashRouter } from 'react-router-dom'
+import { Switch, HashRouter, Route } from 'react-router-dom'
 import { NavBar } from './NavBar';
 import { ConnectedPollDetails } from './PollDetails';
 import { NoMatch } from './NoMatch';
@@ -11,7 +11,6 @@ import { ConnectedPollDashboard } from './PollDashboard';
 import { ConnectedSignIn } from './SignIn';
 import LoadingBar from 'react-redux-loading';
 import { PrivateRoute } from './PrivateRoute';
-import { PublicRoute } from '../actions/PublicRoute';
 
 const App = (props) => {
   const { authedUser } = props;
@@ -25,6 +24,11 @@ const App = (props) => {
       <LoadingBar />
       <div className='container'>
         <Switch>
+          <Route
+            path='/login' 
+            component={ConnectedSignIn}
+          />
+
           <PrivateRoute 
             exact path='/'
             component={ConnectedPollDashboard}
@@ -34,12 +38,6 @@ const App = (props) => {
           <PrivateRoute 
             path='/add' 
             component={ConnectedAddPoll}
-            authedUser={authedUser}
-          />
-
-          <PublicRoute
-            path='/login' 
-            component={ConnectedSignIn}
             authedUser={authedUser}
           />
 
