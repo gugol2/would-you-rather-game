@@ -3,14 +3,13 @@ import { connect } from 'react-redux';
 import { PollHeader } from './PollHeader';
 import { AvatarImage } from './AvatarImage';
 import { handleSaveAnswerToQuestion } from '../actions/questions';
-import { useHistory, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 const UnansweredPoll = (props) => {
     const [selectedOption, setSelectedOption] = useState('optionOne');
 
     const { question, pollAuthor, dispatch, authedUser } = props;
     const { optionOne, optionTwo, id } = question;
-    let history = useHistory();
     
     const handleChange = (event) => {
         setSelectedOption(event.target.value)
@@ -19,13 +18,9 @@ const UnansweredPoll = (props) => {
     const saveQuestionAnswer = (event) => {
         event.preventDefault();
 
-        dispatch(handleSaveAnswerToQuestion({ authedUser, qid: question.id, answer: selectedOption}))
-            .then(() => {
-                history.push(`/questions/${question.id}`);
-            })
+        dispatch(handleSaveAnswerToQuestion({ authedUser, qid: question.id, answer: selectedOption}));
     }
     
-    debugger;
     if(id) {
         return (
             <div className='poll'>
