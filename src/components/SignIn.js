@@ -2,25 +2,32 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { setAuthedUser } from '../actions/authedUser';
 import { handleReceiveUsers } from '../actions/users';
-import { useHistory } from 'react-router-dom';
+import { useLocation, Redirect } from 'react-router-dom';
 import { AvatarImage } from './AvatarImage';
 
 const SignIn = ({users, dispatch}) => {
     const [selectedUser, setSelectedUser] = useState('');
-    let history = useHistory();
-    
+    const [redirectToReferrer, setRedirectToReferrer] = useState(false);
+
+    let location = useLocation();
+
     useEffect(() => {
         dispatch(handleReceiveUsers());
     }, [dispatch]);
 
     const handleSelection = (event) => {
-        setSelectedUser(event.target.value)
+        setSelectedUser(event.target.value);
     }
 
     const signInUser = async (event) => {
         event.preventDefault();
         await dispatch(setAuthedUser(selectedUser));
-        history.push('/');
+        setRedirectToReferrer(true);
+    }
+
+    if (redirectToReferrer) {
+        const { from } = location.state || { from: { pathname: '/'} };
+        return <Redirect to={from} />
     }
 
     return (
