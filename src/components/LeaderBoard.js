@@ -12,7 +12,7 @@ const LeaderBoard = (props) => {
             {userList.map(user => (
                 <div className="leader-board-item" key={user.id}>
                     <div className="leader-board-item__left">
-                            <AvatarImage user={user}/>
+                            <AvatarImage user={user} modifier='medium' />
                     </div>
 
                     <div className="leader-board-item__middle">

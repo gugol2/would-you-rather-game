@@ -204,6 +204,7 @@ ul {
     font-size: larger;
     font-weight: 600;
     margin-bottom: 16px;
+    border-bottom: 1px solid lighten($color: green, $amount: 10);
   }
 
   &__answered {
@@ -230,14 +231,17 @@ ul {
     border: 1px solid lightgray;
     border-radius: 5px;
   }
-
+  
   &__right-title {
     padding: 4px 8px;
     border-bottom: 1px solid lightgray;
   }
-
+  
   &__right-score {
+    background-color: lighten($color: green, $amount: 10);
     padding: 4px 8px;
+    border-radius: 25px;
+    font-size: large;
   }
 }
 
