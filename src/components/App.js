@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { ConnectedAddPoll } from './AddPoll';
 import { ConnectedLeaderBoard } from './LeaderBoard';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Redirect, HashRouter } from 'react-router-dom'
 import { NavBar } from './NavBar';
 import { PollDetails } from './PollDetails';
 import { NoMatch } from './NoMatch';
@@ -15,7 +15,7 @@ const App = (props) => {
   const { authedUser } = props;
 
   return (
-    <Router>
+    <HashRouter>
       <div className='header'>
         <NavBar />
         {authedUser && (<ConnectedLoggingInfo />)}
@@ -24,6 +24,8 @@ const App = (props) => {
       <div className='container'>
         <Switch>
           <Route exact path='/'>
+            {/* <ConnectedPollDashboard />  */}
+
             {authedUser ? 
               <ConnectedPollDashboard /> 
               : 
@@ -32,6 +34,8 @@ const App = (props) => {
           </Route>
 
           <Route path='/login'>
+            {/* <ConnectedSignIn />  */}
+
             {!authedUser ? 
               <ConnectedSignIn /> 
               : 
@@ -40,6 +44,8 @@ const App = (props) => {
           </Route>
 
           <Route path='/add'>
+            {/* <ConnectedAddPoll /> */}
+
             {authedUser ? 
               <ConnectedAddPoll />
               : 
@@ -48,6 +54,8 @@ const App = (props) => {
           </Route>
 
           <Route path='/leaderboard'>
+            {/* <ConnectedLeaderBoard /> */}
+
             {authedUser ? 
               <ConnectedLeaderBoard />
               : 
@@ -56,6 +64,8 @@ const App = (props) => {
           </Route>
 
           <Route path='/questions/:question_id'>
+            {/* <PollDetails /> */}
+
             {authedUser ? 
               <PollDetails />
               : 
@@ -69,7 +79,7 @@ const App = (props) => {
         </Switch>
       </div>
 
-    </Router>
+    </HashRouter>
   );
 }
 
