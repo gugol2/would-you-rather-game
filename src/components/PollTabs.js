@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { handleReceiveQuestions } from '../actions/questions';
 import { PollBrief } from './PollBrief';
 
-const PollDasboard = (props) => {
+const PollTabs = (props) => {
     const [ unansweredTab, setunansweredTab ] = useState(true); 
     const { unAnsweredQuestions, answeredQuestions, users, dispatch, loadingBar } = props;
     
@@ -75,4 +75,4 @@ const mapStateToProps = ({users, questions, authedUser, loadingBar}) => {
     }
 }
 
-export const ConnectedPollDashboard = connect(mapStateToProps)(PollDasboard);
+export const ConnectedPollTabs = connect(mapStateToProps)(PollTabs);

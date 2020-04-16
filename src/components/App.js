@@ -8,7 +8,7 @@ import { NavBar } from './NavBar';
 import { ConnectedPollDetailsContainer } from './PollDetailsContainer';
 import { NoMatch } from './NoMatch';
 import { ConnectedLoggingInfo } from './LoggedUserInfo';
-import { ConnectedPollDashboard } from './PollDashboard';
+import { ConnectedPollTabs } from './PollTabs';
 import { ConnectedSignIn } from './SignIn';
 import LoadingBar from 'react-redux-loading';
 import { PrivateRoute } from './PrivateRoute';
@@ -18,11 +18,14 @@ const App = (props) => {
 
   return (
     <HashRouter>
+
       <div className='header'>
         <NavBar />
         {authedUser && (<ConnectedLoggingInfo />)}
       </div>
+
       <LoadingBar />
+
       <div className='container'>
         <Switch>
           <Route
@@ -32,7 +35,7 @@ const App = (props) => {
 
           <PrivateRoute 
             exact path='/'
-            component={ConnectedPollDashboard}
+            component={ConnectedPollTabs}
             authedUser={authedUser}
           />
 
