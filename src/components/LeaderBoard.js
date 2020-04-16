@@ -2,14 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { AvatarImage } from './AvatarImage';
 
-const LeaderBoard = (props) => {
-    const { users } = props;
-    
-    const userList = Object.values(users);
-
+const LeaderBoard = ({usersOrderedByScore}) => {
     return (
         <div className='leader-board'>
-            {userList.map(user => (
+            {usersOrderedByScore.map(user => (
                 <div className="leader-board-item" key={user.id}>
                     <div className="leader-board-item__left">
                             <AvatarImage user={user} modifier='medium' />
@@ -43,8 +39,12 @@ const LeaderBoard = (props) => {
 }
 
 const mapStateToProps = ({users}) => {
+    const usersOrderedByScore = Object.values(users).sort((a, b) => {
+        return ((Object.keys(b.answers).length + b.questions.length) - (Object.keys(a.answers).length + a.questions.length));
+    });
+
     return {
-        users
+        usersOrderedByScore
     }
 }
 
