@@ -5,7 +5,7 @@ import { PollBrief } from './PollBrief';
 
 const PollTabs = (props) => {
     const [ unansweredTab, setunansweredTab ] = useState(true); 
-    const { unAnsweredQuestions, answeredQuestions, users, loadingBar } = props;
+    const { unAnsweredQuestions, answeredQuestions, users, loading } = props;
 
     const toggleTab = (value) => {
         setunansweredTab(value)
@@ -13,7 +13,11 @@ const PollTabs = (props) => {
 
     const questionsFromTab= unansweredTab ? unAnsweredQuestions : answeredQuestions;
 
-    if(loadingBar.default === 0) {
+    if(loading) {
+        return null;
+
+    } else {
+
         return (
             <div className='poll-dashboard'>
                 <div className='poll-dashboard__tabs'>
@@ -36,10 +40,7 @@ const PollTabs = (props) => {
                 </ul>
             </div>
         )
-    } else {
-        return null;
     }
-
 }
 
 const mapStateToProps = ({users, questions, authedUser, loadingBar}) => {
@@ -64,7 +65,7 @@ const mapStateToProps = ({users, questions, authedUser, loadingBar}) => {
         users,
         answeredQuestions: answeredQuestions ? answeredQuestions.sort((a, b) => b.timestamp - a.timestamp) : [],
         unAnsweredQuestions: unAnsweredQuestions ? unAnsweredQuestions.sort((a, b) => b.timestamp - a.timestamp) : [],
-        loadingBar
+        loading: loadingBar.default
     }
 }
 
