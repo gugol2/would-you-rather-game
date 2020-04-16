@@ -24,7 +24,7 @@ const App = (props) => {
         {authedUser && (<ConnectedLoggingInfo />)}
       </div>
 
-      <LoadingBar style={{ backgroundColor: 'lightgreen', height: '5px' }}/>
+      <LoadingBar className='loading-bar' />
 
       <div className='container'>
         <Switch>

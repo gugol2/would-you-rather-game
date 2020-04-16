@@ -46,3 +46,9 @@ ul {
     border-bottom: 3px solid green;
 }
 
+// Loading Bar
+.loading-bar {
+    background-color: lighten($color: green, $amount: 15);
+    height: 5px;
+}
+
