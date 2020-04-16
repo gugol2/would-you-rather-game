@@ -5,6 +5,7 @@ import { setAuthedUser } from '../actions/authedUser';
 import { handleReceiveUsers } from '../actions/users';
 import { useLocation, Redirect } from 'react-router-dom';
 import { AvatarImage } from './AvatarImage';
+import { handleReceiveQuestions } from '../actions/questions';
 
 const SignIn = ({users, dispatch}) => {
     const [selectedUser, setSelectedUser] = useState('');
@@ -22,6 +23,7 @@ const SignIn = ({users, dispatch}) => {
 
     const signInUser = async (event) => {
         event.preventDefault();
+        dispatch(handleReceiveQuestions());
         await dispatch(setAuthedUser(selectedUser));
         setRedirectToReferrer(true);
     }

@@ -1,18 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import '../styles/PollDashboard.scss';
 import { connect } from 'react-redux';
-import { handleReceiveQuestions } from '../actions/questions';
 import { PollBrief } from './PollBrief';
 
 const PollTabs = (props) => {
     const [ unansweredTab, setunansweredTab ] = useState(true); 
-    const { unAnsweredQuestions, answeredQuestions, users, dispatch, loadingBar } = props;
-    
-    useEffect(() => {
-        dispatch(handleReceiveQuestions());
-    
-    }, [dispatch])
-
+    const { unAnsweredQuestions, answeredQuestions, users, loadingBar } = props;
 
     const toggleTab = (value) => {
         setunansweredTab(value)
