@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/Poll.scss';
 import { PollHeader } from './PollHeader';
 import { AvatarImage } from './AvatarImage';
 import { Link } from 'react-router-dom';

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../styles/AddPoll.scss';
 import { connect } from 'react-redux';
 import { handleSaveNewQuestion } from '../actions/questions';
 import { useHistory } from 'react-router-dom';

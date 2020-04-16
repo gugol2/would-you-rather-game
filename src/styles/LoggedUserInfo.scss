@@ -1,0 +1,11 @@
+// LoggedUserInfo Component
+.logged-user-info {
+    display: flex;
+    align-items: center;
+
+    &__image {
+        img {
+        height: 25px;
+        }
+    }
+}

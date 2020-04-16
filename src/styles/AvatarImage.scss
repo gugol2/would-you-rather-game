@@ -1,0 +1,13 @@
+.avatar-img {
+    height: 50px;
+    border-radius: 50%;
+    margin: 10px;
+
+    &--medium {
+        height: 100px;
+    }
+
+    &--large {
+        height: 200px;
+    }
+}

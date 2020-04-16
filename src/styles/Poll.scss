@@ -1,0 +1,40 @@
+// poll
+.poll {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+
+    &__body {
+        display: flex;
+    }
+
+    &__left {
+        border-right: 1px solid lightgray;
+        align-self: center;
+        padding: 4px 16px;
+    }
+
+    &__question {
+        flex-grow: 1;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        padding: 16px;
+    }
+
+    &__question-text {
+        margin: 16px 0;
+    }
+
+    &__button {
+        width: 100%;
+        border-radius: 5px;
+        border-color: lighten($color: green, $amount: 15);
+        color: lighten($color: green, $amount: 15);
+        padding: 5px 0;
+        margin: 5px 0;
+    }
+}

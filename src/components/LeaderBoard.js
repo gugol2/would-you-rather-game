@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/LeaderBoard.scss';
 import { connect } from 'react-redux';
 import { AvatarImage } from './AvatarImage';
 

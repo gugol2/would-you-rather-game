@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import '../styles/PollDashboard.scss';
 import { connect } from 'react-redux';
 import { handleReceiveQuestions } from '../actions/questions';
 import { PollBrief } from './PollBrief';

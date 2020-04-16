@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/LoggedUserInfo.scss';
 import { AvatarImage } from './AvatarImage';
 import { connect } from 'react-redux';
 import { logOutAuthedUser } from '../actions/authedUser';
