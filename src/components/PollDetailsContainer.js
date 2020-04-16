@@ -4,7 +4,7 @@ import { ConnectedAnsweredPoll } from './AnsweredPoll';
 import { connect } from 'react-redux';
 import { NoMatch } from './NoMatch';
 
-const PollDetails = ({answered, qid}) => {
+const PollDetailsContainer = ({answered, qid}) => {
     if (qid) {
         return (
             <div>
@@ -32,4 +32,4 @@ const mapStateToProps = ({ authedUser, questions }, { match }) => {
     }
 }
 
-export const ConnectedPollDetails = connect(mapStateToProps)(PollDetails);
+export const ConnectedPollDetailsContainer = connect(mapStateToProps)(PollDetailsContainer);

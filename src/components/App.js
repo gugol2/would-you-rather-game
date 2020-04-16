@@ -5,7 +5,7 @@ import { ConnectedAddPoll } from './AddPoll';
 import { ConnectedLeaderBoard } from './LeaderBoard';
 import { Switch, HashRouter, Route } from 'react-router-dom'
 import { NavBar } from './NavBar';
-import { ConnectedPollDetails } from './PollDetails';
+import { ConnectedPollDetailsContainer } from './PollDetailsContainer';
 import { NoMatch } from './NoMatch';
 import { ConnectedLoggingInfo } from './LoggedUserInfo';
 import { ConnectedPollDashboard } from './PollDashboard';
@@ -44,7 +44,7 @@ const App = (props) => {
 
           <PrivateRoute 
             path='/questions/:question_id'
-            component={ConnectedPollDetails}
+            component={ConnectedPollDetailsContainer}
             authedUser={authedUser}
           />
 
