@@ -1,21 +1,18 @@
-// import { receiveUsers } from './users';
-// import { receiveQuestions } from './questions';
-import { setAuthedUser } from './authedUser';
+import { receiveUsers } from './users';
+import { receiveQuestions } from './questions';
 import { getInitialData } from '../utils/api';
+import { showLoading, hideLoading } from 'react-redux-loading';
 
 export const RECEIVE_DATA = 'RECEIVE_DATA';
 
-const LOGGED_USER = 'johndoe';
-
 export const handleReceiveData = () => {
     return (dispatch) => {
+        dispatch(showLoading());
         getInitialData().then(({users, questions}) => {
-            // dispatch(receiveUsers(users));
-            // dispatch(receiveQuestions(questions));
-            dispatch(setAuthedUser(LOGGED_USER))
+            dispatch(receiveUsers(users));
+            dispatch(receiveQuestions(questions));
+            dispatch(hideLoading());
         });
 
     }
 }
-
-// TODO: Delete this file

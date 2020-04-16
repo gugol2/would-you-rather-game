@@ -2,19 +2,18 @@ import React, { useState, useEffect } from 'react';
 import '../styles/SignIn.scss';
 import { connect } from 'react-redux';
 import { setAuthedUser } from '../actions/authedUser';
-import { handleReceiveUsers } from '../actions/users';
 import { useLocation, Redirect } from 'react-router-dom';
 import { AvatarImage } from './AvatarImage';
-import { handleReceiveQuestions } from '../actions/questions';
+import { handleReceiveData } from '../actions/shared';
 
-const SignIn = ({users, dispatch}) => {
+const SignIn = ({users, dispatch, loading}) => {
     const [selectedUser, setSelectedUser] = useState('');
     const [redirectToReferrer, setRedirectToReferrer] = useState(false);
 
     let location = useLocation();
 
     useEffect(() => {
-        dispatch(handleReceiveUsers());
+        dispatch(handleReceiveData());
     }, [dispatch]);
 
     const handleSelection = (event) => {
@@ -23,7 +22,6 @@ const SignIn = ({users, dispatch}) => {
 
     const signInUser = async (event) => {
         event.preventDefault();
-        dispatch(handleReceiveQuestions());
         await dispatch(setAuthedUser(selectedUser));
         setRedirectToReferrer(true);
     }
@@ -44,7 +42,7 @@ const SignIn = ({users, dispatch}) => {
                 </div>
             </div>
 
-            <div className="sign-in__body">
+            {!loading && (<div className="sign-in__body">
                 <AvatarImage user={users[selectedUser]} modifier='large'/> 
 
                 <form onSubmit={signInUser} className="sign-in__body-form">
@@ -63,14 +61,15 @@ const SignIn = ({users, dispatch}) => {
                         disabled={selectedUser === ''}
                     />
                 </form>
-            </div>
+            </div>)}
         </div>
     )
 }
 
-const mapStateToProps = ({users}) => {
+const mapStateToProps = ({users, loadingBar}) => {
     return {
-        users
+        users,
+        loading: loadingBar.default
     }
 }
 

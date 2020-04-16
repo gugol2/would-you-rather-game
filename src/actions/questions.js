@@ -1,27 +1,16 @@
-import { saveQuestionAnswer, saveQuestion, getQuestions } from "../utils/api";
-import { showLoading, hideLoading } from 'react-redux-loading';
+import { saveQuestionAnswer, saveQuestion } from "../utils/api";
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
 export const SAVE_ANSWER_TO_QUESTION = 'SAVE_ANSWER_TO_QUESTION';
 export const REMOVE_ANSWER_TO_QUESTION = 'REMOVE_ANSWER_TO_QUESTION';
 export const SAVE_QUESTION = 'SAVE_QUESTION';
 
-const receiveQuestions = (questions) => {
+export const receiveQuestions = (questions) => {
     return {
         type: RECEIVE_QUESTIONS,
         questions
     }
 };
-
-export const handleReceiveQuestions = () => {
-    return (dispatch) => {
-        dispatch(showLoading());
-        return getQuestions().then(questions => {
-            dispatch(receiveQuestions(questions));
-            dispatch(hideLoading());
-        })
-    }
-}
 
 const saveAnswerToQuestion = ({ authedUser, qid, answer }) => {
     return {
