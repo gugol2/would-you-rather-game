@@ -1,4 +1,5 @@
 import React from 'react';
+import '../App.scss'
 import { connect } from 'react-redux';
 import { ConnectedAddPoll } from './AddPoll';
 import { ConnectedLeaderBoard } from './LeaderBoard';
