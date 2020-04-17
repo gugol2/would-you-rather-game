@@ -19,6 +19,7 @@
 
     &__body {
         align-self: center;
+        animation: fadeIn 1.5s;
     }
 
     &__body-form {
@@ -47,4 +48,9 @@
         color: green;
     }
 
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }
