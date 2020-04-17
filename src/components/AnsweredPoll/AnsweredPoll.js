@@ -1,9 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { PollHeader } from './PollHeader';
-import { AvatarImage } from './AvatarImage';
-import { PollResultOption } from './PollResultOption/';
-// import '../styles/Poll.scss';
+import { PollHeader } from '../PollHeader';
+import { AvatarImage } from '../AvatarImage';
+import { PollResultOption } from '../PollResultOption';
 
 const AnsweredPoll = (props) => {
     const { 

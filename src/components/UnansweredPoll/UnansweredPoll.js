@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-// import '../styles/Poll.scss';
 import { connect } from 'react-redux';
-import { PollHeader } from './PollHeader';
-import { AvatarImage } from './AvatarImage';
-import { handleSaveAnswerToQuestion } from '../actions/questions';
+import { PollHeader } from '../PollHeader';
+import { AvatarImage } from '../AvatarImage';
+import { handleSaveAnswerToQuestion } from '../../actions/questions';
 
 const UnansweredPoll = (props) => {
     const [selectedOption, setSelectedOption] = useState('optionOne');
