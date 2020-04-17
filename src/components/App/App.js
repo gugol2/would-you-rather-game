@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { ConnectedAddPoll } from '../AddPoll';
 import { ConnectedLeaderBoard } from '../LeaderBoard';
 import { Switch, HashRouter, Route } from 'react-router-dom'
@@ -12,7 +11,7 @@ import { ConnectedSignIn } from '../SignIn';
 import LoadingBar from 'react-redux-loading';
 import { PrivateRoute } from '../PrivateRoute';
 
-const App = (props) => {
+export const App = (props) => {
   const { authedUser } = props;
 
   return (
@@ -67,12 +66,4 @@ const App = (props) => {
     </HashRouter>
   );
 }
-
-const mapStateToProps = ({authedUser}) => {
-  return {
-    authedUser
-  }
-};
-
-export const ConnectedApp = connect(mapStateToProps)(App);
 

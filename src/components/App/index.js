@@ -1,4 +1,11 @@
 import './App.scss'
-import { ConnectedApp } from './App';
+import { App } from './App';
+import { connect } from 'react-redux';
 
-export { ConnectedApp };
+const mapStateToProps = ({authedUser}) => {
+    return {
+      authedUser
+    }
+};
+  
+export const ConnectedApp = connect(mapStateToProps)(App);

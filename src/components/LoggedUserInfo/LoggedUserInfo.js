@@ -1,6 +1,5 @@
 import React from 'react';
 import { AvatarImage } from '../AvatarImage';
-import { connect } from 'react-redux';
 import { logOutAuthedUser } from '../../actions/authedUser';
 import { useHistory } from 'react-router-dom';
 
@@ -30,11 +29,4 @@ export const LoggedUserInfo = ({userLogged, dispatch}) => {
     )
 }
 
-const mapStateToProps = ({users, authedUser}) => {
-    return {
-        userLogged: users[authedUser]
-    }
-}
-
-export const ConnectedLoggedUserInfo = connect(mapStateToProps)(LoggedUserInfo);
 

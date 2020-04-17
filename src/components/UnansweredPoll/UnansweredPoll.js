@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
 import { PollHeader } from '../PollHeader';
 import { AvatarImage } from '../AvatarImage';
 import { handleSaveAnswerToQuestion } from '../../actions/questions';
 
-const UnansweredPoll = (props) => {
+export const UnansweredPoll = (props) => {
     const [selectedOption, setSelectedOption] = useState('optionOne');
 
     const { question, pollAuthor, dispatch, authedUser } = props;
@@ -63,15 +62,3 @@ const UnansweredPoll = (props) => {
     )
 
 }
-
-const mapStateToProps = ({questions, authedUser, users}, {qid}) => {
-    const question = questions[qid] || {};
-
-    return {
-        question,
-        authedUser,
-        pollAuthor: users[question.author] || {}
-    }
-}
-
-export const ConnectedUnansweredPoll = connect(mapStateToProps)(UnansweredPoll);

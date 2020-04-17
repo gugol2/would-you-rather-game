@@ -1,4 +1,12 @@
 import './LoggedUserInfo.scss';
-import { ConnectedLoggedUserInfo } from './LoggedUserInfo';
+import { LoggedUserInfo } from './LoggedUserInfo';
+import { connect } from 'react-redux';
 
-export { ConnectedLoggedUserInfo };
+
+const mapStateToProps = ({users, authedUser}) => {
+    return {
+        userLogged: users[authedUser]
+    }
+}
+
+export const ConnectedLoggedUserInfo = connect(mapStateToProps)(LoggedUserInfo);

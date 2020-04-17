@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
 import { setAuthedUser } from '../../actions/authedUser';
 import { useLocation, Redirect } from 'react-router-dom';
 import { AvatarImage } from '../AvatarImage';
 import { handleReceiveData } from '../../actions/shared';
 
-const SignIn = ({users, dispatch, loading}) => {
+export const SignIn = ({users, dispatch, loading}) => {
     const [selectedUser, setSelectedUser] = useState('');
     const [redirectToReferrer, setRedirectToReferrer] = useState(false);
 
@@ -64,12 +63,3 @@ const SignIn = ({users, dispatch, loading}) => {
         </div>
     )
 }
-
-const mapStateToProps = ({users, loadingBar}) => {
-    return {
-        users,
-        loading: loadingBar.default
-    }
-}
-
-export const ConnectedSignIn = connect(mapStateToProps)(SignIn);

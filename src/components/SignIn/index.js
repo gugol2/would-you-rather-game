@@ -1,5 +1,12 @@
 import './SignIn.scss';
-import { ConnectedSignIn } from './SignIn';
+import { SignIn } from './SignIn';
+import { connect } from 'react-redux';
 
-export { ConnectedSignIn };
+const mapStateToProps = ({users, loadingBar}) => {
+    return {
+        users,
+        loading: loadingBar.default
+    }
+}
 
+export const ConnectedSignIn = connect(mapStateToProps)(SignIn);
