@@ -1,5 +1,4 @@
 import React from 'react';
-import '../styles/PollHeader.scss';
 
 export const PollHeader = ({author}) => {
     return (

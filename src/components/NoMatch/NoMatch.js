@@ -1,5 +1,4 @@
 import React from 'react';
-import '../styles/NoMatch.scss';
 
 const imagesPath = process.env.PUBLIC_URL + '/images/';
 

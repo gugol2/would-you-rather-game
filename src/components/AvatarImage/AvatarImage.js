@@ -1,5 +1,4 @@
 import React from 'react';
-import '../styles/AvatarImage.scss';
 
 export const AvatarImage = ({user, modifier}) => {
     return(

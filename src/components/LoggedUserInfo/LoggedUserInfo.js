@@ -1,8 +1,7 @@
 import React from 'react';
-import '../styles/LoggedUserInfo.scss';
-import { AvatarImage } from './AvatarImage';
+import { AvatarImage } from '../AvatarImage';
 import { connect } from 'react-redux';
-import { logOutAuthedUser } from '../actions/authedUser';
+import { logOutAuthedUser } from '../../actions/authedUser';
 import { useHistory } from 'react-router-dom';
 
 export const LoggedUserInfo = ({userLogged, dispatch}) => {
@@ -37,5 +36,5 @@ const mapStateToProps = ({users, authedUser}) => {
     }
 }
 
-export const ConnectedLoggingInfo = connect(mapStateToProps)(LoggedUserInfo);
+export const ConnectedLoggedUserInfo = connect(mapStateToProps)(LoggedUserInfo);
 

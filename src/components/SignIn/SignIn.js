@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/SignIn.scss';
 import { connect } from 'react-redux';
-import { setAuthedUser } from '../actions/authedUser';
+import { setAuthedUser } from '../../actions/authedUser';
 import { useLocation, Redirect } from 'react-router-dom';
-import { AvatarImage } from './AvatarImage';
-import { handleReceiveData } from '../actions/shared';
+import { AvatarImage } from '../AvatarImage';
+import { handleReceiveData } from '../../actions/shared';
 
 const SignIn = ({users, dispatch, loading}) => {
     const [selectedUser, setSelectedUser] = useState('');

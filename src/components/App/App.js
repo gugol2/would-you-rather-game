@@ -1,17 +1,16 @@
 import React from 'react';
-import '../App.scss'
 import { connect } from 'react-redux';
-import { ConnectedAddPoll } from './AddPoll';
-import { ConnectedLeaderBoard } from './LeaderBoard';
+import { ConnectedAddPoll } from '../AddPoll';
+import { ConnectedLeaderBoard } from '../LeaderBoard';
 import { Switch, HashRouter, Route } from 'react-router-dom'
-import { NavBar } from './NavBar';
-import { ConnectedPollDetailsContainer } from './PollDetailsContainer';
-import { NoMatch } from './NoMatch';
-import { ConnectedLoggingInfo } from './LoggedUserInfo';
-import { ConnectedPollTabs } from './PollTabs';
-import { ConnectedSignIn } from './SignIn';
+import { NavBar } from '../NavBar';
+import { ConnectedPollDetailsContainer } from '../PollDetailsContainer';
+import { NoMatch } from '../NoMatch';
+import { ConnectedLoggedUserInfo } from '../LoggedUserInfo';
+import { ConnectedPollTabs } from '../PollTabs';
+import { ConnectedSignIn } from '../SignIn';
 import LoadingBar from 'react-redux-loading';
-import { PrivateRoute } from './PrivateRoute';
+import { PrivateRoute } from '../PrivateRoute';
 
 const App = (props) => {
   const { authedUser } = props;
@@ -21,7 +20,7 @@ const App = (props) => {
 
       <div className='header'>
         <NavBar />
-        {authedUser && (<ConnectedLoggingInfo />)}
+        {authedUser && (<ConnectedLoggedUserInfo />)}
       </div>
 
       <LoadingBar className='loading-bar' />
