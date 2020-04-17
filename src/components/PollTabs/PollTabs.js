@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import '../styles/PollDashboard.scss';
 import { connect } from 'react-redux';
-import { PollBrief } from './PollBrief';
+import { PollBrief } from '../PollBrief';
 
 const PollTabs = (props) => {
     const [ unansweredTab, setunansweredTab ] = useState(true); 

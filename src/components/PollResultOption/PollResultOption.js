@@ -1,5 +1,4 @@
 import React from 'react';
-import '../styles/PollResultOption.scss';
 
 export const PollResultOption = ({option, percentageOption, votesOption, totalVotes, authedUser}) => {
     return (

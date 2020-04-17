@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../styles/Poll.scss';
+// import '../styles/Poll.scss';
 import { connect } from 'react-redux';
 import { PollHeader } from './PollHeader';
 import { AvatarImage } from './AvatarImage';
