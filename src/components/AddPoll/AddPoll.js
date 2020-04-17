@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
 import { handleSaveNewQuestion } from '../../actions/questions';
 import { useHistory } from 'react-router-dom';
 
-const AddPoll = (props) => {
+export const AddPoll = (props) => {
     const [optionTexts, setOptionTexts] = useState({
         optionOneText: '',
         optionTwoText: ''
@@ -88,11 +87,3 @@ const AddPoll = (props) => {
     )
 
 }
-
-const mapStateToProps = ({authedUser}) => {
-    return {
-        authedUser
-    }
-};
-
-export const ConnectedAddPoll = connect(mapStateToProps)(AddPoll);
