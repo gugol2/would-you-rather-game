@@ -1,8 +1,8 @@
 import React from 'react';
-import { ConnectedUnansweredPoll } from './UnansweredPoll';
-import { ConnectedAnsweredPoll } from './AnsweredPoll';
+import { ConnectedUnansweredPoll } from '../UnansweredPoll';
+import { ConnectedAnsweredPoll } from '../AnsweredPoll';
 import { connect } from 'react-redux';
-import { NoMatch } from './NoMatch';
+import { NoMatch } from '../NoMatch';
 
 const PollDetailsContainer = ({answered, qid}) => {
     if (qid) {
