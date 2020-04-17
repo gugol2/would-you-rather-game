@@ -1,11 +1,6 @@
 import './AddPoll.scss';
 import { AddPoll } from './AddPoll';
 import { connect } from 'react-redux';
-
-const mapStateToProps = ({authedUser}) => {
-    return {
-        authedUser
-    }
-};
+import { mapStateToProps } from './mapStateToProps';
 
 export const ConnectedAddPoll = connect(mapStateToProps)(AddPoll);

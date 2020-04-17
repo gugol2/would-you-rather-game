@@ -1,15 +1,6 @@
 // import '../styles/Poll.scss';
 import { UnansweredPoll } from './UnansweredPoll';
 import { connect } from 'react-redux';
-
-const mapStateToProps = ({questions, authedUser, users}, {qid}) => {
-    const question = questions[qid] || {};
-
-    return {
-        question,
-        authedUser,
-        pollAuthor: users[question.author] || {}
-    }
-}
+import { mapStateToProps } from './mapStateToProps';
 
 export const ConnectedUnansweredPoll = connect(mapStateToProps)(UnansweredPoll);
