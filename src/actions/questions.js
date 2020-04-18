@@ -34,7 +34,8 @@ const removeAnswerToQuestion = ({ authedUser, qid, answer }) => {
 export const handleSaveAnswerToQuestion = ({ authedUser, qid, answer }) => {
 	return (dispatch, getState) => {
 		const { users } = getState();
-		const pollAlreadyVoted = users[authedUser].answers.hasOwnProperty(qid);
+		const pollAlreadyVoted = Object.prototype.hasOwnProperty.call(users[authedUser].answers, qid);
+
 
 		if(!pollAlreadyVoted) {
 			// Answer question optimistically

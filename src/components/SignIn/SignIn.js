@@ -33,7 +33,7 @@ export const SignIn = ({users, dispatch, loading}) => {
 		<div className='sign-in'>
 			<div className="sign-in__header">
 				<div className="sign-in__header-title">
-                    Welcome to the 'Would You Rather...' App!!
+					{'Welcome to the \'Would You Rather...?\' App!!'}
 				</div>
 				<div className="sign-in__header-subtitle">
                     Please sign in to continue

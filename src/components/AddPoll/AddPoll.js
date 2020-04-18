@@ -2,15 +2,13 @@ import React, { useState } from 'react';
 import { handleSaveNewQuestion } from '../../actions/questions';
 import { useHistory } from 'react-router-dom';
 
-export const AddPoll = (props) => {
+export const AddPoll = ({ dispatch, authedUser }) => {
 	const [optionTexts, setOptionTexts] = useState({
 		optionOneText: '',
 		optionTwoText: ''
 	});
 
 	let history = useHistory();
-
-	const { dispatch, authedUser } = props;
 
 	const handleoOtionTexts = ({target}) => {
 		const { name, value } = target;
