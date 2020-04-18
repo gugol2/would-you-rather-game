@@ -24,6 +24,7 @@ export const LoggedUserInfo = ({userLogged, dispatch}) => {
 
 			<button
 				onClick={logOut}
+				className='logged-user-info__button'
 			>Logout</button>
 
 		</div>

@@ -8,4 +8,11 @@
         height: 25px;
         }
     }
+
+    &__button {
+        background-color: white;
+        height: 30px;
+        border-radius: 5px;
+        border-color:  lighten($color: green, $amount: 15);
+    }
 }
