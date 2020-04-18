@@ -3,8 +3,10 @@ import { setAuthedUser } from '../../actions/authedUser';
 import { useLocation, Redirect } from 'react-router-dom';
 import { AvatarImage } from '../AvatarImage';
 import { handleReceiveData } from '../../actions/shared';
+import PropTypes from 'prop-types';
 
-export const SignIn = ({users, dispatch, loading}) => {
+export const SignIn = ({users, dispatch, isLoading}) => {
+	debugger;
 	const [selectedUser, setSelectedUser] = useState('');
 	const [redirectToReferrer, setRedirectToReferrer] = useState(false);
 
@@ -40,7 +42,7 @@ export const SignIn = ({users, dispatch, loading}) => {
 				</div>
 			</div>
 
-			{!loading && (<div className="sign-in__body">
+			{!isLoading && (<div className="sign-in__body">
 				<AvatarImage user={users[selectedUser]} modifier='large'/> 
 
 				<form onSubmit={signInUser} className="sign-in__body-form">
@@ -62,4 +64,10 @@ export const SignIn = ({users, dispatch, loading}) => {
 			</div>)}
 		</div>
 	);
+};
+
+SignIn.propTypes = {
+	users: PropTypes.object.isRequired,
+	dispatch: PropTypes.func.isRequired,
+	isLoading: PropTypes.number.isRequired
 };

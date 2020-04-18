@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 export const PrivateRoute = ({component: Component, authedUser, ...rest}) => {
 	return (
@@ -16,4 +17,13 @@ export const PrivateRoute = ({component: Component, authedUser, ...rest}) => {
 				}} />
 		)} />
 	);
+};
+
+PrivateRoute.propTypes = {
+	component: PropTypes.oneOfType([
+		PropTypes.func,
+		PropTypes.object,
+	]).isRequired,
+	location: PropTypes.object,
+	authedUser: PropTypes.oneOf([ PropTypes.string.isRequired, null])
 };

@@ -10,9 +10,9 @@ import { ConnectedPollTabs } from '../PollTabs';
 import { ConnectedSignIn } from '../SignIn';
 import LoadingBar from 'react-redux-loading';
 import { PrivateRoute } from '../PrivateRoute';
+import PropTypes from 'prop-types';
 
-export const App = (props) => {
-	const { authedUser } = props;
+export const App = ({authedUser}) => {
 
 	return (
 		<HashRouter>
@@ -67,3 +67,6 @@ export const App = (props) => {
 	);
 };
 
+App.propTypes = {
+	authedUser: PropTypes.oneOf([ PropTypes.string.isRequired, null])
+};

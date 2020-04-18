@@ -2,6 +2,7 @@ import React from 'react';
 import { PollHeader } from '../PollHeader';
 import { AvatarImage } from '../AvatarImage';
 import { PollResultOption } from '../PollResultOption';
+import PropTypes from 'prop-types';
 
 export const AnsweredPoll = (props) => {
 	const { 
@@ -48,4 +49,15 @@ export const AnsweredPoll = (props) => {
 			</div>
 		</div>
 	);
+};
+
+AnsweredPoll.propTypes = {
+	question: PropTypes.object.isRequired, 
+	pollAuthor: PropTypes.object.isRequired, 
+	votesOptionOne: PropTypes.number.isRequired,
+	votesOptionTwo: PropTypes.number.isRequired,
+	totalVotes: PropTypes.number.isRequired,
+	percentageOptionOne: PropTypes.string.isRequired,
+	percentageOptionTwo: PropTypes.string.isRequired,
+	authedUser: PropTypes.object.isRequired
 };

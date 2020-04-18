@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { PollBrief } from '../PollBrief';
+import PropTypes from 'prop-types';
 
 export const PollTabs = (props) => {
 	const [ unansweredTab, setunansweredTab ] = useState(true); 
@@ -33,4 +34,10 @@ export const PollTabs = (props) => {
 			</ul>
 		</div>
 	);
+};
+
+PollTabs.propTypes = {
+	unAnsweredQuestions: PropTypes.array.isRequired,
+	answeredQuestions: PropTypes.array.isRequired,
+	users: PropTypes.object.isRequired
 };

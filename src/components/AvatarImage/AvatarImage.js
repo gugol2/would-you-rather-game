@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export const AvatarImage = ({user, modifier}) => {
 	return(
@@ -8,4 +9,12 @@ export const AvatarImage = ({user, modifier}) => {
 			className={ modifier ? `avatar-img avatar-img--${modifier}` : 'avatar-img' }
 		/>
 	);
+};
+
+AvatarImage.propTypes = {
+	user: PropTypes.shape({
+		avatarURL: PropTypes.string,
+		name: PropTypes.string
+	}),
+	modifier: PropTypes.string.isRequired
 };

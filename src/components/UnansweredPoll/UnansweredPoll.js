@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { PollHeader } from '../PollHeader';
 import { AvatarImage } from '../AvatarImage';
 import { handleSaveAnswerToQuestion } from '../../actions/questions';
+import PropTypes from 'prop-types';
 
-export const UnansweredPoll = (props) => {
+export const UnansweredPoll = ({ question, pollAuthor, dispatch, authedUser }) => {
 	const [selectedOption, setSelectedOption] = useState('optionOne');
 
-	const { question, pollAuthor, dispatch, authedUser } = props;
 	const { optionOne, optionTwo } = question;
     
 	const handleChange = (event) => {
@@ -61,4 +61,11 @@ export const UnansweredPoll = (props) => {
 		</div>
 	);
 
+};
+
+UnansweredPoll.propTypes = {
+	question: PropTypes.object.isRequired, 
+	pollAuthor: PropTypes.object.isRequired, 
+	dispatch: PropTypes.func.isRequired, 
+	authedUser: PropTypes.string.isRequired
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export const PollResultOption = ({option, percentageOption, votesOption, totalVotes, authedUser}) => {
 	return (
@@ -16,4 +17,12 @@ export const PollResultOption = ({option, percentageOption, votesOption, totalVo
 			</div>
 		</div>
 	);
+};
+
+PollResultOption.propTypes = {
+	option: PropTypes.object.isRequired,
+	percentageOption: PropTypes.string.isRequired,
+	votesOption: PropTypes.number.isRequired,
+	totalVotes: PropTypes.number.isRequired,
+	authedUser: PropTypes.object.isRequired
 };

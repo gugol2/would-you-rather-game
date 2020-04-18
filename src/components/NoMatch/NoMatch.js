@@ -1,6 +1,6 @@
 import React from 'react';
 
-const imagesPath = process.env.PUBLIC_URL + '/images/';
+const imagesPath = `${process.env.PUBLIC_URL} /images/`;
 
 export const NoMatch = () => {
 	return (

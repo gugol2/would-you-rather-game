@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export const PollHeader = ({author}) => {
 	return (
@@ -6,4 +7,8 @@ export const PollHeader = ({author}) => {
 			{`${author.name} asks:`}
 		</div>
 	);
+};
+
+PollHeader.propTypes = {
+	author: PropTypes.object.isRequired
 };

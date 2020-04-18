@@ -2,6 +2,7 @@ import React from 'react';
 import { PollHeader } from '../PollHeader';
 import { AvatarImage } from '../AvatarImage';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 export const PollBrief = ({qauthor, question}) => {
 	return (
@@ -28,4 +29,9 @@ export const PollBrief = ({qauthor, question}) => {
             
 		</div>
 	);
+};
+
+PollBrief.propTypes = {
+	qauthor: PropTypes.object.isRequired,
+	question: PropTypes.object.isRequired
 };

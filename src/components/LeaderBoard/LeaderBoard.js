@@ -1,5 +1,6 @@
 import React from 'react';
 import { AvatarImage } from '../AvatarImage';
+import PropTypes from 'prop-types';
 
 export const LeaderBoard = ({usersOrderedByScore}) => {
 	return (
@@ -35,4 +36,8 @@ export const LeaderBoard = ({usersOrderedByScore}) => {
 		</div>
 	);
 
+};
+
+LeaderBoard.propTypes = {
+	usersOrderedByScore: PropTypes.array.isRequired
 };
