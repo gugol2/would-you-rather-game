@@ -5,8 +5,7 @@ import { AvatarImage } from '../AvatarImage';
 import { handleReceiveData } from '../../actions/shared';
 import PropTypes from 'prop-types';
 
-export const SignIn = ({users, dispatch, isLoading}) => {
-	debugger;
+export const SignIn = ({users, dispatch, finishedLoading}) => {
 	const [selectedUser, setSelectedUser] = useState('');
 	const [redirectToReferrer, setRedirectToReferrer] = useState(false);
 
@@ -42,7 +41,7 @@ export const SignIn = ({users, dispatch, isLoading}) => {
 				</div>
 			</div>
 
-			{!isLoading && (<div className="sign-in__body">
+			{finishedLoading && (<div className="sign-in__body">
 				<AvatarImage user={users[selectedUser]} modifier='large'/> 
 
 				<form onSubmit={signInUser} className="sign-in__body-form">
@@ -69,5 +68,5 @@ export const SignIn = ({users, dispatch, isLoading}) => {
 SignIn.propTypes = {
 	users: PropTypes.object.isRequired,
 	dispatch: PropTypes.func.isRequired,
-	isLoading: PropTypes.number.isRequired
+	finishedLoading: PropTypes.bool.isRequired
 };
