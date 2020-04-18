@@ -4,29 +4,29 @@ import { logOutAuthedUser } from '../../actions/authedUser';
 import { useHistory } from 'react-router-dom';
 
 export const LoggedUserInfo = ({userLogged, dispatch}) => {
-    let history = useHistory();
+	let history = useHistory();
 
-    const logOut = () => {
-        dispatch(logOutAuthedUser());
-        history.push('/')
-    }
+	const logOut = () => {
+		dispatch(logOutAuthedUser());
+		history.push('/');
+	};
 
-    return (
-        <div className='logged-user-info'>
-            <div>
-                {`Hello, ${userLogged.name}`}
-            </div>
+	return (
+		<div className='logged-user-info'>
+			<div>
+				{`Hello, ${userLogged.name}`}
+			</div>
 
-            <div className='logged-user-info__image'>
-                <AvatarImage user={userLogged}/>
-            </div>
+			<div className='logged-user-info__image'>
+				<AvatarImage user={userLogged}/>
+			</div>
 
-            <button
-                onClick={logOut}
-            >Logout</button>
+			<button
+				onClick={logOut}
+			>Logout</button>
 
-        </div>
-    )
-}
+		</div>
+	);
+};
 
 

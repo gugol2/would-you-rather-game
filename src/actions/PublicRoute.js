@@ -2,17 +2,17 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
 export const PublicRoute = ({component: Component, authedUser, ...rest}) => {
-    return (
+	return (
 
-        // Show the component only when the user is logged in
-        // Otherwise, redirect the user to /login page
-        <Route {...rest} render={props => (
-            authedUser ?
-            <Redirect to='/' />
-            : 
-            <Component {...props} />
-        )} />
-    );
+	// Show the component only when the user is logged in
+	// Otherwise, redirect the user to /login page
+		<Route {...rest} render={props => (
+			authedUser ?
+				<Redirect to='/' />
+				: 
+				<Component {...props} />
+		)} />
+	);
 };
 
 // TODO: check if you should delete this component

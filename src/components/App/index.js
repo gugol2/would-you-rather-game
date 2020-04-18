@@ -1,4 +1,4 @@
-import './App.scss'
+import './App.scss';
 import { App } from './App';
 import { connect } from 'react-redux';
 import { mapStateToProps } from './mapStateToProps';
