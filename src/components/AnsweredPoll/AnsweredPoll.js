@@ -59,5 +59,5 @@ AnsweredPoll.propTypes = {
 	totalVotes: PropTypes.number.isRequired,
 	percentageOptionOne: PropTypes.string.isRequired,
 	percentageOptionTwo: PropTypes.string.isRequired,
-	authedUser: PropTypes.object.isRequired
+	authedUser: PropTypes.string.isRequired
 };

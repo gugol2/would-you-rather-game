@@ -16,5 +16,5 @@ AvatarImage.propTypes = {
 		avatarURL: PropTypes.string,
 		name: PropTypes.string
 	}),
-	modifier: PropTypes.string.isRequired
+	modifier: PropTypes.string
 };

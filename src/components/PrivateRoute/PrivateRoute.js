@@ -23,7 +23,12 @@ PrivateRoute.propTypes = {
 	component: PropTypes.oneOfType([
 		PropTypes.func,
 		PropTypes.object,
-	]).isRequired,
+	]),
+	
 	location: PropTypes.object,
-	authedUser: PropTypes.oneOf([ PropTypes.string.isRequired, null])
+
+	authedUser: PropTypes.oneOfType([ 
+		PropTypes.string.isRequired, 
+		() => null 
+	])
 };

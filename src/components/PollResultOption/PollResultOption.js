@@ -24,5 +24,5 @@ PollResultOption.propTypes = {
 	percentageOption: PropTypes.string.isRequired,
 	votesOption: PropTypes.number.isRequired,
 	totalVotes: PropTypes.number.isRequired,
-	authedUser: PropTypes.object.isRequired
+	authedUser: PropTypes.string.isRequired
 };
