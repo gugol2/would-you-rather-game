@@ -23,7 +23,7 @@
     "eject": "react-scripts eject",
     "lint": "eslint --ignore-path .gitignore .",
     "lint:fix": "eslint --ignore-path .gitignore . --fix",
-    "test:once": "CI=true react-scripts test --env=jsdom"
+    "test:once": "CI=true npm test -- --env=jsdom"
   },
   "eslintConfig": {
     "extends": "react-app"
