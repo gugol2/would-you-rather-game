@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-undef
 const imagesPath = process.env.PUBLIC_URL + '/images/';
 
 let users = {
@@ -122,12 +123,14 @@ function generateUID () {
 }
 
 export function _getUsers () {
+	// eslint-disable-next-line no-unused-vars
 	return new Promise((res, rej) => {
 		setTimeout(() => res({...users}), 1000);
 	});
 }
 
 export function _getQuestions () {
+	// eslint-disable-next-line no-unused-vars
 	return new Promise((res, rej) => {
 		setTimeout(() => res({...questions}), 1000);
 	});
@@ -150,6 +153,7 @@ function formatQuestion ({ optionOneText, optionTwoText, author }) {
 }
 
 export function _saveQuestion (question) {
+	// eslint-disable-next-line no-unused-vars
 	return new Promise((res, rej) => {
 		const authedUser = question.author;
 		const formattedQuestion = formatQuestion(question);
@@ -174,6 +178,7 @@ export function _saveQuestion (question) {
 }
 
 export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
+	// eslint-disable-next-line no-unused-vars
 	return new Promise((res, rej) => {
 		setTimeout(() => {
 			users = {

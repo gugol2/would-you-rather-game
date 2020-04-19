@@ -1,5 +1,6 @@
 import React from 'react';
 
+// eslint-disable-next-line no-undef
 const imagesPath = `${process.env.PUBLIC_URL} /images/`;
 
 export const NoMatch = () => {

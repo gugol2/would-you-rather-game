@@ -25,6 +25,7 @@ export const users = (state = {}, action) => {
 	case REMOVE_ANSWER_TO_QUESTION: {
 		const allAnswers = state[action.authedUser].answers;
 		//remove the answer that failed saving
+		// eslint-disable-next-line no-unused-vars
 		const { [action.qid]: removedAnswer, ...restAnswers } = allAnswers;
 
 		return {
