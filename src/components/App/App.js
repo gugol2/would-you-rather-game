@@ -70,6 +70,6 @@ export const App = ({authedUser}) => {
 App.propTypes = {
 	authedUser: PropTypes.oneOfType([ 
 		PropTypes.string.isRequired, 
-		() => null 
+		(props, key) => props[key] === null ? null : 'Not null'
 	])
 };
