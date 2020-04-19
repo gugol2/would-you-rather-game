@@ -20,17 +20,17 @@ export const UnansweredPoll = ({ question, pollAuthor, dispatch, authedUser }) =
 	};
     
 	return (
-		<div className='poll'>
+		<div className='poll-unanswered'>
 			<PollHeader author={pollAuthor}/>
 
-			<div className='poll__body'>
-				<div className="poll__left">
+			<div className='poll-unanswered__body'>
+				<div className="poll-unanswered__left">
 					<AvatarImage user={pollAuthor} modifier='medium' />
 				</div>
 
-				<form className='poll__question' onSubmit={saveQuestionAnswer} >
+				<form className='poll-unanswered__question' onSubmit={saveQuestionAnswer} >
 					<strong>Would your rather</strong>
-					<label className='poll__question-text'>
+					<label className='poll-unanswered__question-text'>
 						<input 
 							type="radio" 
 							value='optionOne' 
@@ -40,7 +40,7 @@ export const UnansweredPoll = ({ question, pollAuthor, dispatch, authedUser }) =
 						{optionOne && optionOne.text}
 					</label>
 
-					<label className='poll__question-text'>
+					<label className='poll-unanswered__question-text'>
 						<input
 							type="radio"
 							value='optionTwo'
@@ -52,7 +52,7 @@ export const UnansweredPoll = ({ question, pollAuthor, dispatch, authedUser }) =
 
 					<button 
 						type="submit"
-						className='btn poll__button'
+						className='btn poll-unanswered__button'
 					>Submit</button>
 				</form>
 

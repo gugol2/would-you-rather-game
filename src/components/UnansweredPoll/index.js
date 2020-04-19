@@ -1,4 +1,4 @@
-// import '../styles/Poll.scss';
+import './UnansweredPoll.scss';
 import { UnansweredPoll } from './UnansweredPoll';
 import { connect } from 'react-redux';
 import { mapStateToProps } from './mapStateToProps';
