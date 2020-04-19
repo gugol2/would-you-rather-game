@@ -19,15 +19,15 @@ export const AnsweredPoll = (props) => {
 	const { optionOne, optionTwo } = question;
 
 	return (
-		<div className='poll'>
+		<div className='poll-anwered'>
 			<PollHeader author={pollAuthor}/>
 
-			<div className='poll__body'>
-				<div className="poll__left">
+			<div className='poll-anwered__body'>
+				<div className="poll-anwered__left">
 					<AvatarImage user={pollAuthor} modifier='medium' />
 				</div>
 
-				<div className="poll__question">
+				<div className="poll-anwered__question">
 					<strong>Results:</strong>
 
 					<PollResultOption 
