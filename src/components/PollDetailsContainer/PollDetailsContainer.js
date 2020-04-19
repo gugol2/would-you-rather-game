@@ -22,6 +22,6 @@ export const PollDetailsContainer = ({answered, qid}) => {
 };
 
 PollDetailsContainer.propTypes = {
-	answered: PropTypes.bool.isRequired,
-	qid: PropTypes.string.isRequired
+	answered: PropTypes.bool,
+	qid: PropTypes.string
 };
