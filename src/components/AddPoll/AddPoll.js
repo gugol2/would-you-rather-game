@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { handleSaveNewQuestion } from '../../actions/questions';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-export const AddPoll = ({ dispatch, authedUser }) => {
+export const AddPoll = ({ dispatchSaveNewQuestion, authedUser }) => {
 	const [optionTexts, setOptionTexts] = useState({
 		optionOneText: '',
 		optionTwoText: ''
@@ -24,7 +23,7 @@ export const AddPoll = ({ dispatch, authedUser }) => {
 		event.preventDefault();
 
 		const { optionOneText, optionTwoText } = optionTexts;
-		dispatch(handleSaveNewQuestion({ optionOneText, optionTwoText, author:authedUser }))
+		dispatchSaveNewQuestion({ optionOneText, optionTwoText, author:authedUser })
 			.then(() => {
 				setOptionTexts({
 					optionOneText: '',
@@ -88,6 +87,6 @@ export const AddPoll = ({ dispatch, authedUser }) => {
 };
 
 AddPoll.propTypes = {
-	dispatch: PropTypes.func.isRequired,
+	dispatchSaveNewQuestion: PropTypes.func.isRequired,
 	authedUser: PropTypes.string.isRequired
 };
