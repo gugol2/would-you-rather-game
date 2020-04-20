@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 export const NavBar = () => {
 	return (
-		<nav className='navbar'>
+		<nav className='navbar' data-testid="nav-bar">
 			<ul>
 				<li>
 					<NavLink to='/' exact activeClassName='active'>
