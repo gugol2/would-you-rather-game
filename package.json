@@ -25,6 +25,12 @@
     "lint:fix": "eslint --ignore-path .gitignore . --fix",
     "test:once": "CI=true npm test -- --env=jsdom"
   },
+  "husky": {
+	"hooks": {
+		"pre-commit": "npm run lint",
+		"pre-push": "npm run test:once"
+	}
+  },
   "eslintConfig": {
     "extends": "react-app"
   },
