@@ -1,16 +1,11 @@
 import React from 'react';
-import { ConnectedAddPoll } from '../AddPoll';
-import { ConnectedLeaderBoard } from '../LeaderBoard';
-import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { NavBar } from '../NavBar';
-import { ConnectedPollDetailsContainer } from '../PollDetailsContainer';
-import { NoMatch } from '../NoMatch';
 import { ConnectedLoggedUserInfo } from '../LoggedUserInfo';
-import { ConnectedPollTabs } from '../PollTabs';
-import { ConnectedSignIn } from '../SignIn';
 import LoadingBar from 'react-redux-loading';
-import { PrivateRoute } from '../PrivateRoute';
 import PropTypes from 'prop-types';
+import { AuthenticatedApp } from './AuthenticatedApp';
+import { UnauthenticatedApp } from './UnauthenticatedApp';
 
 export const App = ({authedUser}) => {
 
@@ -25,42 +20,7 @@ export const App = ({authedUser}) => {
 			<LoadingBar className='loading-bar' />
 
 			<div className='container'>
-				<Switch>
-					<Route
-						path='/login' 
-						component={ConnectedSignIn}
-					/>
-
-					<PrivateRoute 
-						exact path='/'
-						component={ConnectedPollTabs}
-						authedUser={authedUser}
-					/>
-
-					<PrivateRoute 
-						path='/add' 
-						component={ConnectedAddPoll}
-						authedUser={authedUser}
-					/>
-
-					<PrivateRoute 
-						path='/questions/:question_id'
-						component={ConnectedPollDetailsContainer}
-						authedUser={authedUser}
-					/>
-
-					<PrivateRoute 
-						path='/leaderboard'
-						component={ConnectedLeaderBoard}
-						authedUser={authedUser}
-					/>
-
-					<PrivateRoute 
-						path='*'
-						component={NoMatch}
-						authedUser={authedUser}
-					/>
-				</Switch>
+				{authedUser ? <AuthenticatedApp /> : <UnauthenticatedApp />}
 			</div>
 
 		</BrowserRouter>

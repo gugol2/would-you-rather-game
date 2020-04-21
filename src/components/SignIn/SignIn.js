@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { setAuthedUser } from '../../actions/authedUser';
-import { useLocation, Redirect } from 'react-router-dom';
 import { AvatarImage } from '../AvatarImage';
 import { handleReceiveData } from '../../actions/shared';
 import PropTypes from 'prop-types';
 
 export const SignIn = ({users, dispatch, finishedLoading}) => {
 	const [selectedUser, setSelectedUser] = useState('');
-	const [redirectToReferrer, setRedirectToReferrer] = useState(false);
-
-	let location = useLocation();
 
 	useEffect(() => {
 		dispatch(handleReceiveData());
@@ -19,16 +15,10 @@ export const SignIn = ({users, dispatch, finishedLoading}) => {
 		setSelectedUser(event.target.value);
 	};
 
-	const signInUser = async (event) => {
+	const signInUser = (event) => {
 		event.preventDefault();
-		await dispatch(setAuthedUser(selectedUser));
-		setRedirectToReferrer(true);
+		dispatch(setAuthedUser(selectedUser));
 	};
-
-	if (redirectToReferrer) {
-		const { from } = location.state || { from: { pathname: '/'} };
-		return <Redirect to={from} />;
-	}
 
 	return (
 		<div className='sign-in'>
