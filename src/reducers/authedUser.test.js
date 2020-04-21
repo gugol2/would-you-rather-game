@@ -1,7 +1,6 @@
 import { authedUser } from './authedUser';
 import { SET_AUTHED_USER, LOGOUT_AUTHED_USER } from '../actions/authedUser';
 
-
 test('should return the action.id as state when action.type is SET_AUTHED_USER', () => {
 	const id = '::id::';
 

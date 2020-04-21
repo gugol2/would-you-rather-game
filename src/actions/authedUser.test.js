@@ -2,9 +2,9 @@ import { setAuthedUser, SET_AUTHED_USER, logOutAuthedUser, LOGOUT_AUTHED_USER } 
 
 test('should return setAuthedUser action', () => {
 	const id = '::id::';
-	const expected = setAuthedUser(id);
+	const action = setAuthedUser(id);
 
-	expect(expected).toEqual({
+	expect(action).toEqual({
 		id,
 		type: SET_AUTHED_USER
 	});
@@ -12,9 +12,9 @@ test('should return setAuthedUser action', () => {
 
 test('should return logOutAuthedUser action', () => {
 	const id = '::id::';
-	const expected = logOutAuthedUser(id);
+	const action = logOutAuthedUser(id);
 
-	expect(expected).toEqual({
+	expect(action).toEqual({
 		type: LOGOUT_AUTHED_USER
 	});
 });

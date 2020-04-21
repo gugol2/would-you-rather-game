@@ -7,7 +7,6 @@ test('check that the adapter returns the authedUser JUST as it gets if from the 
 		authedUser
 	};
 
-	const expected = mapStateToProps(props);
-	expect(expected).toEqual({authedUser});
-	
+	const adaptedProps = mapStateToProps(props);
+	expect(adaptedProps).toEqual({authedUser});	
 });
