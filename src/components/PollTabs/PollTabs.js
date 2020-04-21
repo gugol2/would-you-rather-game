@@ -31,6 +31,10 @@ export const PollTabs = (props) => {
 						<PollBrief qauthor={users[question.author]} question={question}/>
 					</li>
 				))}
+
+				{questionsFromTab.length === 0 && (
+					<div className='poll-dashboard__message'>There are not any polls in this cathegory!!</div>
+				)}
 			</ul>
 		</div>
 	);

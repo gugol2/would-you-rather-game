@@ -13,5 +13,11 @@
         padding: 15px;
         width: 50%;
         text-align: center;
-    }
+	}
+	
+	&__message {
+		padding: 20px 0;
+		text-align: center;
+		font-weight: 600;
+	}
 }
