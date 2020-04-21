@@ -1,7 +1,7 @@
 import React from 'react';
 import { ConnectedAddPoll } from '../AddPoll';
 import { ConnectedLeaderBoard } from '../LeaderBoard';
-import { Switch, HashRouter, Route } from 'react-router-dom';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import { NavBar } from '../NavBar';
 import { ConnectedPollDetailsContainer } from '../PollDetailsContainer';
 import { NoMatch } from '../NoMatch';
@@ -15,7 +15,7 @@ import PropTypes from 'prop-types';
 export const App = ({authedUser}) => {
 
 	return (
-		<HashRouter>
+		<BrowserRouter>
 
 			<div className='header'>
 				<NavBar />
@@ -63,7 +63,7 @@ export const App = ({authedUser}) => {
 				</Switch>
 			</div>
 
-		</HashRouter>
+		</BrowserRouter>
 	);
 };
 
