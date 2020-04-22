@@ -24,8 +24,9 @@
     "lint": "eslint --ignore-path .gitignore .",
     "lint:fix": "eslint --ignore-path .gitignore . --fix",
     "test:once": "CI=true npm test -- --env=jsdom",
-    "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|jsx|json|scss|md)\" ",
-    "check-format": "prettier --ignore-path .gitignore --list-different \"**/*.+(js|jsx|json|scss|md)\" "
+    "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|jsx|json|scss|md)\" ",
+    "format": "npm run prettier -- --write",
+    "check-format": "npm run prettier -- --list-different"
   },
   "husky": {
     "hooks": {
