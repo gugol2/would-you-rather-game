@@ -8,3 +8,21 @@ test('renders NoMatch', () => {
   expect(noMatchRendered).toBeInTheDocument();
   expect(noMatchRendered).toHaveClass('no-match');
 });
+
+test('renders NoMatch serialized snapshot', () => {
+  const { container } = render(<NoMatch />);
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <div
+        class="no-match"
+        data-testid="no-match"
+      >
+        <img
+          alt="Page not found!"
+          class="no-match"
+          src=" /images/404.jpg"
+        />
+      </div>
+    </div>
+  `);
+});
