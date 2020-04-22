@@ -27,12 +27,12 @@
     "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|json|scss|md)\" ",
     "prettier:format": "npm run prettier -- --write",
     "prettier:check-format": "npm run prettier -- --list-different",
-    "validate": "npm-run-all --parallel prettier:check-format lint"
+    "validate": "npm-run-all --parallel prettier:check-format lint test:once"
   },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "pre-push": "npm run validate && npm run test:once"
+      "pre-push": "npm run validate"
     }
   },
   "eslintConfig": {
