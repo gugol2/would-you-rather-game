@@ -31,7 +31,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run validate",
+      "pre-commit": "lint-staged",
       "pre-push": "npm run test:once"
     }
   },
@@ -55,6 +55,7 @@
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-react": "^7.19.0",
     "husky": "^4.2.5",
+    "lint-staged": "^10.1.7",
     "prettier": "^2.0.5"
   }
 }
