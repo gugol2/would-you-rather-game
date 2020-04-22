@@ -1,11 +1,11 @@
 // Navbar
 .navbar ul {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  text-decoration: none;
 }
 
 .navbar li:first-child {
-    padding-left: 0;
+  padding-left: 0;
 }

@@ -1,23 +1,23 @@
 // Poll dashboard
 .poll-dashboard {
-    border: 1px solid lightgray;
-    border-radius: 5px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
 
-    &__tabs {
-        display: flex;
-        justify-content: space-around;
-        border-bottom: 1px solid lightgray;
-    }
+  &__tabs {
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid lightgray;
+  }
 
-    &__tab {
-        padding: 15px;
-        width: 50%;
-        text-align: center;
-	}
-	
-	&__message {
-		padding: 20px 0;
-		text-align: center;
-		font-weight: 600;
-	}
+  &__tab {
+    padding: 15px;
+    width: 50%;
+    text-align: center;
+  }
+
+  &__message {
+    padding: 20px 0;
+    text-align: center;
+    font-weight: 600;
+  }
 }

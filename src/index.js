@@ -8,16 +8,13 @@ import { createStore } from 'redux';
 import { rootReducer } from './reducers';
 import { middleware } from './middleware';
 
-const store = createStore(
-	rootReducer, 
-	middleware
-);
+const store = createStore(rootReducer, middleware);
 
 ReactDOM.render(
-	<Provider store={store}>
-		<ConnectedApp />
-	</Provider>,
-	document.getElementById('root')
+  <Provider store={store}>
+    <ConnectedApp />
+  </Provider>,
+  document.getElementById('root'),
 );
 
 // If you want your app to work offline and load faster, you can change

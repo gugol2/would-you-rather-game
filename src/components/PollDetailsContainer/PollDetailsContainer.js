@@ -4,24 +4,23 @@ import { ConnectedAnsweredPoll } from '../AnsweredPoll';
 import { NoMatch } from '../NoMatch';
 import PropTypes from 'prop-types';
 
-export const PollDetailsContainer = ({answered, qid}) => {
-	if (qid) {
-		return (
-			<div>
-				{answered ? 
-					<ConnectedAnsweredPoll qid={qid} />
-					:
-					<ConnectedUnansweredPoll qid={qid}/> 
-				}
-			</div>
-            
-		);
-	}
+export const PollDetailsContainer = ({ answered, qid }) => {
+  if (qid) {
+    return (
+      <div>
+        {answered ? (
+          <ConnectedAnsweredPoll qid={qid} />
+        ) : (
+          <ConnectedUnansweredPoll qid={qid} />
+        )}
+      </div>
+    );
+  }
 
-	return (<NoMatch />);
+  return <NoMatch />;
 };
 
 PollDetailsContainer.propTypes = {
-	answered: PropTypes.bool,
-	qid: PropTypes.string
+  answered: PropTypes.bool,
+  qid: PropTypes.string,
 };

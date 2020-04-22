@@ -4,68 +4,78 @@ import { AvatarImage } from '../AvatarImage';
 import { handleSaveAnswerToQuestion } from '../../actions/questions';
 import PropTypes from 'prop-types';
 
-export const UnansweredPoll = ({ question, pollAuthor, dispatch, authedUser }) => {
-	const [selectedOption, setSelectedOption] = useState('optionOne');
+export const UnansweredPoll = ({
+  question,
+  pollAuthor,
+  dispatch,
+  authedUser,
+}) => {
+  const [selectedOption, setSelectedOption] = useState('optionOne');
 
-	const { optionOne, optionTwo } = question;
-    
-	const handleChange = (event) => {
-		setSelectedOption(event.target.value);
-	};
+  const { optionOne, optionTwo } = question;
 
-	const saveQuestionAnswer = (event) => {
-		event.preventDefault();
+  const handleChange = event => {
+    setSelectedOption(event.target.value);
+  };
 
-		dispatch(handleSaveAnswerToQuestion({ authedUser, qid: question.id, answer: selectedOption}));
-	};
-    
-	return (
-		<div className='poll-unanswered'>
-			<PollHeader author={pollAuthor}/>
+  const saveQuestionAnswer = event => {
+    event.preventDefault();
 
-			<div className='poll-unanswered__body'>
-				<div className="poll-unanswered__left">
-					<AvatarImage user={pollAuthor} modifier='medium' />
-				</div>
+    dispatch(
+      handleSaveAnswerToQuestion({
+        authedUser,
+        qid: question.id,
+        answer: selectedOption,
+      }),
+    );
+  };
 
-				<form className='poll-unanswered__question' onSubmit={saveQuestionAnswer} >
-					<strong>Would your rather</strong>
-					<label className='poll-unanswered__question-text'>
-						<input 
-							type="radio" 
-							value='optionOne' 
-							checked={selectedOption === 'optionOne'}
-							onChange={handleChange}
-						/>
-						{optionOne && optionOne.text}
-					</label>
+  return (
+    <div className="poll-unanswered">
+      <PollHeader author={pollAuthor} />
 
-					<label className='poll-unanswered__question-text'>
-						<input
-							type="radio"
-							value='optionTwo'
-							checked={selectedOption === 'optionTwo'}
-							onChange={handleChange}
-						/>
-						{optionTwo && optionTwo.text}
-					</label>
+      <div className="poll-unanswered__body">
+        <div className="poll-unanswered__left">
+          <AvatarImage user={pollAuthor} modifier="medium" />
+        </div>
 
-					<button 
-						type="submit"
-						className='btn poll-unanswered__button'
-					>Submit</button>
-				</form>
+        <form
+          className="poll-unanswered__question"
+          onSubmit={saveQuestionAnswer}
+        >
+          <strong>Would your rather</strong>
+          <label className="poll-unanswered__question-text">
+            <input
+              type="radio"
+              value="optionOne"
+              checked={selectedOption === 'optionOne'}
+              onChange={handleChange}
+            />
+            {optionOne && optionOne.text}
+          </label>
 
-			</div>
+          <label className="poll-unanswered__question-text">
+            <input
+              type="radio"
+              value="optionTwo"
+              checked={selectedOption === 'optionTwo'}
+              onChange={handleChange}
+            />
+            {optionTwo && optionTwo.text}
+          </label>
 
-		</div>
-	);
-
+          <button type="submit" className="btn poll-unanswered__button">
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+  );
 };
 
 UnansweredPoll.propTypes = {
-	question: PropTypes.object.isRequired, 
-	pollAuthor: PropTypes.object.isRequired, 
-	dispatch: PropTypes.func.isRequired, 
-	authedUser: PropTypes.string.isRequired
+  question: PropTypes.object.isRequired,
+  pollAuthor: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  authedUser: PropTypes.string.isRequired,
 };

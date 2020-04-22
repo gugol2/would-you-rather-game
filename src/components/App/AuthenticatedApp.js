@@ -7,36 +7,36 @@ import { NoMatch } from '../NoMatch';
 import { ConnectedPollTabs } from '../PollTabs';
 
 export const AuthenticatedApp = () => {
-	return (
-		<Switch>
-			<Route 
-				path='/login'
-				render = {({location}) => {
-					const { from } = location.state || { from: { pathname: '/'} };
+  return (
+    <Switch>
+      <Route
+        path="/login"
+        render={({ location }) => {
+          const { from } = location.state || { from: { pathname: '/' } };
 
-					return (<Redirect to={from} />);
-				}}
-			/>
-				
-			<Route exact path='/'>
-				<ConnectedPollTabs />
-			</Route>
+          return <Redirect to={from} />;
+        }}
+      />
 
-			<Route path='/add'>
-				<ConnectedAddPoll />
-			</Route>
+      <Route exact path="/">
+        <ConnectedPollTabs />
+      </Route>
 
-			<Route path='/questions/:question_id'>
-				<ConnectedPollDetailsContainer />
-			</Route>
+      <Route path="/add">
+        <ConnectedAddPoll />
+      </Route>
 
-			<Route path='/leaderboard'>
-				<ConnectedLeaderBoard />
-			</Route>
+      <Route path="/questions/:question_id">
+        <ConnectedPollDetailsContainer />
+      </Route>
 
-			<Route path='*'>
-				<NoMatch />
-			</Route>
-		</Switch>
-	);
+      <Route path="/leaderboard">
+        <ConnectedLeaderBoard />
+      </Route>
+
+      <Route path="*">
+        <NoMatch />
+      </Route>
+    </Switch>
+  );
 };

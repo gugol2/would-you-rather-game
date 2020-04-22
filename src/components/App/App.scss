@@ -1,50 +1,49 @@
 /* General */
 li {
-    list-style-type: none;
-    padding: 10px;
-    text-decoration: none;
+  list-style-type: none;
+  padding: 10px;
+  text-decoration: none;
 }
 
 ul {
-    padding-left: 0;
+  padding-left: 0;
 }
 
 .container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 10px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 10px;
 }
 
 .active {
-    background-color: lighten($color: green, $amount: 15);
+  background-color: lighten($color: green, $amount: 15);
 }
 
 .btn {
-    border: 1px solid lightgray;
-    cursor: pointer;
-    background: #fff;
-    text-align: center;
-    font-size: 16px;
-    text-decoration: none;
+  border: 1px solid lightgray;
+  cursor: pointer;
+  background: #fff;
+  text-align: center;
+  font-size: 16px;
+  text-decoration: none;
 }
 
 .btn:hover {
-    border-color: rgba(0,0,0,.5);
-    text-decoration: none;
+  border-color: rgba(0, 0, 0, 0.5);
+  text-decoration: none;
 }
 
 // Header of the app
 .header {
-    margin: 0 auto;
-    padding: 10px 10px 0 10px;
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 3px solid green;
+  margin: 0 auto;
+  padding: 10px 10px 0 10px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 3px solid green;
 }
 
 // Loading Bar
 .loading-bar {
-    background-color: lighten($color: green, $amount: 15);
-    height: 5px;
+  background-color: lighten($color: green, $amount: 15);
+  height: 5px;
 }
-

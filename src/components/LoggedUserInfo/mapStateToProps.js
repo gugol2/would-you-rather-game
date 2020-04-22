@@ -1,5 +1,5 @@
-export const mapStateToProps = ({users, authedUser}) => {
-	return {
-		userLogged: users[authedUser]
-	};
+export const mapStateToProps = ({ users, authedUser }) => {
+  return {
+    userLogged: users[authedUser],
+  };
 };

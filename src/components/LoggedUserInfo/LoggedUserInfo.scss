@@ -1,18 +1,18 @@
 // LoggedUserInfo Component
 .logged-user-info {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 
-    &__image {
-        img {
-        height: 25px;
-        }
+  &__image {
+    img {
+      height: 25px;
     }
+  }
 
-    &__button {
-        background-color: white;
-        height: 30px;
-        border-radius: 5px;
-        border-color:  lighten($color: green, $amount: 15);
-    }
+  &__button {
+    background-color: white;
+    height: 30px;
+    border-radius: 5px;
+    border-color: lighten($color: green, $amount: 15);
+  }
 }

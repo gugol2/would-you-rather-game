@@ -1,42 +1,42 @@
 // Add Poll Component
 .poll-add {
-    border: 1px solid lightgray;
-    border-radius: 5px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    padding: 10px;
+    font-weight: 600;
+    font-size: x-large;
+    border-bottom: 1px solid lightgray;
+    text-align: center;
+  }
+
+  &__body {
+    padding: 8px;
+  }
+
+  &__body-title {
+    font-weight: 600;
+    font-size: large;
+    margin-top: 16px;
+  }
+
+  &__body-form {
     display: flex;
     flex-direction: column;
+  }
 
-    &__header {
-        padding: 10px;
-        font-weight: 600;
-        font-size: x-large;
-        border-bottom: 1px solid lightgray;
-        text-align: center;
-    }
+  &__body-form-or {
+    align-self: center;
+  }
 
-    &__body {
-        padding: 8px;
-    }
-
-    &__body-title {
-        font-weight: 600;
-        font-size: large;
-        margin-top: 16px;
-    }
-
-    &__body-form {
-        display: flex;
-        flex-direction: column;
-    }
-
-    &__body-form-or {
-        align-self: center;
-    }
-
-    &__body-form-input {
-        margin: 10px 0;
-        font-size: 16px;
-        border-radius: 5px;
-        padding: 5px;
-        border: 1px solid lightgray;
-    }
+  &__body-form-input {
+    margin: 10px 0;
+    font-size: 16px;
+    border-radius: 5px;
+    padding: 5px;
+    border: 1px solid lightgray;
+  }
 }
