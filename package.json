@@ -24,7 +24,7 @@
     "lint": "eslint --ignore-path .gitignore --ext .js .",
     "lint:fix": "npm run lint -- --fix",
     "test:once": "CI=true npm test -- --env=jsdom",
-    "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|jsx|json|scss|md)\" ",
+    "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|json|scss|md)\" ",
     "prettier:format": "npm run prettier -- --write",
     "prettier:check-format": "npm run prettier -- --list-different",
     "validate": "npm run prettier:check-format && npm run lint"
