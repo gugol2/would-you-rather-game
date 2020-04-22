@@ -32,7 +32,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "pre-push": "npm run test:once"
+      "pre-push": "npm run validate && npm run test:once"
     }
   },
   "eslintConfig": {
