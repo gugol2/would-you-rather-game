@@ -31,6 +31,19 @@
     "prettier:check-format": "npm run prettier -- --list-different",
     "validate": "npm-run-all --parallel prettier:check-format lint test:once"
   },
+  "jest": {
+    "collectCoverageFrom": [
+      "**/src/**/*.{js, jsx}"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 7.5,
+        "functions": 6,
+        "lines": 6.5,
+        "statements": 6.5
+      }
+    }
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
