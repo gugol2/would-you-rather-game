@@ -29,7 +29,8 @@
     "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|json|scss|md)\" ",
     "prettier:format": "npm run prettier -- --write",
     "prettier:check-format": "npm run prettier -- --list-different",
-    "validate": "npm-run-all --parallel prettier:check-format lint test:once"
+    "validate": "npm-run-all --parallel prettier:check-format lint test:once",
+    "check-config": "npx jest --showConfig"
   },
   "jest": {
     "collectCoverageFrom": [
