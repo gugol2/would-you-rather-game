@@ -33,6 +33,7 @@
     "check-config": "npx jest --showConfig"
   },
   "jest": {
+    "displayName": "client",
     "collectCoverageFrom": [
       "**/src/**/*.{js, jsx}"
     ],
