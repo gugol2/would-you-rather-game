@@ -23,7 +23,10 @@ test('handleSaveNewQuestion should return a function that receives dispatch as p
   const author = '::author::';
   const question = '::question::';
 
-  api.saveQuestion = jest.fn(() => Promise.resolve(question));
+  //   api.saveQuestion = jest.fn(() => Promise.resolve(question));
+  jest.spyOn(api, 'saveQuestion');
+  api.saveQuestion.mockImplementation(() => Promise.resolve(question));
+
   const dispatch = jest.fn();
   console.log('dispatch', dispatch);
 
@@ -50,4 +53,7 @@ test('handleSaveNewQuestion should return a function that receives dispatch as p
     expect(dispatch).toHaveBeenNthCalledWith(3, hideLoading());
     expect(dispatch).toHaveBeenCalledTimes(3);
   });
+
+  // cleanup
+  api.saveQuestion.mockRestore();
 });
