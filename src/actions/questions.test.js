@@ -25,13 +25,15 @@ test('handleSaveNewQuestion should return a function that receives dispatch as p
 
   const dispatch = jest.fn();
 
-  const handleAction = handleSaveNewQuestion({
+  const handleActionFunction = handleSaveNewQuestion({
     optionOneText,
     optionTwoText,
     author,
   });
 
-  const saveQuestion = handleAction(dispatch);
+  //   console.log('api', api);
+
+  const saveQuestionPromise = handleActionFunction(dispatch);
 
   expect(dispatch).toHaveBeenNthCalledWith(1, showLoading());
   expect(api.saveQuestion).toHaveBeenCalledWith({
@@ -40,7 +42,7 @@ test('handleSaveNewQuestion should return a function that receives dispatch as p
     author,
   });
 
-  saveQuestion.then(() => {
+  saveQuestionPromise.then(() => {
     expect(dispatch).toHaveBeenNthCalledWith(2, {
       question: '::question::',
       type: SAVE_QUESTION,
