@@ -4,6 +4,6 @@
   ],
   "**/*.+(js|json|scss|html|md)": [
     "prettier --write",
-    "jest --findRelatedTests"
+    "npm run test:once"
   ]
 }
