@@ -17,15 +17,17 @@ test('should return a receiveQuestions action', () => {
   });
 });
 
+jest.mock('../utils/api', () => {
+  const question = '::question::';
+  return {
+    saveQuestion: jest.fn(() => Promise.resolve(question)),
+  };
+});
+
 test('handleSaveNewQuestion should return a function that receives dispatch as parameter', () => {
   const optionOneText = '::optionOneText::';
   const optionTwoText = '::optionTwoText::';
   const author = '::author::';
-  const question = '::question::';
-
-  //   api.saveQuestion = jest.fn(() => Promise.resolve(question));
-  jest.spyOn(api, 'saveQuestion');
-  api.saveQuestion.mockImplementation(() => Promise.resolve(question));
 
   const dispatch = jest.fn();
   console.log('dispatch', dispatch);
@@ -47,7 +49,7 @@ test('handleSaveNewQuestion should return a function that receives dispatch as p
 
   saveQuestion.then(() => {
     expect(dispatch).toHaveBeenNthCalledWith(2, {
-      question,
+      question: '::question::',
       type: SAVE_QUESTION,
     });
     expect(dispatch).toHaveBeenNthCalledWith(3, hideLoading());
@@ -55,5 +57,5 @@ test('handleSaveNewQuestion should return a function that receives dispatch as p
   });
 
   // cleanup
-  api.saveQuestion.mockRestore();
+  api.saveQuestion.mockReset();
 });
