@@ -6,6 +6,7 @@ import {
 } from './questions';
 import * as api from '../utils/api';
 import { showLoading, hideLoading } from 'react-redux-loading';
+jest.mock('../utils/api');
 
 test('should return a receiveQuestions action', () => {
   const questions = '::questions::';
@@ -17,20 +18,12 @@ test('should return a receiveQuestions action', () => {
   });
 });
 
-jest.mock('../utils/api', () => {
-  const question = '::question::';
-  return {
-    saveQuestion: jest.fn(() => Promise.resolve(question)),
-  };
-});
-
 test('handleSaveNewQuestion should return a function that receives dispatch as parameter', () => {
   const optionOneText = '::optionOneText::';
   const optionTwoText = '::optionTwoText::';
   const author = '::author::';
 
   const dispatch = jest.fn();
-  console.log('dispatch', dispatch);
 
   const handleAction = handleSaveNewQuestion({
     optionOneText,
