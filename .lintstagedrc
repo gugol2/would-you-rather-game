@@ -4,6 +4,6 @@
   ],
   "**/*.+(js|json|scss|html|md)": [
     "prettier --write",
-    "npm run test:once"
+    "npm run test:once -- --passWithNoTests"
   ]
 }
