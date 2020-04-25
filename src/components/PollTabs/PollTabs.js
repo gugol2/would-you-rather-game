@@ -31,7 +31,7 @@ export const PollTabs = props => {
         </div>
       </div>
 
-      <ul>
+      <ul data-testid='poll-tabs-body'>
         {questionsFromTab.map(question => (
           <li key={question.id}>
             <PollBrief qauthor={users[question.author]} question={question} />
@@ -39,7 +39,7 @@ export const PollTabs = props => {
         ))}
 
         {questionsFromTab.length === 0 && (
-          <div className='poll-tabs__message'>
+          <div className='poll-tabs__message' data-testid='poll-tabs-message'>
             There are not any polls in this cathegory!!
           </div>
         )}
