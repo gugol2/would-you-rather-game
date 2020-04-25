@@ -15,21 +15,17 @@ export const PollTabs = props => {
     : answeredQuestions;
 
   return (
-    <div className="poll-dashboard">
-      <div className="poll-dashboard__tabs">
+    <div className="poll-tabs" data-testid="poll-tabs">
+      <div className="poll-tabs__header">
         <div
           onClick={() => toggleTab(true)}
-          className={
-            unansweredTab ? 'poll-dashboard__tab active' : 'poll-dashboard__tab'
-          }
+          className={unansweredTab ? 'poll-tabs__tab active' : 'poll-tabs__tab'}
         >
           Unanswered Questions
         </div>
         <div
           onClick={() => toggleTab(false)}
-          className={
-            unansweredTab ? 'poll-dashboard__tab' : 'poll-dashboard__tab active'
-          }
+          className={unansweredTab ? 'poll-tabs__tab' : 'poll-tabs__tab active'}
         >
           Answered Questions
         </div>
@@ -43,7 +39,7 @@ export const PollTabs = props => {
         ))}
 
         {questionsFromTab.length === 0 && (
-          <div className="poll-dashboard__message">
+          <div className="poll-tabs__message">
             There are not any polls in this cathegory!!
           </div>
         )}

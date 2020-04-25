@@ -1,9 +1,9 @@
 // Poll dashboard
-.poll-dashboard {
+.poll-tabs {
   border: 1px solid lightgray;
   border-radius: 5px;
 
-  &__tabs {
+  &__header {
     display: flex;
     justify-content: space-around;
     border-bottom: 1px solid lightgray;
