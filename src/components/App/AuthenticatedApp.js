@@ -26,9 +26,10 @@ export const AuthenticatedApp = () => {
         <ConnectedAddPoll />
       </Route>
 
-      <Route path="/questions/:question_id">
-        <ConnectedPollDetailsContainer />
-      </Route>
+      <Route
+        path="/questions/:question_id"
+        component={ConnectedPollDetailsContainer}
+      />
 
       <Route path="/leaderboard">
         <ConnectedLeaderBoard />
