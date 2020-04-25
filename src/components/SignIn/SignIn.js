@@ -21,25 +21,25 @@ export const SignIn = ({ users, dispatch, finishedLoading }) => {
   };
 
   return (
-    <div className="sign-in">
-      <div className="sign-in__header">
-        <div className="sign-in__header-title">
+    <div className='sign-in'>
+      <div className='sign-in__header'>
+        <div className='sign-in__header-title'>
           {"Welcome to the 'Would You Rather...?' App!!"}
         </div>
-        <div className="sign-in__header-subtitle">
+        <div className='sign-in__header-subtitle'>
           Please sign in to continue
         </div>
       </div>
 
       {finishedLoading && (
-        <div className="sign-in__body">
-          <AvatarImage user={users[selectedUser]} modifier="large" />
+        <div className='sign-in__body'>
+          <AvatarImage user={users[selectedUser]} modifier='large' />
 
-          <form onSubmit={signInUser} className="sign-in__body-form">
-            <div className="sign-in__body-form-title">Sign In</div>
+          <form onSubmit={signInUser} className='sign-in__body-form'>
+            <div className='sign-in__body-form-title'>Sign In</div>
 
             <select onChange={handleSelection} value={selectedUser}>
-              <option value="" key="0" disabled>
+              <option value='' key='0' disabled>
                 Choose an user!
               </option>
               {Object.values(users).map(user => (
@@ -49,8 +49,8 @@ export const SignIn = ({ users, dispatch, finishedLoading }) => {
               ))}
             </select>
             <input
-              type="submit"
-              value="Sign In"
+              type='submit'
+              value='Sign In'
               disabled={selectedUser === ''}
             />
           </form>

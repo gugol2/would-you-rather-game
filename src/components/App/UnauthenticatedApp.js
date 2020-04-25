@@ -5,12 +5,12 @@ import { ConnectedSignIn } from '../SignIn';
 export const UnauthenticatedApp = () => {
   return (
     <Switch>
-      <Route path="/login">
+      <Route path='/login'>
         <ConnectedSignIn />
       </Route>
 
       <Route
-        path="*"
+        path='*'
         render={({ location }) => {
           return (
             <Redirect

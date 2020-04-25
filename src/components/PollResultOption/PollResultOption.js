@@ -14,9 +14,9 @@ export const PollResultOption = ({
         option && option.votes.includes(authedUser) ? 'active' : ''
       }`}
     >
-      <div className="poll-results__option-text">{option && option.text}</div>
-      <div className="poll-results__option-percent">{percentageOption}</div>
-      <div className="poll-results__option-number">
+      <div className='poll-results__option-text'>{option && option.text}</div>
+      <div className='poll-results__option-percent'>{percentageOption}</div>
+      <div className='poll-results__option-number'>
         {`${votesOption} out of ${totalVotes}`}
       </div>
     </div>

@@ -15,8 +15,8 @@ export const PollTabs = props => {
     : answeredQuestions;
 
   return (
-    <div className="poll-tabs" data-testid="poll-tabs">
-      <div className="poll-tabs__header">
+    <div className='poll-tabs' data-testid='poll-tabs'>
+      <div className='poll-tabs__header'>
         <div
           onClick={() => toggleTab(true)}
           className={unansweredTab ? 'poll-tabs__tab active' : 'poll-tabs__tab'}
@@ -39,7 +39,7 @@ export const PollTabs = props => {
         ))}
 
         {questionsFromTab.length === 0 && (
-          <div className="poll-tabs__message">
+          <div className='poll-tabs__message'>
             There are not any polls in this cathegory!!
           </div>
         )}

@@ -10,7 +10,7 @@ export const AuthenticatedApp = () => {
   return (
     <Switch>
       <Route
-        path="/login"
+        path='/login'
         render={({ location }) => {
           const { from } = location.state || { from: { pathname: '/' } };
 
@@ -18,24 +18,24 @@ export const AuthenticatedApp = () => {
         }}
       />
 
-      <Route exact path="/">
+      <Route exact path='/'>
         <ConnectedPollTabs />
       </Route>
 
-      <Route path="/add">
+      <Route path='/add'>
         <ConnectedAddPoll />
       </Route>
 
       <Route
-        path="/questions/:question_id"
+        path='/questions/:question_id'
         component={ConnectedPollDetailsContainer}
       />
 
-      <Route path="/leaderboard">
+      <Route path='/leaderboard'>
         <ConnectedLeaderBoard />
       </Route>
 
-      <Route path="*">
+      <Route path='*'>
         <NoMatch />
       </Route>
     </Switch>

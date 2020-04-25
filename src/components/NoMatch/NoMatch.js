@@ -5,11 +5,11 @@ const imagesPath = `${process.env.PUBLIC_URL}/images/`;
 
 export const NoMatch = () => {
   return (
-    <div data-testid="no-match">
+    <div data-testid='no-match'>
       <img
         src={`${imagesPath}404.jpg`}
-        alt="Page not found!"
-        className="no-match"
+        alt='Page not found!'
+        className='no-match'
       />
     </div>
   );

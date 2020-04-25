@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 export const AvatarImage = ({ user, modifier }) => {
   return (
     <img
-      data-testid="avatar-img"
+      data-testid='avatar-img'
       src={
         user
           ? user.avatarURL

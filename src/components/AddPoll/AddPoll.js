@@ -37,43 +37,43 @@ export const AddPoll = ({ dispatchSaveNewQuestion, authedUser }) => {
   };
 
   return (
-    <div className="poll-add">
-      <div className="poll-add__header">Create New Question</div>
+    <div className='poll-add'>
+      <div className='poll-add__header'>Create New Question</div>
 
-      <div className="poll-add__body">
-        <div className="poll-add__body-instructions">
+      <div className='poll-add__body'>
+        <div className='poll-add__body-instructions'>
           Complete the question:
         </div>
-        <div className="poll-add__body-title">Would you rather ...</div>
+        <div className='poll-add__body-title'>Would you rather ...</div>
 
-        <form onSubmit={handleSubmit} className="poll-add__body-form">
+        <form onSubmit={handleSubmit} className='poll-add__body-form'>
           <input
-            type="text"
-            name="optionOneText"
-            id="optionOneText"
-            placeholder="Enter Option One Text Here..."
+            type='text'
+            name='optionOneText'
+            id='optionOneText'
+            placeholder='Enter Option One Text Here...'
             value={optionTexts.optionOneText}
             onChange={handleoOtionTexts}
-            className="poll-add__body-form-input"
+            className='poll-add__body-form-input'
           />
 
-          <div className="poll-add__body-form-or">OR</div>
+          <div className='poll-add__body-form-or'>OR</div>
 
           <input
-            type="text"
-            name="optionTwoText"
-            id="optionTwoText"
-            placeholder="Enter Option Two Text Here..."
+            type='text'
+            name='optionTwoText'
+            id='optionTwoText'
+            placeholder='Enter Option Two Text Here...'
             value={optionTexts.optionTwoText}
             onChange={handleoOtionTexts}
-            className="poll-add__body-form-input"
+            className='poll-add__body-form-input'
           />
 
           <input
-            type="submit"
-            value="Submit"
+            type='submit'
+            value='Submit'
             disabled={!optionTexts.optionOneText || !optionTexts.optionTwoText}
-            className="btn poll__button"
+            className='btn poll__button'
           />
         </form>
       </div>

@@ -31,40 +31,40 @@ export const UnansweredPoll = ({
   };
 
   return (
-    <div className="poll-unanswered">
+    <div className='poll-unanswered'>
       <PollHeader author={pollAuthor} />
 
-      <div className="poll-unanswered__body">
-        <div className="poll-unanswered__left">
-          <AvatarImage user={pollAuthor} modifier="medium" />
+      <div className='poll-unanswered__body'>
+        <div className='poll-unanswered__left'>
+          <AvatarImage user={pollAuthor} modifier='medium' />
         </div>
 
         <form
-          className="poll-unanswered__question"
+          className='poll-unanswered__question'
           onSubmit={saveQuestionAnswer}
         >
           <strong>Would your rather</strong>
-          <label className="poll-unanswered__question-text">
+          <label className='poll-unanswered__question-text'>
             <input
-              type="radio"
-              value="optionOne"
+              type='radio'
+              value='optionOne'
               checked={selectedOption === 'optionOne'}
               onChange={handleChange}
             />
             {optionOne && optionOne.text}
           </label>
 
-          <label className="poll-unanswered__question-text">
+          <label className='poll-unanswered__question-text'>
             <input
-              type="radio"
-              value="optionTwo"
+              type='radio'
+              value='optionTwo'
               checked={selectedOption === 'optionTwo'}
               onChange={handleChange}
             />
             {optionTwo && optionTwo.text}
           </label>
 
-          <button type="submit" className="btn poll-unanswered__button">
+          <button type='submit' className='btn poll-unanswered__button'>
             Submit
           </button>
         </form>

@@ -10,14 +10,14 @@ import { UnauthenticatedApp } from './UnauthenticatedApp';
 export const App = ({ authedUser }) => {
   return (
     <BrowserRouter>
-      <div className="header">
+      <div className='header'>
         <NavBar />
         {authedUser && <ConnectedLoggedUserInfo />}
       </div>
 
-      <LoadingBar className="loading-bar" />
+      <LoadingBar className='loading-bar' />
 
-      <div className="container">
+      <div className='container'>
         {authedUser ? <AuthenticatedApp /> : <UnauthenticatedApp />}
       </div>
     </BrowserRouter>
