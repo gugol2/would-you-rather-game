@@ -12,6 +12,10 @@ jest.mock('react-router-dom', () => ({
   }),
 }));
 
+afterEach(() => {
+  jest.clearAllMocks();
+});
+
 test('should render the AddPoll Component', () => {
   const dispatchSaveNewQuestion = () => {};
   const authedUser = '::authedUser::';

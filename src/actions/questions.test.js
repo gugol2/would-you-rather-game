@@ -6,7 +6,12 @@ import {
 } from './questions';
 import * as api from '../utils/api';
 import { showLoading, hideLoading } from 'react-redux-loading';
+
 jest.mock('../utils/api');
+
+afterEach(() => {
+  jest.clearAllMocks();
+});
 
 test('should return a receiveQuestions action', () => {
   const questions = '::questions::';
