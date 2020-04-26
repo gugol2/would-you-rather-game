@@ -25,14 +25,17 @@ test('should toggle the class active in the tabs when clicking on an tab', () =>
 
   const props = { unAnsweredQuestions, answeredQuestions, users };
 
-  const { getByText } = render(<PollTabs {...props} />);
+  const { getByText, getByRole } = render(<PollTabs {...props} />);
   const unansweredTab = getByText(/unanswered questions/i);
   const answeredTab = getByText(/Answered Questions/);
+  const message = getByRole('alert');
   expect(unansweredTab).toHaveClass('active');
   expect(answeredTab).not.toHaveClass('active');
+  expect(message).toBeInTheDocument();
 
   // click on the answered tab
   fireEvent.click(answeredTab);
   expect(unansweredTab).not.toHaveClass('active');
   expect(answeredTab).toHaveClass('active');
+  expect(message).toBeInTheDocument();
 });

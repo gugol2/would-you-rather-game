@@ -39,7 +39,7 @@ export const PollTabs = props => {
         ))}
 
         {questionsFromTab.length === 0 && (
-          <div className='poll-tabs__message' data-testid='poll-tabs-message'>
+          <div className='poll-tabs__message' role='alert'>
             There are not any polls in this cathegory!!
           </div>
         )}
