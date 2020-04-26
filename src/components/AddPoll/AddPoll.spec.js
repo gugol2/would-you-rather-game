@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, wait } from '@testing-library/react';
 import user from '@testing-library/user-event';
 import { AddPoll } from './AddPoll';
 import React from 'react';
@@ -28,7 +28,7 @@ test('should render the AddPoll Component', () => {
   expect(submitPoll.disabled).toBe(true);
 });
 
-test('should add a poll', () => {
+test('should add a poll', async () => {
   const dispatchSaveNewQuestion = jest.fn(() => Promise.resolve());
   const authedUser = '::authedUser::';
   const optionOneText = '::optionOneText::';
@@ -68,11 +68,10 @@ test('should add a poll', () => {
     optionTwoText,
   });
 
-  //   This is missing
-  //   dispatchSaveNewQuestion.then(() => {
-  //     expect(inputOptionOne.value).toBe('');
-  //     expect(inputOptionTwo.value).toBe('');
-  //   });
+  await wait(() => {
+    expect(inputOptionOne.value).toBe('');
+    expect(inputOptionTwo.value).toBe('');
+  });
 
   debug(inputOptionOne);
   debug(inputOptionTwo);
