@@ -40,10 +40,10 @@
     ],
     "coverageThreshold": {
       "global": {
-        "branches": 7.5,
-        "functions": 5.5,
-        "lines": 5.9,
-        "statements": 5.8
+        "statements": 21.5,
+        "branches": 15.5,
+        "functions": 16.5,
+        "lines": 22
       },
       "src/components/NoMatch/NoMatch.js": {
         "branches": 100,
