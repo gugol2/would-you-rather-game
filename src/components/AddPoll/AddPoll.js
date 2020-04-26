@@ -37,13 +37,14 @@ export const AddPoll = ({ dispatchSaveNewQuestion, authedUser }) => {
   };
 
   return (
-    <div className='poll-add'>
+    <div className='poll-add' data-testid='addpoll'>
       <div className='poll-add__header'>Create New Question</div>
 
       <div className='poll-add__body'>
         <div className='poll-add__body-instructions'>
           Complete the question:
         </div>
+
         <div className='poll-add__body-title'>Would you rather ...</div>
 
         <form onSubmit={handleSubmit} className='poll-add__body-form'>
@@ -51,6 +52,7 @@ export const AddPoll = ({ dispatchSaveNewQuestion, authedUser }) => {
             type='text'
             name='optionOneText'
             id='optionOneText'
+            data-testid='optionOneText'
             placeholder='Enter Option One Text Here...'
             value={optionTexts.optionOneText}
             onChange={handleoOtionTexts}
@@ -63,6 +65,7 @@ export const AddPoll = ({ dispatchSaveNewQuestion, authedUser }) => {
             type='text'
             name='optionTwoText'
             id='optionTwoText'
+            data-testid='optionTwoText'
             placeholder='Enter Option Two Text Here...'
             value={optionTexts.optionTwoText}
             onChange={handleoOtionTexts}
@@ -74,6 +77,7 @@ export const AddPoll = ({ dispatchSaveNewQuestion, authedUser }) => {
             value='Submit'
             disabled={!optionTexts.optionOneText || !optionTexts.optionTwoText}
             className='btn poll__button'
+            data-testid='submitpoll'
           />
         </form>
       </div>
