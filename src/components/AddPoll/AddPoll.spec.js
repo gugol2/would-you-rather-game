@@ -4,6 +4,14 @@ import { AddPoll } from './AddPoll';
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
+const mockHistoryPush = jest.fn();
+
+jest.mock('react-router-dom', () => ({
+  useHistory: () => ({
+    push: mockHistoryPush,
+  }),
+}));
+
 test('should render the AddPoll Component', () => {
   const dispatchSaveNewQuestion = () => {};
   const authedUser = '::authedUser::';
@@ -34,7 +42,7 @@ test('should add a poll', async () => {
   const optionOneText = '::optionOneText::';
   const optionTwoText = '::optionTwoText::';
 
-  const { getByTestId, debug } = render(
+  const { getByTestId } = render(
     <AddPoll
       dispatchSaveNewQuestion={dispatchSaveNewQuestion}
       authedUser={authedUser}
@@ -73,7 +81,7 @@ test('should add a poll', async () => {
     expect(inputOptionTwo.value).toBe('');
   });
 
-  debug(inputOptionOne);
-  debug(inputOptionTwo);
-  debug(submitPoll);
+  expect(mockHistoryPush).toHaveBeenCalled();
+  expect(mockHistoryPush).toHaveBeenCalledTimes(1);
+  expect(mockHistoryPush).toHaveBeenCalledWith('/');
 });
