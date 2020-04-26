@@ -61,12 +61,14 @@ test('should add a poll', () => {
   user.click(submitPoll);
 
   expect(dispatchSaveNewQuestion).toHaveBeenCalled();
+  expect(dispatchSaveNewQuestion).toHaveBeenCalledTimes(1);
   expect(dispatchSaveNewQuestion).toHaveBeenCalledWith({
     author: authedUser,
     optionOneText,
     optionTwoText,
   });
 
+  //   This is missing
   //   dispatchSaveNewQuestion.then(() => {
   //     expect(inputOptionOne.value).toBe('');
   //     expect(inputOptionTwo.value).toBe('');
