@@ -7,6 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 const mockHistoryPush = jest.fn();
 
 jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
   useHistory: () => ({
     push: mockHistoryPush,
   }),
