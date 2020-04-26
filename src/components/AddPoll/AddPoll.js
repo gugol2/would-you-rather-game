@@ -19,21 +19,22 @@ export const AddPoll = ({ dispatchSaveNewQuestion, authedUser }) => {
     });
   };
 
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault();
-
     const { optionOneText, optionTwoText } = optionTexts;
-    dispatchSaveNewQuestion({
+
+    await dispatchSaveNewQuestion({
       optionOneText,
       optionTwoText,
       author: authedUser,
-    }).then(() => {
-      setOptionTexts({
-        optionOneText: '',
-        optionTwoText: '',
-      });
-      history.push('/');
     });
+
+    await setOptionTexts({
+      optionOneText: '',
+      optionTwoText: '',
+    });
+
+    history.push('/');
   };
 
   return (
