@@ -1,11 +1,13 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import { PollTabs } from './PollTabs';
-import { PollBrief } from '../PollBrief';
+import { PollBrief as MockedPollBrief } from '../PollBrief';
 
-jest.mock('../PollBrief', () => ({
-  PollBrief: jest.fn(() => 'PollBrief Component'),
-}));
+// jest.mock('../PollBrief', () => ({
+//   PollBrief: jest.fn(() => 'PollBrief Component'),
+// }));
+
+jest.mock('../PollBrief');
 
 afterEach(() => {
   jest.clearAllMocks();
@@ -33,6 +35,7 @@ test('should show the PollTabs component with the unaswered tab selected by defa
 });
 
 test('should toggle the class active in the tabs when clicking on an tab', () => {
+  MockedPollBrief.mockReturnValue('PollBrief Component');
   const author = '::author::';
   const unAnsweredQuestions = [{ id: '::unAnsweredQuestionsId::', author }];
   const answeredQuestions = [];
@@ -46,25 +49,25 @@ test('should toggle the class active in the tabs when clicking on an tab', () =>
   const unAnsweredPollsMessage = queryByRole('alert');
   expect(unansweredTab).toHaveClass('active');
   expect(answeredTab).not.toHaveClass('active');
-  expect(PollBrief).toHaveBeenCalled();
-  expect(PollBrief).toHaveBeenCalledTimes(1);
-  expect(PollBrief).toHaveBeenCalledWith(
+  expect(MockedPollBrief).toHaveBeenCalledWith(
     {
       qauthor: '::author::',
       question: { author: '::author::', id: '::unAnsweredQuestionsId::' },
     },
     {},
   );
+  expect(MockedPollBrief).toHaveBeenCalledTimes(1);
 
   expect(unAnsweredPollsMessage).toBeNull();
 
   // click on the answered tab
-  PollBrief.mockClear();
+  MockedPollBrief.mockClear();
   fireEvent.click(answeredTab);
+
   const answeredPollsMessage = getByRole('alert');
 
   expect(unansweredTab).not.toHaveClass('active');
   expect(answeredTab).toHaveClass('active');
-  expect(PollBrief).not.toHaveBeenCalled();
+  expect(MockedPollBrief).not.toHaveBeenCalled();
   expect(answeredPollsMessage).toBeInTheDocument();
 });
