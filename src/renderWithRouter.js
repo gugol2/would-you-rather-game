@@ -1,8 +1,8 @@
+import React from 'react';
 import { createMemoryHistory } from 'history';
 import { Router } from 'react-router-dom';
-import React from 'react';
 import { render } from '@testing-library/react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 export const renderWithRouter = (
   ui,
@@ -12,9 +12,12 @@ export const renderWithRouter = (
     ...renderOptions
   } = {},
 ) => {
-  // eslint-disable-next-line react/prop-types
   const Wrapper = ({ children }) => {
     return <Router history={history}>{children}</Router>;
+  };
+
+  Wrapper.propTypes = {
+    children: PropTypes.node.isRequired,
   };
 
   const utils = render(ui, { wrapper: Wrapper, ...renderOptions });
@@ -24,7 +27,3 @@ export const renderWithRouter = (
     history,
   };
 };
-
-// Wrapper.propTypes = {
-//     children: PropTypes.node.isRequired,
-//   };
