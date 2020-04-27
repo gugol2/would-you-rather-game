@@ -1,14 +1,13 @@
 import React from 'react';
 import { AuthenticatedApp } from './AuthenticatedApp';
 import { render } from '@testing-library/react';
-import { Router } from 'react-router-dom';
+import { Router, Redirect as MockedRedirect } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
 import { ConnectedPollTabs as MockedPollTabs } from '../PollTabs';
 import { ConnectedAddPoll as MockedAddpoll } from '../AddPoll';
 import { ConnectedLeaderBoard as MockedLeaderBoard } from '../LeaderBoard';
 import { NoMatch as MockedNoMatch } from '../NoMatch';
 import { ConnectedPollDetailsContainer as MockedPollDetailsContainer } from '../PollDetailsContainer';
-import { Redirect as MockedRedirect } from 'react-router-dom';
 
 jest.mock('../PollTabs', () => ({
   ConnectedPollTabs: jest.fn(() => 'MockedPollTabs'),
@@ -55,13 +54,14 @@ const renderAuthenticatedApp = initialEntry => {
   };
 };
 
-test("render the Redirect Component when route is '/login'", () => {
+test("render the Redirect Component when route is '/login' with the pathname from location.state", () => {
   const previousPathname = '::previousPathname::';
+
   const entry = {
     pathname: '/login',
     search: '',
     hash: '',
-    state: { from: { previousPathname } },
+    state: { from: { pathname: previousPathname } },
     key: '::key::',
   };
 
@@ -70,7 +70,19 @@ test("render the Redirect Component when route is '/login'", () => {
   expect(MockedRedirect).toHaveBeenCalledTimes(1);
   expect(MockedRedirect).toHaveBeenCalledWith(
     {
-      to: { previousPathname },
+      to: { pathname: previousPathname },
+    },
+    context,
+  );
+});
+
+test("render the Redirect Component when route is '/login' with '/' as pathname", () => {
+  renderAuthenticatedApp('/login');
+
+  expect(MockedRedirect).toHaveBeenCalledTimes(1);
+  expect(MockedRedirect).toHaveBeenCalledWith(
+    {
+      to: { pathname: '/' },
     },
     context,
   );
@@ -97,8 +109,8 @@ test("render the LeaderBoard Component when route is '/leaderboard'", () => {
   expect(MockedLeaderBoard).toHaveBeenCalledWith({}, context);
 });
 
-test('render the NoMatch Component when route is anythng else', () => {
-  renderAuthenticatedApp('/anyroute');
+test('render the NoMatch Component when route is anythng does NOT match any routes', () => {
+  renderAuthenticatedApp('/anyroute-that-not-match');
 
   expect(MockedNoMatch).toHaveBeenCalledTimes(1);
   expect(MockedNoMatch).toHaveBeenCalledWith({}, context);
