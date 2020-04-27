@@ -42,18 +42,23 @@ test('should show the PollTabs component with the unaswered tab selected by defa
   expect(message).toBeInTheDocument();
 });
 
-test('should toggle the class active in the tabs when clicking on an tab', () => {
+test('should toggle the class active in the tabs when clicking on an tab', async () => {
   // MockedPollBrief.mockReturnValue('Mocked PollBrief Component');
   const author = '::author::';
   const unAnsweredQuestions = [{ id: '::unAnsweredQuestionsId::', author }];
   const answeredQuestions = [];
   const users = { [author]: author };
+  let noPollsMessage;
 
   const props = { unAnsweredQuestions, answeredQuestions, users };
 
-  const { getByText, queryByRole, getByRole } = render(<PollTabs {...props} />);
+  const { getByText, queryByRole, findByRole } = render(
+    <PollTabs {...props} />,
+  );
+
   const answeredTab = getByText(/Answered Questions/);
-  const unAnsweredPollsMessage = queryByRole('alert');
+  noPollsMessage = queryByRole('alert');
+
   expect(MockedPollBrief).toHaveBeenCalledWith(
     {
       qauthor: '::author::',
@@ -62,13 +67,16 @@ test('should toggle the class active in the tabs when clicking on an tab', () =>
     {},
   );
   expect(MockedPollBrief).toHaveBeenCalledTimes(1);
-  expect(unAnsweredPollsMessage).toBeNull();
+  expect(noPollsMessage).toBeNull();
 
   // click on the answered tab
   MockedPollBrief.mockClear();
   fireEvent.click(answeredTab);
-  const answeredPollsMessage = getByRole('alert');
+
+  // find by queries are asynchronous.
+  // They'll continue to query the DOM as DOM changes are made until it can find the element that it's looking for or until a timeout time is reached.
+  noPollsMessage = await findByRole('alert');
 
   expect(MockedPollBrief).not.toHaveBeenCalled();
-  expect(answeredPollsMessage).toBeInTheDocument();
+  expect(noPollsMessage).toBeInTheDocument();
 });
