@@ -1,13 +1,12 @@
 import React from 'react';
 import { AuthenticatedApp } from './AuthenticatedApp';
-import { render } from '@testing-library/react';
-import { Router, Redirect as MockedRedirect } from 'react-router-dom';
-import { createMemoryHistory } from 'history';
+import { Redirect as MockedRedirect } from 'react-router-dom';
 import { ConnectedPollTabs as MockedPollTabs } from '../PollTabs';
 import { ConnectedAddPoll as MockedAddpoll } from '../AddPoll';
 import { ConnectedLeaderBoard as MockedLeaderBoard } from '../LeaderBoard';
 import { NoMatch as MockedNoMatch } from '../NoMatch';
 import { ConnectedPollDetailsContainer as MockedPollDetailsContainer } from '../PollDetailsContainer';
+import { renderWithRouter } from '../../setupTests';
 
 jest.mock('../PollTabs', () => ({
   ConnectedPollTabs: jest.fn(() => 'MockedPollTabs'),
@@ -41,17 +40,9 @@ afterEach(() => {
 const context = {};
 
 const renderAuthenticatedApp = initialEntry => {
-  const history = createMemoryHistory({ initialEntries: [initialEntry] });
-  const utils = render(
-    <Router history={history}>
-      <AuthenticatedApp />
-    </Router>,
-  );
-
-  return {
-    history,
-    utils,
-  };
+  return renderWithRouter(<AuthenticatedApp />, {
+    route: initialEntry,
+  });
 };
 
 test("render the Redirect Component when route is '/login' with the pathname from location.state", () => {
