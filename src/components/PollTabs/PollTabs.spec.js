@@ -13,33 +13,48 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
+const renderPollTabs = props => {
+  const utils = render(<PollTabs {...props} />);
+  const pollTabsRendered = utils.getByTestId('poll-tabs');
+  const unansweredTab = utils.getByText(/unanswered questions/i);
+  const answeredTab = utils.getByText(/Answered Questions/);
+  const noPollsMessage = utils.queryByRole('alert');
+
+  return {
+    ...utils,
+    pollTabsRendered,
+    unansweredTab,
+    answeredTab,
+    noPollsMessage,
+  };
+};
+
 test('should show the PollTabs component with the unaswered tab selected by default', () => {
   const unAnsweredQuestions = [];
   const answeredQuestions = [];
   const users = {};
 
-  const props = { unAnsweredQuestions, answeredQuestions, users };
+  const {
+    pollTabsRendered,
+    unansweredTab,
+    answeredTab,
+    noPollsMessage,
+  } = renderPollTabs({ unAnsweredQuestions, answeredQuestions, users });
 
-  const { getByTestId, getByText, getByRole } = render(<PollTabs {...props} />);
-  const pollTabsRendered = getByTestId('poll-tabs');
   expect(pollTabsRendered).toBeInTheDocument();
-  const unansweredTab = getByText(/unanswered questions/i);
-  const answeredTab = getByText(/Answered Questions/);
-  const message = getByRole('alert');
-
   expect(unansweredTab).toHaveClass('active');
   expect(answeredTab).not.toHaveClass('active');
-  expect(message).toBeInTheDocument();
+  expect(noPollsMessage).toBeInTheDocument();
 
   fireEvent.click(answeredTab);
   expect(unansweredTab).not.toHaveClass('active');
   expect(answeredTab).toHaveClass('active');
-  expect(message).toBeInTheDocument();
+  expect(noPollsMessage).toBeInTheDocument();
 
   fireEvent.click(unansweredTab);
   expect(unansweredTab).toHaveClass('active');
   expect(answeredTab).not.toHaveClass('active');
-  expect(message).toBeInTheDocument();
+  expect(noPollsMessage).toBeInTheDocument();
 });
 
 test('should toggle the class active in the tabs when clicking on an tab', async () => {
@@ -48,16 +63,12 @@ test('should toggle the class active in the tabs when clicking on an tab', async
   const unAnsweredQuestions = [{ id: '::unAnsweredQuestionsId::', author }];
   const answeredQuestions = [];
   const users = { [author]: author };
-  let noPollsMessage;
 
-  const props = { unAnsweredQuestions, answeredQuestions, users };
-
-  const { getByText, queryByRole, findByRole } = render(
-    <PollTabs {...props} />,
-  );
-
-  const answeredTab = getByText(/Answered Questions/);
-  noPollsMessage = queryByRole('alert');
+  let { answeredTab, findByRole, noPollsMessage } = renderPollTabs({
+    unAnsweredQuestions,
+    answeredQuestions,
+    users,
+  });
 
   expect(MockedPollBrief).toHaveBeenCalledWith(
     {
