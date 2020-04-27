@@ -62,11 +62,11 @@ test('should add a poll', async () => {
   const inputOptionTwo = getByTestId('optionTwoText');
   const submitPoll = getByTestId('submitpoll');
 
-  expect(submitPoll.disabled).toBe(true);
+  expect(submitPoll).toBeDisabled();
   user.type(inputOptionOne, optionOneText);
-  expect(submitPoll.disabled).toBe(true);
+  expect(submitPoll).toBeDisabled();
   user.type(inputOptionTwo, optionTwoText);
-  expect(submitPoll.disabled).toBe(false);
+  expect(submitPoll).not.toBeDisabled();
 
   expect(inputOptionOne.value).toBe(optionOneText);
   expect(inputOptionTwo.value).toBe(optionTwoText);
