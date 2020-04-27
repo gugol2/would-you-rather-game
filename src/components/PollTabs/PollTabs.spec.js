@@ -1,12 +1,11 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import { PollTabs } from './PollTabs';
+import { PollBrief } from '../PollBrief';
 
-jest.mock('../PollBrief', () => {
-  return {
-    PollBrief: () => 'PollBrief Component',
-  };
-});
+jest.mock('../PollBrief', () => ({
+  PollBrief: jest.fn(() => 'PollBrief Component'),
+}));
 
 afterEach(() => {
   jest.clearAllMocks();
@@ -25,6 +24,8 @@ test('should show the PollTabs component with the unaswered tab selected by defa
   const unansweredTab = getByText(/unanswered questions/i);
   const answeredTab = getByText(/Answered Questions/);
   const message = getByRole('alert');
+  fireEvent.click(answeredTab);
+  fireEvent.click(unansweredTab);
 
   expect(unansweredTab).toHaveClass('active');
   expect(answeredTab).not.toHaveClass('active');
@@ -32,9 +33,10 @@ test('should show the PollTabs component with the unaswered tab selected by defa
 });
 
 test('should toggle the class active in the tabs when clicking on an tab', () => {
-  const unAnsweredQuestions = [{ id: '::unAnsweredQuestionsId::' }];
+  const author = '::author::';
+  const unAnsweredQuestions = [{ id: '::unAnsweredQuestionsId::', author }];
   const answeredQuestions = [];
-  const users = {};
+  const users = { [author]: author };
 
   const props = { unAnsweredQuestions, answeredQuestions, users };
 
@@ -44,12 +46,25 @@ test('should toggle the class active in the tabs when clicking on an tab', () =>
   const unAnsweredPollsMessage = queryByRole('alert');
   expect(unansweredTab).toHaveClass('active');
   expect(answeredTab).not.toHaveClass('active');
+  expect(PollBrief).toHaveBeenCalled();
+  expect(PollBrief).toHaveBeenCalledTimes(1);
+  expect(PollBrief).toHaveBeenCalledWith(
+    {
+      qauthor: '::author::',
+      question: { author: '::author::', id: '::unAnsweredQuestionsId::' },
+    },
+    {},
+  );
+
   expect(unAnsweredPollsMessage).toBeNull();
 
   // click on the answered tab
+  PollBrief.mockClear();
   fireEvent.click(answeredTab);
+  const answeredPollsMessage = getByRole('alert');
+
   expect(unansweredTab).not.toHaveClass('active');
   expect(answeredTab).toHaveClass('active');
-  const answeredPollsMessage = getByRole('alert');
+  expect(PollBrief).not.toHaveBeenCalled();
   expect(answeredPollsMessage).toBeInTheDocument();
 });
