@@ -3,11 +3,11 @@ import { render, fireEvent } from '@testing-library/react';
 import { PollTabs } from './PollTabs';
 import { PollBrief as MockedPollBrief } from '../PollBrief';
 
-// jest.mock('../PollBrief', () => ({
-//   PollBrief: jest.fn(() => 'PollBrief Component'),
-// }));
+jest.mock('../PollBrief', () => ({
+  PollBrief: jest.fn(() => 'Mocked PollBrief Component'),
+}));
 
-jest.mock('../PollBrief');
+// jest.mock('../PollBrief');
 
 afterEach(() => {
   jest.clearAllMocks();
@@ -35,7 +35,7 @@ test('should show the PollTabs component with the unaswered tab selected by defa
 });
 
 test('should toggle the class active in the tabs when clicking on an tab', () => {
-  MockedPollBrief.mockReturnValue('PollBrief Component');
+  // MockedPollBrief.mockReturnValue('Mocked PollBrief Component');
   const author = '::author::';
   const unAnsweredQuestions = [{ id: '::unAnsweredQuestionsId::', author }];
   const answeredQuestions = [];
