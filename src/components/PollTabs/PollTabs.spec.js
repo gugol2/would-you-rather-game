@@ -26,9 +26,17 @@ test('should show the PollTabs component with the unaswered tab selected by defa
   const unansweredTab = getByText(/unanswered questions/i);
   const answeredTab = getByText(/Answered Questions/);
   const message = getByRole('alert');
-  fireEvent.click(answeredTab);
-  fireEvent.click(unansweredTab);
 
+  expect(unansweredTab).toHaveClass('active');
+  expect(answeredTab).not.toHaveClass('active');
+  expect(message).toBeInTheDocument();
+
+  fireEvent.click(answeredTab);
+  expect(unansweredTab).not.toHaveClass('active');
+  expect(answeredTab).toHaveClass('active');
+  expect(message).toBeInTheDocument();
+
+  fireEvent.click(unansweredTab);
   expect(unansweredTab).toHaveClass('active');
   expect(answeredTab).not.toHaveClass('active');
   expect(message).toBeInTheDocument();
@@ -44,11 +52,8 @@ test('should toggle the class active in the tabs when clicking on an tab', () =>
   const props = { unAnsweredQuestions, answeredQuestions, users };
 
   const { getByText, queryByRole, getByRole } = render(<PollTabs {...props} />);
-  const unansweredTab = getByText(/unanswered questions/i);
   const answeredTab = getByText(/Answered Questions/);
   const unAnsweredPollsMessage = queryByRole('alert');
-  expect(unansweredTab).toHaveClass('active');
-  expect(answeredTab).not.toHaveClass('active');
   expect(MockedPollBrief).toHaveBeenCalledWith(
     {
       qauthor: '::author::',
@@ -57,17 +62,13 @@ test('should toggle the class active in the tabs when clicking on an tab', () =>
     {},
   );
   expect(MockedPollBrief).toHaveBeenCalledTimes(1);
-
   expect(unAnsweredPollsMessage).toBeNull();
 
   // click on the answered tab
   MockedPollBrief.mockClear();
   fireEvent.click(answeredTab);
-
   const answeredPollsMessage = getByRole('alert');
 
-  expect(unansweredTab).not.toHaveClass('active');
-  expect(answeredTab).toHaveClass('active');
   expect(MockedPollBrief).not.toHaveBeenCalled();
   expect(answeredPollsMessage).toBeInTheDocument();
 });
