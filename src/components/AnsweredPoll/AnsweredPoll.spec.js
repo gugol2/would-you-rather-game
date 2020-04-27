@@ -17,6 +17,10 @@ jest.mock('../AvatarImage', () => ({
   AvatarImage: jest.fn(() => 'Mocked AvatarImage'),
 }));
 
+afterEach(() => {
+  jest.clearAllMocks();
+});
+
 test('renders the AnsweredPoll component', () => {
   const optionOne = '::optionOne::';
   const optionTwo = '::optionTwo::';
