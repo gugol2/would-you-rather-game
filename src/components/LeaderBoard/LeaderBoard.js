@@ -4,9 +4,13 @@ import PropTypes from 'prop-types';
 
 export const LeaderBoard = ({ usersOrderedByScore }) => {
   return (
-    <div className='leader-board'>
+    <div className='leader-board' data-testid='leaderboard'>
       {usersOrderedByScore.map(user => (
-        <div className='leader-board-item' key={user.id}>
+        <div
+          className='leader-board-item'
+          key={user.id}
+          data-testid='leaderboarditem'
+        >
           <div className='leader-board-item__left'>
             <AvatarImage user={user} modifier='medium' />
           </div>
@@ -16,18 +20,20 @@ export const LeaderBoard = ({ usersOrderedByScore }) => {
 
             <div className='leader-board-item__answered'>
               <div>Answered Questions</div>
-              <div>{Object.keys(user.answers).length}</div>
+              <div data-testid='answeredquestions'>
+                {Object.keys(user.answers).length}
+              </div>
             </div>
 
             <div className='leader-board-item__created'>
               <div>Created Questions</div>
-              <div>{user.questions.length}</div>
+              <div data-testid='createdquestions'>{user.questions.length}</div>
             </div>
           </div>
 
           <div className='leader-board-item__right'>
             <div className='leader-board-item__right-title'>Score</div>
-            <div className='leader-board-item__right-score'>
+            <div className='leader-board-item__right-score' data-testid='score'>
               {Object.keys(user.answers).length + user.questions.length}
             </div>
           </div>
