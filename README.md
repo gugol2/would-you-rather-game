@@ -44,4 +44,15 @@ enjoy the game!
 ## Details
 
 Please refer to the [details section](DETAILS.md) for all available commands and
-instructions.
+instructions. These capabilities come mainly from create-react-app boilerplate.
+
+Aside of that this repo:
+
+- Has pre-commit task that enforces some quality in the code before allowing
+  commiting
+- Has a pre-push task that enforces some validation in the code before allowing
+  pushing
+- Uses lint for type checking
+- Uses prettier for formating
+- Uses jest to run the tests
+- Has a test coverage task
