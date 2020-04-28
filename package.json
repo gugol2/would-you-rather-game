@@ -37,7 +37,9 @@
     "collectCoverageFrom": [
       "**/src/**/*.{js, jsx}",
       "!**/src/components/**/index.js",
-      "!**/src/**/serviceWorker.js"
+      "!**/src/**/serviceWorker.js",
+      "!**/src/testHelpers/*",
+      "!**/src/utils/*"
     ],
     "coverageThreshold": {
       "global": {
