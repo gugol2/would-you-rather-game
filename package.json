@@ -36,7 +36,8 @@
     "displayName": "client",
     "collectCoverageFrom": [
       "**/src/**/*.{js, jsx}",
-      "!**/src/components/**/index.js"
+      "!**/src/components/**/index.js",
+      "!**/src/**/serviceWorker.js"
     ],
     "coverageThreshold": {
       "global": {
