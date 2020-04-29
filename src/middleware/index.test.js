@@ -10,11 +10,7 @@ jest.mock('redux', () => {
   };
 });
 
-jest.mock('redux-thunk', () => {
-  return {
-    default: jest.fn(() => {}),
-  };
-});
+jest.mock('redux-thunk', () => jest.fn());
 
 jest.mock('./logger', () => {
   return {
