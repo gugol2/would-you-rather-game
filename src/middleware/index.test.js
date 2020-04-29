@@ -1,5 +1,4 @@
-// eslint-disable-next-line no-unused-vars
-import { middleware } from '.';
+import { buildMiddleware } from '.';
 import { applyMiddleware as mockedApplyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { logger as mockedLogger } from './logger';
@@ -28,6 +27,7 @@ afterEach(() => {
 });
 
 test('should call applyMiddleware with thunk and logger', () => {
+  buildMiddleware();
   expect(mockedApplyMiddleware).toHaveBeenCalledTimes(1);
   expect(mockedApplyMiddleware).toHaveBeenCalledWith(thunk, mockedLogger);
 });
