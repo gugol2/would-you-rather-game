@@ -106,7 +106,7 @@ describe('handleSaveAnswerToQuestion should return a function that receives disp
     });
   });
 
-  test('If the poll is NOT voted yet dispatch a SAVE_ANSWER_TO_QUESTION action', async () => {
+  test('If the poll is NOT voted yet dispatch a SAVE_ANSWER_TO_QUESTION action and also dispatch a REMOVE_ANSWER_TO_QUESTION action because the API fails', async () => {
     mockedSaveQuestionAnswer.mockRejectedValueOnce();
 
     const authedUser = '::authedUser::';
@@ -151,5 +151,43 @@ describe('handleSaveAnswerToQuestion should return a function that receives disp
     expect(window.alert).toHaveBeenCalledWith(
       expect.stringMatching(/could not be save/i),
     );
+  });
+
+  test('If the poll is NOT voted yet dispatch a SAVE_ANSWER_TO_QUESTION action only because the API succeeds', async () => {
+    mockedSaveQuestionAnswer.mockResolvedValueOnce();
+
+    const authedUser = '::authedUser::';
+    const qid = '::qid::';
+    const answer = '::answer::';
+    const users = {
+      [authedUser]: { answers: {} },
+    };
+    const dispatch = jest.fn();
+    const getState = jest.fn(() => ({ users }));
+
+    const handleActionFunction = handleSaveAnswerToQuestion({
+      authedUser,
+      qid,
+      answer,
+    });
+
+    await handleActionFunction(dispatch, getState);
+
+    expect(dispatch).toHaveBeenCalledTimes(1);
+    expect(dispatch).toHaveBeenCalledWith({
+      type: SAVE_ANSWER_TO_QUESTION,
+      qid,
+      answer,
+      authedUser,
+    });
+
+    expect(mockedSaveQuestionAnswer).toHaveBeenCalledTimes(1);
+    expect(mockedSaveQuestionAnswer).toHaveBeenCalledWith({
+      authedUser,
+      qid,
+      answer,
+    });
+
+    expect(window.alert).not.toHaveBeenCalled();
   });
 });
