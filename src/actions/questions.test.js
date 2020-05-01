@@ -4,12 +4,21 @@ import {
   handleSaveNewQuestion,
   SAVE_QUESTION,
 } from './questions';
-import * as api from '../utils/api';
+
+import { saveQuestion as mockedSaveQuestion } from '../utils/api';
+
 import { showLoading, hideLoading } from 'react-redux-loading';
 
-jest.mock('../utils/api');
+jest.mock('../utils/api', () => ({
+  saveQuestion: jest.fn(() => Promise.resolve('::question::')),
+}));
+
+beforeEach(() => {
+  jest.spyOn(window, 'alert').mockImplementation(() => {});
+});
 
 afterEach(() => {
+  window.alert.mockRestore();
   jest.clearAllMocks();
 });
 
@@ -23,7 +32,7 @@ test('should return a receiveQuestions action', () => {
   });
 });
 
-test('handleSaveNewQuestion should return a function that receives dispatch as parameter', () => {
+test('handleSaveNewQuestion should return a function that receives dispatch as parameter', async () => {
   const optionOneText = '::optionOneText::';
   const optionTwoText = '::optionTwoText::';
   const author = '::author::';
@@ -36,26 +45,19 @@ test('handleSaveNewQuestion should return a function that receives dispatch as p
     author,
   });
 
-  //   console.log('api', api);
-
-  const saveQuestionPromise = handleActionFunction(dispatch);
+  await handleActionFunction(dispatch);
 
   expect(dispatch).toHaveBeenNthCalledWith(1, showLoading());
-  expect(api.saveQuestion).toHaveBeenCalledWith({
+  expect(mockedSaveQuestion).toHaveBeenCalledWith({
     optionOneText,
     optionTwoText,
     author,
   });
 
-  saveQuestionPromise.then(() => {
-    expect(dispatch).toHaveBeenNthCalledWith(2, {
-      question: '::question::',
-      type: SAVE_QUESTION,
-    });
-    expect(dispatch).toHaveBeenNthCalledWith(3, hideLoading());
-    expect(dispatch).toHaveBeenCalledTimes(3);
+  expect(dispatch).toHaveBeenNthCalledWith(2, {
+    question: '::question::',
+    type: SAVE_QUESTION,
   });
-
-  // cleanup
-  api.saveQuestion.mockReset();
+  expect(dispatch).toHaveBeenNthCalledWith(3, hideLoading());
+  expect(dispatch).toHaveBeenCalledTimes(3);
 });
