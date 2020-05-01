@@ -3,14 +3,21 @@ import {
   RECEIVE_QUESTIONS,
   handleSaveNewQuestion,
   SAVE_QUESTION,
+  handleSaveAnswerToQuestion,
+  SAVE_ANSWER_TO_QUESTION,
+  REMOVE_ANSWER_TO_QUESTION,
 } from './questions';
 
-import { saveQuestion as mockedSaveQuestion } from '../utils/api';
+import {
+  saveQuestion as mockedSaveQuestion,
+  saveQuestionAnswer as mockedSaveQuestionAnswer,
+} from '../utils/api';
 
 import { showLoading, hideLoading } from 'react-redux-loading';
 
 jest.mock('../utils/api', () => ({
   saveQuestion: jest.fn(() => Promise.resolve('::question::')),
+  saveQuestionAnswer: jest.fn(() => Promise.reject()),
 }));
 
 beforeEach(() => {
@@ -48,6 +55,8 @@ test('handleSaveNewQuestion should return a function that receives dispatch as p
   await handleActionFunction(dispatch);
 
   expect(dispatch).toHaveBeenNthCalledWith(1, showLoading());
+
+  expect(mockedSaveQuestion).toHaveBeenCalledTimes(1);
   expect(mockedSaveQuestion).toHaveBeenCalledWith({
     optionOneText,
     optionTwoText,
@@ -60,4 +69,83 @@ test('handleSaveNewQuestion should return a function that receives dispatch as p
   });
   expect(dispatch).toHaveBeenNthCalledWith(3, hideLoading());
   expect(dispatch).toHaveBeenCalledTimes(3);
+});
+
+describe('handleSaveAnswerToQuestion should return a function that receives dispatch and getState as parameters', () => {
+  test('If the poll is already voted alert a msg and return a resolved promise with the params used to call', async () => {
+    const authedUser = '::authedUser::';
+    const qid = '::qid::';
+    const answer = '::answer::';
+    const users = {
+      [authedUser]: { answers: { [qid]: qid } },
+    };
+    const dispatch = jest.fn();
+    const getState = jest.fn(() => ({ users }));
+
+    const handleActionFunction = handleSaveAnswerToQuestion({
+      authedUser,
+      qid,
+      answer,
+    });
+
+    const saveAnswerToQuestionPromise = await handleActionFunction(
+      dispatch,
+      getState,
+    );
+
+    expect(window.alert).toHaveBeenCalledTimes(1);
+    expect(window.alert).toHaveBeenCalledWith(
+      expect.stringMatching(/alredy voted/i),
+    );
+    expect(saveAnswerToQuestionPromise).toEqual({
+      authedUser,
+      qid,
+      answer,
+    });
+  });
+
+  test('If the poll is NOT voted yet dispatch a SAVE_ANSWER_TO_QUESTION action', async () => {
+    const authedUser = '::authedUser::';
+    const qid = '::qid::';
+    const answer = '::answer::';
+    const users = {
+      [authedUser]: { answers: {} },
+    };
+    const dispatch = jest.fn();
+    const getState = jest.fn(() => ({ users }));
+
+    const handleActionFunction = handleSaveAnswerToQuestion({
+      authedUser,
+      qid,
+      answer,
+    });
+
+    await handleActionFunction(dispatch, getState);
+
+    expect(dispatch).toHaveBeenNthCalledWith(1, {
+      type: SAVE_ANSWER_TO_QUESTION,
+      qid,
+      answer,
+      authedUser,
+    });
+
+    expect(mockedSaveQuestionAnswer).toHaveBeenCalledTimes(1);
+    expect(mockedSaveQuestionAnswer).toHaveBeenCalledWith({
+      authedUser,
+      qid,
+      answer,
+    });
+
+    expect(dispatch).toHaveBeenNthCalledWith(2, {
+      type: REMOVE_ANSWER_TO_QUESTION,
+      qid,
+      answer,
+      authedUser,
+    });
+
+    expect(window.alert).toHaveBeenCalledTimes(1);
+    expect(window.alert).toHaveBeenCalledWith(
+      expect.stringMatching(/could not be save/i),
+    );
+  });
 });

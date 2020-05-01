@@ -34,6 +34,7 @@ const removeAnswerToQuestion = ({ authedUser, qid, answer }) => {
 export const handleSaveAnswerToQuestion = ({ authedUser, qid, answer }) => {
   return (dispatch, getState) => {
     const { users } = getState();
+
     const pollAlreadyVoted = Object.prototype.hasOwnProperty.call(
       users[authedUser].answers,
       qid,
@@ -49,7 +50,7 @@ export const handleSaveAnswerToQuestion = ({ authedUser, qid, answer }) => {
       });
     } else {
       alert('You alredy voted this poll my friend, try another poll!!');
-      return Promise.resolve();
+      return Promise.resolve({ authedUser, qid, answer });
     }
   };
 };
