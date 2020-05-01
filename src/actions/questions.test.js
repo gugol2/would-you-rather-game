@@ -16,8 +16,8 @@ import {
 import { showLoading, hideLoading } from 'react-redux-loading';
 
 jest.mock('../utils/api', () => ({
-  saveQuestion: jest.fn(() => Promise.resolve('::question::')),
-  saveQuestionAnswer: jest.fn(() => Promise.reject()),
+  saveQuestion: jest.fn(),
+  saveQuestionAnswer: jest.fn(),
 }));
 
 beforeEach(() => {
@@ -40,6 +40,8 @@ test('should return a receiveQuestions action', () => {
 });
 
 test('handleSaveNewQuestion should return a function that receives dispatch as parameter', async () => {
+  mockedSaveQuestion.mockResolvedValueOnce('::question::');
+
   const optionOneText = '::optionOneText::';
   const optionTwoText = '::optionTwoText::';
   const author = '::author::';
@@ -105,6 +107,8 @@ describe('handleSaveAnswerToQuestion should return a function that receives disp
   });
 
   test('If the poll is NOT voted yet dispatch a SAVE_ANSWER_TO_QUESTION action', async () => {
+    mockedSaveQuestionAnswer.mockRejectedValueOnce();
+
     const authedUser = '::authedUser::';
     const qid = '::qid::';
     const answer = '::answer::';
