@@ -36,19 +36,26 @@ afterEach(() => {
 
 const context = {};
 
-test('should render the UnauthenticatedApp when authedUser is falsy', () => {
-  const authedUser = null;
-  render(<App authedUser={authedUser} />);
+test('should render the common components no matter the authedUser ', () => {
+  render(<App />);
 
   expect(MockedBrowserRouter).toHaveBeenCalledTimes(1);
 
   expect(MockdedNavBar).toHaveBeenCalledTimes(1);
   expect(MockdedNavBar).toHaveBeenCalledWith({}, context);
 
-  expect(MockedLoggedUserInfo).not.toHaveBeenCalled();
-
   expect(MockedLoadingBar).toHaveBeenCalledTimes(1);
-  expect(MockdedNavBar).toHaveBeenCalledWith({}, context);
+  expect(MockedLoadingBar).toHaveBeenCalledWith(
+    { className: 'loading-bar' },
+    context,
+  );
+});
+
+test('should render the UnauthenticatedApp when authedUser is falsy', () => {
+  const authedUser = null;
+  render(<App authedUser={authedUser} />);
+
+  expect(MockedLoggedUserInfo).not.toHaveBeenCalled();
 
   expect(MockedUnauthenticatedApp).toHaveBeenCalledTimes(1);
   expect(MockedUnauthenticatedApp).toHaveBeenCalledWith({}, context);
@@ -56,20 +63,12 @@ test('should render the UnauthenticatedApp when authedUser is falsy', () => {
   expect(MockedAuthenticatedApp).not.toHaveBeenCalled();
 });
 
-test('should render the AuthenticatedApp when authedUser is truthy', () => {
+test('should render the LoggedUserInfo and the AuthenticatedApp when authedUser is truthy', () => {
   const authedUser = '::authedUser::';
   render(<App authedUser={authedUser} />);
 
-  expect(MockedBrowserRouter).toHaveBeenCalledTimes(1);
-
-  expect(MockdedNavBar).toHaveBeenCalledTimes(1);
-  expect(MockdedNavBar).toHaveBeenCalledWith({}, context);
-
   expect(MockedLoggedUserInfo).toHaveBeenCalledTimes(1);
   expect(MockedLoggedUserInfo).toHaveBeenCalledWith({}, context);
-
-  expect(MockedLoadingBar).toHaveBeenCalledTimes(1);
-  expect(MockdedNavBar).toHaveBeenCalledWith({}, context);
 
   expect(MockedAuthenticatedApp).toHaveBeenCalledTimes(1);
   expect(MockedAuthenticatedApp).toHaveBeenCalledWith({}, context);
