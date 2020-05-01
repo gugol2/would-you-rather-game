@@ -1,8 +1,8 @@
-import { render, wait } from '@testing-library/react';
+import { wait } from '@testing-library/react';
 import user from '@testing-library/user-event';
 import { AddPoll } from './AddPoll';
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { renderWithRouter } from '../../testHelpers/renderWithRouter';
 
 const mockHistoryPush = jest.fn();
 
@@ -21,12 +21,11 @@ test('should render the AddPoll Component', () => {
   const dispatchSaveNewQuestion = () => {};
   const authedUser = '::authedUser::';
 
-  const { getByTestId } = render(
+  const { getByTestId } = renderWithRouter(
     <AddPoll
       dispatchSaveNewQuestion={dispatchSaveNewQuestion}
       authedUser={authedUser}
     />,
-    { wrapper: BrowserRouter },
   );
 
   const addPollRendered = getByTestId('addpoll');
@@ -47,12 +46,11 @@ test('should add a poll', async () => {
   const optionOneText = '::optionOneText::';
   const optionTwoText = '::optionTwoText::';
 
-  const { getByTestId } = render(
+  const { getByTestId } = renderWithRouter(
     <AddPoll
       dispatchSaveNewQuestion={dispatchSaveNewQuestion}
       authedUser={authedUser}
     />,
-    { wrapper: BrowserRouter },
   );
 
   const addPollRendered = getByTestId('addpoll');
