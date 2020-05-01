@@ -7,8 +7,8 @@ import { render } from '@testing-library/react';
 export const renderWithProvider = (
   ui,
   {
-    initialState,
-    reducer,
+    initialState = {},
+    reducer = () => initialState,
     store = createStore(reducer, initialState),
     ...renderOptions
   } = {},
