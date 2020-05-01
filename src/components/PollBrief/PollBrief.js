@@ -16,7 +16,7 @@ export const PollBrief = ({ qauthor, question }) => {
 
         <div className='poll__question'>
           <strong>Would your rather</strong>
-          <div className='poll__question-text'>
+          <div className='poll__question-text' data-testid='poll-question-text'>
             {`...${question.optionOne.text}...`}
           </div>
           <Link to={`/questions/${question.id}`} className='btn poll__button'>
