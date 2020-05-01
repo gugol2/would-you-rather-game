@@ -43,7 +43,7 @@ describe('PollBrief', () => {
       question,
     };
 
-    const { debug, getByTestId } = renderWithRouter(<PollBrief {...props} />);
+    const { getByTestId } = renderWithRouter(<PollBrief {...props} />);
     const pollQuestionText = getByTestId('poll-question-text');
 
     expect(MockedPollHeader).toHaveBeenCalledTimes(1);
@@ -68,6 +68,5 @@ describe('PollBrief', () => {
       },
       context,
     );
-    debug();
   });
 });
