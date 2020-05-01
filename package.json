@@ -39,7 +39,8 @@
       "!**/src/components/**/index.js",
       "!**/src/**/serviceWorker.js",
       "!**/src/testHelpers/*",
-      "!**/src/utils/*"
+      "!**/src/utils/*",
+      "!**/src/reducers/index.js"
     ],
     "coverageThreshold": {
       "global": {
