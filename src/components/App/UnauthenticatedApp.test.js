@@ -6,13 +6,13 @@ import { Redirect as MockedRedirect } from 'react-router-dom';
 
 jest.mock('../SignIn', () => {
   return {
-    ConnectedSignIn: jest.fn(() => 'MockedSingIn'),
+    ConnectedSignIn: jest.fn(() => <>Mocked SingIn</>),
   };
 });
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
-  Redirect: jest.fn(() => 'MockedRedirect'),
+  Redirect: jest.fn(() => <>Mocked Redirect</>),
 }));
 
 afterEach(() => {

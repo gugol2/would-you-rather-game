@@ -6,15 +6,15 @@ import { AvatarImage as MockedAvatarImage } from '../AvatarImage';
 import { PollResultOption as MockedPollResultOption } from '../PollResultOption';
 
 jest.mock('../PollHeader', () => ({
-  PollHeader: jest.fn(() => 'Mocked PollHeader'),
+  PollHeader: jest.fn(() => <>Mocked PollHeader</>),
 }));
 
 jest.mock('../PollResultOption', () => ({
-  PollResultOption: jest.fn(() => 'Mocked PollResultOption'),
+  PollResultOption: jest.fn(() => <>Mocked PollResultOption</>),
 }));
 
 jest.mock('../AvatarImage', () => ({
-  AvatarImage: jest.fn(() => 'Mocked AvatarImage'),
+  AvatarImage: jest.fn(() => <>Mocked AvatarImage</>),
 }));
 
 afterEach(() => {
