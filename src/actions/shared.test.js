@@ -3,7 +3,9 @@ import { getInitialData as mockedGetInitialData } from '../utils/api';
 import { RECEIVE_USERS } from '../actions/users';
 import { RECEIVE_QUESTIONS } from '../actions/questions';
 
-jest.mock('../utils/api');
+jest.mock('../utils/api', () => ({
+  getInitialData: jest.fn(),
+}));
 
 afterEach(() => {
   jest.clearAllMocks();
