@@ -29,7 +29,7 @@
     "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|json|scss|html|md)\" ",
     "prettier:format": "npm run prettier -- --write",
     "prettier:check-format": "npm run prettier -- --list-different",
-    "validate": "npm-run-all --parallel prettier:check-format lint test:once",
+    "validate": "npm-run-all --parallel prettier:check-format lint test:coverage",
     "check-config": "npx jest --showConfig"
   },
   "jest": {
@@ -45,12 +45,12 @@
     ],
     "coverageThreshold": {
       "global": {
-        "statements": 21.5,
-        "branches": 15.5,
-        "functions": 16.5,
-        "lines": 22
+        "statements": 50,
+        "branches": 47,
+        "functions": 50,
+        "lines": 50
       },
-      "src/components/NoMatch/NoMatch.js": {
+      "src/actions/**/*.js": {
         "branches": 100,
         "functions": 100,
         "lines": 100,
