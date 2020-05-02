@@ -56,10 +56,10 @@ export const handleSaveAnswerToQuestion = ({ authedUser, qid, answer }) => {
 };
 
 const saveNewQuestion = question => {
-  // TODO: rethink this, maybe an id would be nicer
   return {
     type: SAVE_QUESTION,
     question,
+    qid: question.id,
   };
 };
 

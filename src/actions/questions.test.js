@@ -40,7 +40,12 @@ test('should return a receiveQuestions action', () => {
 });
 
 test('handleSaveNewQuestion should return a function that receives dispatch as parameter', async () => {
-  mockedSaveQuestion.mockResolvedValueOnce('::question::');
+  const id = '::id::';
+  const question = {
+    id,
+  };
+
+  mockedSaveQuestion.mockResolvedValueOnce(question);
 
   const optionOneText = '::optionOneText::';
   const optionTwoText = '::optionTwoText::';
@@ -66,9 +71,11 @@ test('handleSaveNewQuestion should return a function that receives dispatch as p
   });
 
   expect(dispatch).toHaveBeenNthCalledWith(2, {
-    question: '::question::',
     type: SAVE_QUESTION,
+    question,
+    qid: question.id,
   });
+
   expect(dispatch).toHaveBeenNthCalledWith(3, hideLoading());
   expect(dispatch).toHaveBeenCalledTimes(3);
 });

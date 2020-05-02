@@ -44,7 +44,7 @@ export const questions = (state = {}, action) => {
     case SAVE_QUESTION:
       return {
         ...state,
-        [action.question.id]: action.question,
+        [action.qid]: action.question,
       };
 
     default:
