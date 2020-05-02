@@ -1,0 +1,93 @@
+import { users } from './users';
+import { RECEIVE_USERS } from '../actions/users';
+import {
+  SAVE_ANSWER_TO_QUESTION,
+  REMOVE_ANSWER_TO_QUESTION,
+  SAVE_QUESTION,
+} from '../actions/questions';
+
+describe('users reducer', () => {
+  let initialState;
+  const action = {};
+
+  test('should return the initial users state when the action.type does not match', () => {
+    initialState = {};
+    action.type = '::anyType::';
+
+    const reducedtate = users(initialState, action);
+
+    expect(reducedtate).toEqual(initialState);
+  });
+
+  test('should return the initial users state extended with the users from the action when the action.type is RECEIVE_USERS', () => {
+    initialState = {};
+
+    const user1 = '::user1::';
+    const user2 = '::user2::';
+    const usersReceived = { user1, user2 };
+    action.type = RECEIVE_USERS;
+    action.users = usersReceived;
+
+    const reducedtate = users(initialState, action);
+
+    expect(reducedtate).toEqual({ ...initialState, ...usersReceived });
+  });
+
+  test('should return the initial users state extended with the new answer to question from the action when the action.type is SAVE_ANSWER_TO_QUESTION', () => {
+    const answers = {};
+    const user = '::user::';
+    initialState = { [user]: { answers } };
+
+    const qid = '::qid::';
+    const answer = '::answer::';
+    action.type = SAVE_ANSWER_TO_QUESTION;
+    action.authedUser = user;
+    action.qid = qid;
+    action.answer = answer;
+
+    const reducedtate = users(initialState, action);
+
+    expect(reducedtate).toEqual({
+      [user]: { answers: { [action.qid]: action.answer } },
+    });
+  });
+
+  test('should return the initial users state minus the new answer to question from the action when the action.type is REMOVE_ANSWER_TO_QUESTION', () => {
+    const user = '::user::';
+    const answer = '::answer::';
+    const qid = '::qid::';
+    initialState = {
+      [user]: { answers: { [qid]: answer } },
+    };
+
+    action.type = REMOVE_ANSWER_TO_QUESTION;
+    action.authedUser = user;
+    action.qid = qid;
+    action.answer = answer;
+
+    const reducedtate = users(initialState, action);
+
+    expect(reducedtate).toEqual({ [user]: { answers: {} } });
+  });
+
+  test('should return the initial users state extended with the new question from the action when the action.type is SAVE_QUESTION', () => {
+    const questions = [];
+    const user = '::user::';
+    initialState = { [user]: { questions } };
+
+    const qid = '::qid::';
+    action.type = SAVE_QUESTION;
+    action.question = {
+      author: user,
+      id: qid,
+    };
+
+    const reducedtate = users(initialState, action);
+
+    expect(reducedtate).toEqual({
+      [user]: {
+        questions: [...questions, action.qid],
+      },
+    });
+  });
+});
