@@ -14,9 +14,9 @@ describe('users reducer', () => {
     initialState = {};
     action.type = '::anyType::';
 
-    const reducedtate = users(initialState, action);
+    const reducedstate = users(initialState, action);
 
-    expect(reducedtate).toEqual(initialState);
+    expect(reducedstate).toEqual(initialState);
   });
 
   test('should return the initial users state extended with the users from the action when the action.type is RECEIVE_USERS', () => {
@@ -28,9 +28,9 @@ describe('users reducer', () => {
     action.type = RECEIVE_USERS;
     action.users = usersReceived;
 
-    const reducedtate = users(initialState, action);
+    const reducedstate = users(initialState, action);
 
-    expect(reducedtate).toEqual({ ...initialState, ...usersReceived });
+    expect(reducedstate).toEqual({ ...initialState, ...usersReceived });
   });
 
   test('should return the initial users state extended with the new answer to question from the action when the action.type is SAVE_ANSWER_TO_QUESTION', () => {
@@ -45,9 +45,9 @@ describe('users reducer', () => {
     action.qid = qid;
     action.answer = answer;
 
-    const reducedtate = users(initialState, action);
+    const reducedstate = users(initialState, action);
 
-    expect(reducedtate).toEqual({
+    expect(reducedstate).toEqual({
       [user]: { answers: { [action.qid]: action.answer } },
     });
   });
@@ -65,9 +65,9 @@ describe('users reducer', () => {
     action.qid = qid;
     action.answer = answer;
 
-    const reducedtate = users(initialState, action);
+    const reducedstate = users(initialState, action);
 
-    expect(reducedtate).toEqual({ [user]: { answers: {} } });
+    expect(reducedstate).toEqual({ [user]: { answers: {} } });
   });
 
   test('should return the initial users state extended with the new question from the action when the action.type is SAVE_QUESTION', () => {
@@ -82,9 +82,9 @@ describe('users reducer', () => {
       id: qid,
     };
 
-    const reducedtate = users(initialState, action);
+    const reducedstate = users(initialState, action);
 
-    expect(reducedtate).toEqual({
+    expect(reducedstate).toEqual({
       [user]: {
         questions: [...questions, action.qid],
       },
