@@ -20,7 +20,8 @@ describe('users reducer', () => {
   });
 
   test('should return the initial users state extended with the users from the action when the action.type is RECEIVE_USERS', () => {
-    initialState = {};
+    const initialUser = {};
+    initialState = { initialUser };
 
     const user1 = '::user1::';
     const user2 = '::user2::';
@@ -30,7 +31,7 @@ describe('users reducer', () => {
 
     const reducedstate = users(initialState, action);
 
-    expect(reducedstate).toEqual({ ...initialState, ...usersReceived });
+    expect(reducedstate).toEqual({ initialUser, user1, user2 });
   });
 
   test('should return the initial users state extended with the new answer to question from the action when the action.type is SAVE_ANSWER_TO_QUESTION', () => {
@@ -48,7 +49,7 @@ describe('users reducer', () => {
     const reducedstate = users(initialState, action);
 
     expect(reducedstate).toEqual({
-      [user]: { answers: { [action.qid]: action.answer } },
+      [user]: { answers: { [qid]: answer } },
     });
   });
 
@@ -71,7 +72,9 @@ describe('users reducer', () => {
   });
 
   test('should return the initial users state extended with the new question from the action when the action.type is SAVE_QUESTION', () => {
-    const questions = [];
+    const initialQuestion = {};
+    const questions = [initialQuestion];
+
     const user = '::user::';
     initialState = { [user]: { questions } };
 
@@ -86,7 +89,7 @@ describe('users reducer', () => {
 
     expect(reducedstate).toEqual({
       [user]: {
-        questions: [...questions, action.qid],
+        questions: [initialQuestion, qid],
       },
     });
   });

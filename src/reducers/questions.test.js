@@ -31,15 +31,16 @@ describe('questions reducer', () => {
 
   test('should return the intial question state extended with action.question when the action.type is SAVE_QUESTION', () => {
     const id = '::id::';
+    const question = {};
     initialState = {};
 
     action.type = SAVE_QUESTION;
-    action.question = {};
+    action.question = question;
     action.qid = id;
 
     const reducedState = questions(initialState, action);
 
-    expect(reducedState).toEqual({ [action.qid]: action.question });
+    expect(reducedState).toEqual({ [id]: question });
   });
 
   test('should return the intial question state extended with action.answer when the action.type is SAVE_ANSWER_TO_QUESTION', () => {
