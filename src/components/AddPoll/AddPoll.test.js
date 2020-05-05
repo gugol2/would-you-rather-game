@@ -60,6 +60,7 @@ test('should add a poll', async () => {
   const inputOptionTwo = getByTestId('optionTwoText');
   const submitPoll = getByTestId('submitpoll');
 
+  // Fill the inputs
   expect(submitPoll).toBeDisabled();
   user.type(inputOptionOne, optionOneText);
   expect(submitPoll).toBeDisabled();
@@ -69,6 +70,7 @@ test('should add a poll', async () => {
   expect(inputOptionOne.value).toBe(optionOneText);
   expect(inputOptionTwo.value).toBe(optionTwoText);
 
+  // Submit the poll
   user.click(submitPoll);
 
   expect(dispatchSaveNewQuestion).toHaveBeenCalled();
@@ -79,11 +81,13 @@ test('should add a poll', async () => {
     optionTwoText,
   });
 
+  // Reset the form
   await wait(() => {
     expect(inputOptionOne.value).toBe('');
     expect(inputOptionTwo.value).toBe('');
   });
 
+  // Go to /
   expect(mockHistoryPush).toHaveBeenCalled();
   expect(mockHistoryPush).toHaveBeenCalledTimes(1);
   expect(mockHistoryPush).toHaveBeenCalledWith('/');
