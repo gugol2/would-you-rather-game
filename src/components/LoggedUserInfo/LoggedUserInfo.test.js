@@ -17,6 +17,10 @@ jest.mock('../AvatarImage', () => ({
   AvatarImage: jest.fn(() => <>Mocked AvatarImage</>),
 }));
 
+afterEach(() => {
+  jest.clearAllMocks();
+});
+
 describe('LoggedUserInfo', () => {
   const name = '::name::';
   const userLogged = { name };
@@ -49,7 +53,7 @@ describe('LoggedUserInfo', () => {
     expect(logOutButton).toHaveTextContent(/logout/i);
   });
 
-  test('should return to path / when logging out', async () => {
+  test('should call dispatch and return to path / when logging out', async () => {
     render(<LoggedUserInfo {...props} />);
 
     const logOutButton = screen.getByRole('button');
