@@ -22,9 +22,8 @@ afterEach(() => {
 });
 
 test('renders the AnsweredPoll component', () => {
-  const optionOne = '::optionOne::';
-  const optionTwo = '::optionTwo::';
-  const question = { optionOne, optionTwo };
+  const optionOne = { ['::optionOne::']: {} };
+  const optionTwo = { ['::optionTwo::']: {} };
   const pollAuthor = {};
   const votesOptionOne = 1;
   const votesOptionTwo = 2;
@@ -35,7 +34,8 @@ test('renders the AnsweredPoll component', () => {
   const context = {};
 
   const props = {
-    question,
+    optionOne,
+    optionTwo,
     pollAuthor,
     votesOptionOne,
     votesOptionTwo,

@@ -23,14 +23,11 @@ describe('mapToProps', () => {
       percentageOptionOne: '40.0%',
       percentageOptionTwo: '60.0%',
       pollAuthor: author,
-      question: {
-        optionOne: {
-          votes: votesOptionOne,
-        },
-        optionTwo: {
-          votes: votesOptionTwo,
-        },
-        author,
+      optionOne: {
+        votes: votesOptionOne,
+      },
+      optionTwo: {
+        votes: votesOptionTwo,
       },
       totalVotes: 5,
       votesOptionOne: 2,

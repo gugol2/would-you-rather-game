@@ -7,8 +7,9 @@ export const mapStateToProps = ({ questions, authedUser, users }, { qid }) => {
   };
 
   const question = questions[qid];
-  const votesOptionOne = question.optionOne.votes.length;
-  const votesOptionTwo = question.optionTwo.votes.length;
+  const { optionOne, optionTwo } = question;
+  const votesOptionOne = optionOne.votes.length;
+  const votesOptionTwo = optionTwo.votes.length;
   const totalVotes = votesOptionOne + votesOptionTwo;
 
   const percentageOptionOne = calculatePercentage(
@@ -21,7 +22,8 @@ export const mapStateToProps = ({ questions, authedUser, users }, { qid }) => {
   );
 
   return {
-    question,
+    optionOne,
+    optionTwo,
     authedUser,
     pollAuthor: users[question.author],
     votesOptionOne,

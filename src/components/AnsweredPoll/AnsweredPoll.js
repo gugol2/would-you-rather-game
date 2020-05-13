@@ -4,21 +4,17 @@ import { AvatarImage } from '../AvatarImage';
 import { PollResultOption } from '../PollResultOption';
 import PropTypes from 'prop-types';
 
-export const AnsweredPoll = props => {
-  const {
-    question,
-    pollAuthor,
-    votesOptionOne,
-    votesOptionTwo,
-    totalVotes,
-    percentageOptionOne,
-    percentageOptionTwo,
-    authedUser,
-  } = props;
-
-  // rethink this
-  const { optionOne, optionTwo } = question;
-
+export const AnsweredPoll = ({
+  optionOne,
+  optionTwo,
+  pollAuthor,
+  votesOptionOne,
+  votesOptionTwo,
+  totalVotes,
+  percentageOptionOne,
+  percentageOptionTwo,
+  authedUser,
+}) => {
   return (
     <div className='poll-anwered'>
       <PollHeader author={pollAuthor} />
@@ -53,7 +49,8 @@ export const AnsweredPoll = props => {
 };
 
 AnsweredPoll.propTypes = {
-  question: PropTypes.object.isRequired,
+  optionOne: PropTypes.object.isRequired,
+  optionTwo: PropTypes.object.isRequired,
   pollAuthor: PropTypes.object.isRequired,
   votesOptionOne: PropTypes.number.isRequired,
   votesOptionTwo: PropTypes.number.isRequired,
