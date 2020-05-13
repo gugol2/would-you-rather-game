@@ -13,14 +13,16 @@ export const LoggedUserInfo = ({ userLogged, dispatch }) => {
   };
 
   return (
-    <div className='logged-user-info'>
-      <div>{`Hello, ${userLogged.name}`}</div>
+    <div className='logged-user-info' data-testid='loggedUserInfo'>
+      <div data-testid='greeting'>{`Hello, ${userLogged.name}`}</div>
 
-      <div className='logged-user-info__image'>
-        <AvatarImage user={userLogged} />
-      </div>
+      <AvatarImage user={userLogged} modifier='small' />
 
-      <button onClick={logOut} className='logged-user-info__button'>
+      <button
+        onClick={logOut}
+        className='logged-user-info__button'
+        role='button'
+      >
         Logout
       </button>
     </div>

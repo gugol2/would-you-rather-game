@@ -16,9 +16,12 @@ describe('mapToProps', () => {
   const users = { [author]: author };
 
   test('should return the state mapped to props', () => {
-    const props = mapStateToProps({ questions, authedUser, users }, { qid });
+    const mappedProps = mapStateToProps(
+      { questions, authedUser, users },
+      { qid },
+    );
 
-    expect(props).toEqual({
+    expect(mappedProps).toEqual({
       authedUser: '::authedUser::',
       percentageOptionOne: '40.0%',
       percentageOptionTwo: '60.0%',
