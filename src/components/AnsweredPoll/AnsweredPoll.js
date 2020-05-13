@@ -16,6 +16,7 @@ export const AnsweredPoll = props => {
     authedUser,
   } = props;
 
+  // rethink this
   const { optionOne, optionTwo } = question;
 
   return (
