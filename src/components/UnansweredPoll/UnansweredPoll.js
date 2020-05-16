@@ -31,7 +31,7 @@ export const UnansweredPoll = ({
   };
 
   return (
-    <div className='poll-unanswered'>
+    <div className='poll-unanswered' data-testid='pollUnanswered'>
       <PollHeader author={pollAuthor} />
 
       <div className='poll-unanswered__body'>
@@ -64,7 +64,11 @@ export const UnansweredPoll = ({
             {optionTwo && optionTwo.text}
           </label>
 
-          <button type='submit' className='btn poll-unanswered__button'>
+          <button
+            type='submit'
+            className='btn poll-unanswered__button'
+            role='button'
+          >
             Submit
           </button>
         </form>
