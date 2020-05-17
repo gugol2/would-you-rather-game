@@ -21,7 +21,7 @@ export const SignIn = ({ users, dispatch, finishedLoading }) => {
   };
 
   return (
-    <div className='sign-in'>
+    <div className='sign-in' data-testid='signIn'>
       <div className='sign-in__header'>
         <div className='sign-in__header-title'>
           {"Welcome to the 'Would You Rather...?' App!!"}
@@ -32,13 +32,17 @@ export const SignIn = ({ users, dispatch, finishedLoading }) => {
       </div>
 
       {finishedLoading && (
-        <div className='sign-in__body'>
+        <div className='sign-in__body' data-testid='signInBody'>
           <AvatarImage user={users[selectedUser]} modifier='large' />
 
           <form onSubmit={signInUser} className='sign-in__body-form'>
             <div className='sign-in__body-form-title'>Sign In</div>
 
-            <select onChange={handleSelection} value={selectedUser}>
+            <select
+              onChange={handleSelection}
+              value={selectedUser}
+              data-testid='userSelector'
+            >
               <option value='' key='0' disabled>
                 Choose an user!
               </option>
@@ -52,6 +56,7 @@ export const SignIn = ({ users, dispatch, finishedLoading }) => {
               type='submit'
               value='Sign In'
               disabled={selectedUser === ''}
+              role='button'
             />
           </form>
         </div>
