@@ -64,11 +64,7 @@ export const UnansweredPoll = ({
             {optionTwo && optionTwo.text}
           </label>
 
-          <button
-            type='submit'
-            className='btn poll-unanswered__button'
-            role='button'
-          >
+          <button type='submit' className='btn poll-unanswered__button'>
             Submit
           </button>
         </form>

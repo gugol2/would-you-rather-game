@@ -18,11 +18,7 @@ export const LoggedUserInfo = ({ userLogged, dispatch }) => {
 
       <AvatarImage user={userLogged} modifier='small' />
 
-      <button
-        onClick={logOut}
-        className='logged-user-info__button'
-        role='button'
-      >
+      <button onClick={logOut} className='logged-user-info__button'>
         Logout
       </button>
     </div>
