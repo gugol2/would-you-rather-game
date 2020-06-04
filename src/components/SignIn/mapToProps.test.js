@@ -4,8 +4,8 @@ test('adapt the state to props when loadingBar is not finished', () => {
   const users = '::users::';
   const loadingBar = {};
 
-  const props = { users, loadingBar };
-  const adaptedStateToProps = mapStateToProps(props);
+  const state = { users, loadingBar };
+  const adaptedStateToProps = mapStateToProps(state);
 
   expect(adaptedStateToProps).toEqual({
     users,
@@ -17,8 +17,8 @@ test('adapt the state to props when loadingBar is finished', () => {
   const users = '::users::';
   const loadingBar = { default: 0 };
 
-  const props = { users, loadingBar };
-  const adaptedStateToProps = mapStateToProps(props);
+  const state = { users, loadingBar };
+  const adaptedStateToProps = mapStateToProps(state);
 
   expect(adaptedStateToProps).toEqual({
     users,
