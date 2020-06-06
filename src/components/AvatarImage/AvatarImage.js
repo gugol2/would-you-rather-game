@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export const AvatarImage = ({ user, modifier }) => {
+  const sizeClassName = modifier ? `avatar-img--${modifier}` : '';
+
   return (
     <img
       data-testid='avatar-img'
@@ -12,7 +14,7 @@ export const AvatarImage = ({ user, modifier }) => {
             `${process.env.PUBLIC_URL}/images/default_avatar.jpg`
       }
       alt={user ? user.name : 'default user'}
-      className={modifier ? `avatar-img avatar-img--${modifier}` : 'avatar-img'}
+      className={`avatar-img ${sizeClassName}`.trim()}
     />
   );
 };
