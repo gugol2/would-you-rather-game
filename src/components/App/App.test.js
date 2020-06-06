@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 import { App } from './App';
 import * as MockedLoadingBar from 'react-redux-loading';
 import { BrowserRouter as MockedBrowserRouter } from 'react-router-dom';
-import { ConnectedLoggedUserInfo as MockedLoggedUserInfo } from '../LoggedUserInfo';
+import { ConnectedLoggedUserInfo as MockedConnectedLoggedUserInfo } from '../LoggedUserInfo';
 import { NavBar as MockdedNavBar } from '../NavBar';
 import { UnauthenticatedApp as MockedUnauthenticatedApp } from './UnauthenticatedApp';
 import { AuthenticatedApp as MockedAuthenticatedApp } from './AuthenticatedApp';
@@ -55,7 +55,7 @@ test('should render the UnauthenticatedApp when authedUser is falsy', () => {
   const authedUser = null;
   render(<App authedUser={authedUser} />);
 
-  expect(MockedLoggedUserInfo).not.toHaveBeenCalled();
+  expect(MockedConnectedLoggedUserInfo).not.toHaveBeenCalled();
 
   expect(MockedUnauthenticatedApp).toHaveBeenCalledTimes(1);
   expect(MockedUnauthenticatedApp).toHaveBeenCalledWith({}, context);
@@ -67,8 +67,8 @@ test('should render the LoggedUserInfo and the AuthenticatedApp when authedUser 
   const authedUser = '::authedUser::';
   render(<App authedUser={authedUser} />);
 
-  expect(MockedLoggedUserInfo).toHaveBeenCalledTimes(1);
-  expect(MockedLoggedUserInfo).toHaveBeenCalledWith({}, context);
+  expect(MockedConnectedLoggedUserInfo).toHaveBeenCalledTimes(1);
+  expect(MockedConnectedLoggedUserInfo).toHaveBeenCalledWith({}, context);
 
   expect(MockedAuthenticatedApp).toHaveBeenCalledTimes(1);
   expect(MockedAuthenticatedApp).toHaveBeenCalledWith({}, context);

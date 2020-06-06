@@ -25,8 +25,5 @@ export const App = ({ authedUser }) => {
 };
 
 App.propTypes = {
-  authedUser: PropTypes.oneOfType([
-    PropTypes.string.isRequired,
-    (props, key) => (props[key] === null ? null : 'Not null'),
-  ]),
+  authedUser: PropTypes.string,
 };
