@@ -16,7 +16,7 @@ export const LoggedUserInfo = ({ userLogged, dispatch }) => {
     <div className='logged-user-info' data-testid='loggedUserInfo'>
       <div data-testid='greeting'>{`Hello, ${userLogged.name}`}</div>
 
-      <AvatarImage user={userLogged} modifier='small' />
+      <AvatarImage user={userLogged} size='small' />
 
       <button onClick={logOut} className='logged-user-info__button'>
         Logout

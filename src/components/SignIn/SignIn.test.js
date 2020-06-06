@@ -56,7 +56,7 @@ describe('SignIn component', () => {
     expect(MockedAvatarImage).toHaveBeenCalledTimes(1);
     expect(MockedAvatarImage).toHaveBeenCalledWith(
       {
-        modifier: 'large',
+        size: 'large',
         user: undefined,
       },
       context,

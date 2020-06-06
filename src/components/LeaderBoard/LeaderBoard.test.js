@@ -42,7 +42,7 @@ test('renders the LeaderBoard with one user', () => {
 
   expect(MockedAvatarImage).toHaveBeenCalledTimes(1);
   expect(MockedAvatarImage).toHaveBeenCalledWith(
-    { user, modifier: 'medium' },
+    { user, size: 'medium' },
     context,
   );
 

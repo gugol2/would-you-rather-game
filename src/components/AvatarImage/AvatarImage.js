@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const AvatarImage = ({ user, modifier }) => {
-  const sizeClassName = modifier ? `avatar-img--${modifier}` : '';
+export const AvatarImage = ({ user, size }) => {
+  const sizeClassName = size ? `avatar-img--${size}` : '';
 
   return (
     <img
@@ -24,5 +24,5 @@ AvatarImage.propTypes = {
     avatarURL: PropTypes.string,
     name: PropTypes.string,
   }),
-  modifier: PropTypes.string,
+  size: PropTypes.string,
 };

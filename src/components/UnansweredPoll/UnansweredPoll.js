@@ -36,7 +36,7 @@ export const UnansweredPoll = ({
 
       <div className='poll-unanswered__body'>
         <div className='poll-unanswered__left'>
-          <AvatarImage user={pollAuthor} modifier='medium' />
+          <AvatarImage user={pollAuthor} size='medium' />
         </div>
 
         <form

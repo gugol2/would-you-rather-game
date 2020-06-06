@@ -50,7 +50,7 @@ describe('UnasnweredPoll component', () => {
     expect(MockedAvatarImage).toHaveBeenCalledTimes(1);
     expect(MockedAvatarImage).toHaveBeenCalledWith(
       {
-        modifier: 'medium',
+        size: 'medium',
         user: pollAuthor,
       },
       context,

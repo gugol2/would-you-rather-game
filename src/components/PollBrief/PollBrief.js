@@ -11,7 +11,7 @@ export const PollBrief = ({ qauthor, question }) => {
 
       <div className='poll__body'>
         <div className='poll__left'>
-          <AvatarImage user={qauthor} modifier='medium' />
+          <AvatarImage user={qauthor} size='medium' />
         </div>
 
         <div className='poll__question'>

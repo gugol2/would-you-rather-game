@@ -52,7 +52,7 @@ describe('PollBrief', () => {
     expect(MockedAvatarImage).toHaveBeenCalledWith(
       {
         user: qauthor,
-        modifier: expect.any(String),
+        size: expect.any(String),
       },
       context,
     );

@@ -45,7 +45,7 @@ describe('LoggedUserInfo', () => {
     expect(MockedAvatarImage).toHaveBeenCalledWith(
       {
         user: userLogged,
-        modifier: 'small',
+        size: 'small',
       },
       context,
     );

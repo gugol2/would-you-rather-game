@@ -33,7 +33,7 @@ export const SignIn = ({ users, dispatch, finishedLoading }) => {
 
       {finishedLoading && (
         <div className='sign-in__body' data-testid='signInBody'>
-          <AvatarImage user={users[selectedUser]} modifier='large' />
+          <AvatarImage user={users[selectedUser]} size='large' />
 
           <form onSubmit={signInUser} className='sign-in__body-form'>
             <div className='sign-in__body-form-title'>Sign In</div>

@@ -21,7 +21,7 @@ export const AnsweredPoll = ({
 
       <div className='poll-anwered__body'>
         <div className='poll-anwered__left'>
-          <AvatarImage user={pollAuthor} modifier='medium' />
+          <AvatarImage user={pollAuthor} size='medium' />
         </div>
 
         <div className='poll-anwered__question'>

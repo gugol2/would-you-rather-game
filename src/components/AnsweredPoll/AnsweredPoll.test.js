@@ -56,7 +56,7 @@ test('renders the AnsweredPoll component', () => {
   expect(MockedAvatarImage).toHaveBeenCalledWith(
     {
       user: pollAuthor,
-      modifier: expect.any(String),
+      size: expect.any(String),
     },
     context,
   );

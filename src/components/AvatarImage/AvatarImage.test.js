@@ -14,23 +14,21 @@ test('renders AvatarImage with a default user', () => {
   expect(avatarImage).toHaveAttribute('alt', 'default user');
 });
 
-test('renders AvatarImage with a real user and modifier', () => {
+test('renders AvatarImage with a real user and size', () => {
   const avatarURL = '::any avatar url::';
   const name = '::any name::';
-  const modifier = '::any modifier::';
+  const size = '::any size::';
 
   const user = {
     avatarURL,
     name,
   };
 
-  const { getByTestId } = render(
-    <AvatarImage user={user} modifier={modifier} />,
-  );
+  const { getByTestId } = render(<AvatarImage user={user} size={size} />);
   const avatarImage = getByTestId('avatar-img');
   expect(avatarImage).toBeInTheDocument();
   expect(avatarImage).toHaveClass('avatar-img');
-  expect(avatarImage).toHaveClass(`avatar-img avatar-img--${modifier}`);
+  expect(avatarImage).toHaveClass(`avatar-img avatar-img--${size}`);
   expect(avatarImage).toHaveAttribute('src', avatarURL);
   expect(avatarImage).toHaveAttribute('alt', name);
 });

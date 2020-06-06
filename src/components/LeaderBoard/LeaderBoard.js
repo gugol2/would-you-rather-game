@@ -12,7 +12,7 @@ export const LeaderBoard = ({ usersOrderedByScore }) => {
           data-testid='leaderboarditem'
         >
           <div className='leader-board-item__left'>
-            <AvatarImage user={user} modifier='medium' />
+            <AvatarImage user={user} size='medium' />
           </div>
 
           <div className='leader-board-item__middle'>
