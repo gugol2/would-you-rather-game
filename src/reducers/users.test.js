@@ -11,12 +11,21 @@ describe('users reducer', () => {
   const action = {};
 
   test('should return the initial users state when the action.type does not match', () => {
-    initialState = {};
+    initialState = '::initialState::';
     action.type = '::anyType::';
 
     const reducedstate = users(initialState, action);
 
     expect(reducedstate).toEqual(initialState);
+  });
+
+  test('should return the default users state when the action.type does not match and the initial state is not defined', () => {
+    initialState = undefined;
+    action.type = '::anyType::';
+
+    const reducedstate = users(initialState, action);
+
+    expect(reducedstate).toEqual({});
   });
 
   test('should return the initial users state extended with the users from the action when the action.type is RECEIVE_USERS', () => {

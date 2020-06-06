@@ -100,11 +100,20 @@ describe('questions reducer', () => {
   });
 
   test('should return the intial question state when the action.type does not match', () => {
-    initialState = {};
+    initialState = '::initialState::';
     action.type = '::type::';
 
     const reducedState = questions(initialState, action);
 
     expect(reducedState).toEqual(initialState);
+  });
+
+  test('should return the default question state when the action.type does not match and state is not defined', () => {
+    initialState = undefined;
+    action.type = '::type::';
+
+    const reducedState = questions(initialState, action);
+
+    expect(reducedState).toEqual({});
   });
 });
