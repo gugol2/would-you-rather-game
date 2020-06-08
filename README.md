@@ -56,3 +56,8 @@ Aside of that this repo:
 - Uses prettier for formating
 - Uses jest to run the tests
 - Has a test coverage task
+
+## Demo
+
+You can check this project live
+[here](https://5ede2ca657a852d62a1b559b--vigorous-lamarr-382562.netlify.app/)
