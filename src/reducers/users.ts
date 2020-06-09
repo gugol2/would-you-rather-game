@@ -4,8 +4,18 @@ import {
   REMOVE_ANSWER_TO_QUESTION,
   SAVE_QUESTION,
 } from '../actions/questions';
+import {
+  UsersState,
+  ReceiveUsersAction,
+  QuestionsActionTypes,
+} from '../actions/types';
 
-export const users = (state = {}, action) => {
+const initialState: UsersState = {};
+
+export const users = (
+  state = initialState,
+  action: ReceiveUsersAction | QuestionsActionTypes,
+): UsersState => {
   switch (action.type) {
     case RECEIVE_USERS:
       return {

@@ -16,7 +16,7 @@ jest.mock('../PollHeader', () => ({
 const mockedHandleSaveAnswerToQuestionResponse =
   '::mockedHandleSaveAnswerToQuestionResponse::';
 
-jest.mock('../../actions/questions', () => ({
+jest.mock('../../actions/questionsDispatch', () => ({
   handleSaveAnswerToQuestion: jest.fn(
     () => mockedHandleSaveAnswerToQuestionResponse,
   ),
