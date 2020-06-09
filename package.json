@@ -31,7 +31,7 @@
     "test:once": "CI=true npm test -- --env=jsdom",
     "test:debug": "react-scripts --inspect-brk test --env=jsdom --runInBand",
     "test:coverage": "npm run test:once -- --coverage",
-    "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|json|scss|html|md)\" ",
+    "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|ts|json|scss|html|md)\" ",
     "prettier:format": "npm run prettier -- --write",
     "prettier:check-format": "npm run prettier -- --list-different",
     "validate": "npm-run-all --parallel prettier:check-format lint test:coverage",
@@ -40,7 +40,7 @@
   "jest": {
     "displayName": "client",
     "collectCoverageFrom": [
-      "**/src/**/*.{js, jsx}",
+      "**/src/**/*.{js, ts, jsx}",
       "!**/src/components/**/index.js",
       "!**/src/**/serviceWorker.js",
       "!**/src/testHelpers/*",

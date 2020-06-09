@@ -1,5 +1,5 @@
 {
-  "*.+(js)": [
+  "*.+(js, ts)": [
     "eslint"
   ],
   "**/*.+(js|json|scss|html|md)": [
