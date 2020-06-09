@@ -1,7 +1,7 @@
 import { mapStateToProps, mapDispatchToProps } from './mapToProps';
-import { handleSaveNewQuestion as mockedHandleSaveNewQuestion } from '../../actions/questions';
+import { handleSaveNewQuestion as mockedHandleSaveNewQuestion } from '../../actions/questionsDispatch';
 
-jest.mock('../../actions/questions', () => ({
+jest.mock('../../actions/questionsDispatch', () => ({
   handleSaveNewQuestion: jest.fn(),
 }));
 

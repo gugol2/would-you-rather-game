@@ -1,4 +1,4 @@
-import { handleSaveNewQuestion } from '../../actions/questions';
+import { handleSaveNewQuestion } from '../../actions/questionsDispatch';
 
 export const mapStateToProps = ({ authedUser }) => {
   return {

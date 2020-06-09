@@ -1,9 +1,7 @@
 import {
   receiveQuestions,
   RECEIVE_QUESTIONS,
-  handleSaveNewQuestion,
   SAVE_QUESTION,
-  handleSaveAnswerToQuestion,
   SAVE_ANSWER_TO_QUESTION,
   REMOVE_ANSWER_TO_QUESTION,
 } from './questions';
@@ -14,6 +12,10 @@ import {
 } from '../utils/api';
 
 import { showLoading, hideLoading } from 'react-redux-loading';
+import {
+  handleSaveNewQuestion,
+  handleSaveAnswerToQuestion,
+} from './questionsDispatch';
 
 jest.mock('../utils/api', () => ({
   saveQuestion: jest.fn(),
