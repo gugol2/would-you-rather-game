@@ -44,22 +44,24 @@ export interface ReceiveUsersAction {
 export interface Question {
   author: string;
   id: string;
-  optionOne: { votes: string[]; text: string };
-  optionTwo: { votes: string[]; text: string };
+  optionOne: Option;
+  optionTwo: Option;
   timestamp: number;
+  [key: string]: any;
 }
 
-export interface QuestionRecord {
-  [key: string]: Question;
+interface Option {
+  votes: string[];
+  text: string;
 }
 
 export interface QuestionsState {
-  questions: QuestionRecord;
+  [key: string]: Question;
 }
 
 interface ReceiveQuestionsAction {
   type: typeof RECEIVE_QUESTIONS;
-  questions: QuestionRecord;
+  questions: QuestionsState;
 }
 
 interface SaveAnswerToQuestionAction {
