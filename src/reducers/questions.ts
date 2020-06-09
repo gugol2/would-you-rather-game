@@ -4,8 +4,14 @@ import {
   REMOVE_ANSWER_TO_QUESTION,
   SAVE_QUESTION,
 } from '../actions/questions';
+import { QuestionsActionTypes, QuestionsState } from '../actions/types';
 
-export const questions = (state = {}, action) => {
+const initialState: QuestionsState = {};
+
+export const questions = (
+  state = initialState,
+  action: QuestionsActionTypes,
+) => {
   switch (action.type) {
     case RECEIVE_QUESTIONS:
       return {
@@ -35,7 +41,7 @@ export const questions = (state = {}, action) => {
           [action.answer]: {
             ...state[action.qid][action.answer],
             votes: state[action.qid][action.answer].votes.filter(
-              uid => uid !== action.authedUser,
+              (uid: string) => uid !== action.authedUser,
             ),
           },
         },

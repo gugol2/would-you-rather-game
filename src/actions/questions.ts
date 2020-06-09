@@ -1,4 +1,4 @@
-import { QuestionRecord, Question, QuestionsActionTypes } from './types';
+import { QuestionsState, Question, QuestionsActionTypes } from './types';
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
 export const SAVE_ANSWER_TO_QUESTION = 'SAVE_ANSWER_TO_QUESTION';
@@ -6,7 +6,7 @@ export const REMOVE_ANSWER_TO_QUESTION = 'REMOVE_ANSWER_TO_QUESTION';
 export const SAVE_QUESTION = 'SAVE_QUESTION';
 
 export const receiveQuestions = (
-  questions: QuestionRecord,
+  questions: QuestionsState,
 ): QuestionsActionTypes => {
   return {
     type: RECEIVE_QUESTIONS,
