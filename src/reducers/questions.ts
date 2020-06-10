@@ -11,7 +11,7 @@ const initialState: QuestionsState = {};
 export const questions = (
   state = initialState,
   action: QuestionsActionTypes,
-) => {
+): QuestionsState => {
   switch (action.type) {
     case RECEIVE_QUESTIONS:
       return {
