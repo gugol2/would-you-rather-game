@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 export const LoggedUserInfo = ({ userLogged, dispatch }) => {
-  let history = useHistory();
+  const history = useHistory();
 
   const logOut = () => {
     dispatch(logOutAuthedUser());
