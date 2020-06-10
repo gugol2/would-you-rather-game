@@ -40,7 +40,7 @@
   "jest": {
     "displayName": "client",
     "collectCoverageFrom": [
-      "**/src/**/*.{js, ts, jsx}",
+      "**/src/**/*.{ts, js, jsx}",
       "!**/src/components/**/index.js",
       "!**/src/**/serviceWorker.js",
       "!**/src/testHelpers/*",
@@ -55,13 +55,7 @@
         "functions": 100,
         "lines": 100
       },
-      "src/actions/**/*.js": {
-        "branches": 100,
-        "functions": 100,
-        "lines": 100,
-        "statements": 100
-      },
-      "src/reducers/**/*.js": {
+      "src/actions/**/*.ts": {
         "branches": 100,
         "functions": 100,
         "lines": 100,
