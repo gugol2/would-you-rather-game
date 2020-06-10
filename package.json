@@ -40,7 +40,8 @@
   "jest": {
     "displayName": "client",
     "collectCoverageFrom": [
-      "**/src/**/*.{ts, js, jsx}",
+      "**/src/**/*.ts",
+      "**/src/**/*.{js, jsx}",
       "!**/src/components/**/index.js",
       "!**/src/**/serviceWorker.js",
       "!**/src/testHelpers/*",
