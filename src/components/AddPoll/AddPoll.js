@@ -8,7 +8,7 @@ export const AddPoll = ({ dispatchSaveNewQuestion, authedUser }) => {
     optionTwoText: '',
   });
 
-  let history = useHistory();
+  const history = useHistory();
 
   const handleoOtionTexts = ({ target }) => {
     const { name, value } = target;

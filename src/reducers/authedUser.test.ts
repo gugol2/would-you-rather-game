@@ -32,7 +32,7 @@ test('should return the default state when action.type is not a valid action', (
 
   const action: AuthedUsersActionTypes = {
     id,
-    type: <any>{},
+    type: {} as any,
   };
 
   const newState = authedUser(initialState, action);
@@ -45,7 +45,7 @@ test('should return null as state when state is undefined and the action.type is
 
   const action: AuthedUsersActionTypes = {
     id,
-    type: <any>{},
+    type: {} as any,
   };
 
   const newState = authedUser(initialState, action);

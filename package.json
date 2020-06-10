@@ -26,7 +26,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint --ignore-path .gitignore --ext .js .",
+    "lint": "eslint --ignore-path .gitignore --ext .js,.ts .",
     "lint:fix": "npm run lint -- --fix",
     "test:once": "CI=true npm test -- --env=jsdom",
     "test:debug": "react-scripts --inspect-brk test --env=jsdom --runInBand",
