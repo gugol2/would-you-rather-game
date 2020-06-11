@@ -4,11 +4,7 @@ import {
   REMOVE_ANSWER_TO_QUESTION,
   SAVE_QUESTION,
 } from '../actions/questions';
-import {
-  UsersState,
-  ReceiveUsersAction,
-  QuestionsActionTypes,
-} from '../actions/types';
+import { UsersState, ReceiveUsersAction, QuestionsActionTypes } from '../types';
 
 const initialState: UsersState = {};
 

@@ -1,11 +1,11 @@
-import { SET_AUTHED_USER, LOGOUT_AUTHED_USER } from './authedUser';
-import { RECEIVE_USERS } from './users';
+import { SET_AUTHED_USER, LOGOUT_AUTHED_USER } from './actions/authedUser';
+import { RECEIVE_USERS } from './actions/users';
 import {
   RECEIVE_QUESTIONS,
   SAVE_ANSWER_TO_QUESTION,
   REMOVE_ANSWER_TO_QUESTION,
   SAVE_QUESTION,
-} from './questions';
+} from './actions/questions';
 
 interface SetAuthedUserAction {
   type: typeof SET_AUTHED_USER;

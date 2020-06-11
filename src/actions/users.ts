@@ -1,4 +1,4 @@
-import { ReceiveUsersAction, UsersState } from './types';
+import { ReceiveUsersAction, UsersState } from '../types';
 
 export const RECEIVE_USERS = 'RECEIVE_USERS';
 

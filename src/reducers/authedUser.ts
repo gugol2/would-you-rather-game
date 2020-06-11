@@ -1,5 +1,5 @@
 import { SET_AUTHED_USER, LOGOUT_AUTHED_USER } from '../actions/authedUser';
-import { AuthedUsersActionTypes, AuthedUserState } from '../actions/types';
+import { AuthedUsersActionTypes, AuthedUserState } from '../types';
 
 const initialState: AuthedUserState = null;
 
