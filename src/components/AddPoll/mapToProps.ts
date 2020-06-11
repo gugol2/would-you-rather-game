@@ -1,6 +1,5 @@
 import { handleSaveNewQuestion } from '../../actions/questionsDispatch';
-import { ReduxState, AuthedUserState } from '../../types';
-import { AppDispatch } from '../../store';
+import { ReduxState, AuthedUserState, AppDispatch } from '../../types';
 
 export const mapStateToProps = ({
   authedUser,

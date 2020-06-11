@@ -6,6 +6,7 @@ import {
   REMOVE_ANSWER_TO_QUESTION,
   SAVE_QUESTION,
 } from './actions/questions';
+import { store } from './store';
 
 interface SetAuthedUserAction {
   type: typeof SET_AUTHED_USER;
@@ -102,3 +103,6 @@ export interface ReduxState {
   authedUser: AuthedUserState;
   loadingBar: LoadingBarState;
 }
+
+// dispatch
+export type AppDispatch = typeof store.dispatch;
