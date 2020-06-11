@@ -1,4 +1,4 @@
-import { QuestionsState, Question, QuestionsActionTypes } from './types';
+import { QuestionsState, Question, QuestionsActionTypes } from '../types';
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
 export const SAVE_ANSWER_TO_QUESTION = 'SAVE_ANSWER_TO_QUESTION';
