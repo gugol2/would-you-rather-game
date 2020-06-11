@@ -89,3 +89,16 @@ export type QuestionsActionTypes =
   | SaveAnswerToQuestionAction
   | RemoveAnswerToQuestionAction
   | SaveQuestionAction;
+
+// LoadingBar
+interface LoadingBarState {
+  default: number;
+}
+
+// Redux State
+export interface ReduxState {
+  users: UsersState;
+  questions: QuestionsState;
+  authedUser: AuthedUserState;
+  loadingBar: LoadingBarState;
+}
