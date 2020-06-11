@@ -1,24 +1,11 @@
-interface StateProps {
-  users: object;
-  finishedLoading: boolean;
-}
-
-interface ReduxState {
-  autheduser: string | null;
-  questions: object;
-  users: object;
-  loadingBar: LoadingBar;
-}
-
-interface LoadingBar {
-  default: number;
-}
+import { ReduxState, UsersState } from '../../types';
 
 export const mapStateToProps = ({
   users,
   loadingBar,
-}: ReduxState): StateProps => {
+}: ReduxState): { users: UsersState; finishedLoading: boolean } => {
   const finishedLoading = loadingBar.default === 0;
+
   return {
     users,
     finishedLoading,
