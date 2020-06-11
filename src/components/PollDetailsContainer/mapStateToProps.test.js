@@ -31,7 +31,7 @@ describe('adapter of state to props for the PollDetails component', () => {
     const state = { questions, authedUser };
     const adaptedProps = mapStateToProps(state, props);
 
-    expect(adaptedProps).toEqual({ qid: undefined, answered: undefined });
+    expect(adaptedProps).toEqual({ qid: '', answered: false });
   });
 
   test('the question_id MATCHES a question from the state BUT it has not been answered by the authedUser', () => {
