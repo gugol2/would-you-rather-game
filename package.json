@@ -47,7 +47,8 @@
       "!**/src/testHelpers/*",
       "!**/src/utils/*",
       "!**/src/reducers/index.js",
-      "!**/src/index.js"
+      "!**/src/index.js",
+      "!**/src/store/index.ts"
     ],
     "coverageThreshold": {
       "global": {
