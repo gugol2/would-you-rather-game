@@ -10,17 +10,21 @@ export const mapStateToProps = ({
   };
 };
 
-export const mapDispatchToProps = (dispatch: AppDispatch): object => {
+interface DispatchToProps {
+  dispatchSaveNewQuestion({
+    optionOneText,
+    optionTwoText,
+    author,
+  }: {
+    optionOneText: string;
+    optionTwoText: string;
+    author: string;
+  }): void;
+}
+
+export const mapDispatchToProps = (dispatch: AppDispatch): DispatchToProps => {
   return {
-    dispatchSaveNewQuestion: ({
-      optionOneText,
-      optionTwoText,
-      author,
-    }: {
-      optionOneText: string;
-      optionTwoText: string;
-      author: string;
-    }): void =>
+    dispatchSaveNewQuestion: ({ optionOneText, optionTwoText, author }): void =>
       dispatch(handleSaveNewQuestion({ optionOneText, optionTwoText, author })),
   };
 };
