@@ -1,10 +1,10 @@
-import { User, UsersState } from '../../types';
+import { User } from '../../types';
 
 export const mapStateToProps = ({
   users,
   authedUser,
 }: {
-  users: UsersState;
+  users: { [key: string]: User };
   authedUser: string;
 }): { userLogged: User } => {
   return {
