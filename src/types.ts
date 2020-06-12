@@ -25,7 +25,7 @@ export type AuthedUsersActionTypes =
 
 // Users
 export interface User {
-  answers: { [key: string]: string };
+  answers: { [key: string]: 'optionOne' | 'optionTwo' };
   avatarURL: string;
   id: string;
   name: string;
@@ -68,7 +68,7 @@ interface ReceiveQuestionsAction {
 interface SaveAnswerToQuestionAction {
   type: typeof SAVE_ANSWER_TO_QUESTION;
   qid: string;
-  answer: string;
+  answer: 'optionOne' | 'optionTwo';
   authedUser: string;
 }
 

@@ -21,7 +21,7 @@ export const saveAnswerToQuestion = ({
 }: {
   authedUser: string;
   qid: string;
-  answer: string;
+  answer: 'optionOne' | 'optionTwo';
 }): QuestionsActionTypes => {
   return {
     type: SAVE_ANSWER_TO_QUESTION,
