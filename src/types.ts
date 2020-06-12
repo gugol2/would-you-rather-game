@@ -24,8 +24,10 @@ export type AuthedUsersActionTypes =
   | LogOutAuthedUserAction;
 
 // Users
+
+export type Answer = 'optionOne' | 'optionTwo';
 export interface User {
-  answers: { [key: string]: 'optionOne' | 'optionTwo' };
+  answers: { [key: string]: Answer };
   avatarURL: string;
   id: string;
   name: string;
@@ -68,14 +70,14 @@ interface ReceiveQuestionsAction {
 interface SaveAnswerToQuestionAction {
   type: typeof SAVE_ANSWER_TO_QUESTION;
   qid: string;
-  answer: 'optionOne' | 'optionTwo';
+  answer: Answer;
   authedUser: string;
 }
 
 interface RemoveAnswerToQuestionAction {
   type: typeof REMOVE_ANSWER_TO_QUESTION;
   qid: string;
-  answer: string;
+  answer: Answer;
   authedUser: string;
 }
 
