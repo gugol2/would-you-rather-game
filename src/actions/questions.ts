@@ -1,4 +1,9 @@
-import { QuestionsState, Question, QuestionsActionTypes } from '../types';
+import {
+  QuestionsState,
+  Question,
+  QuestionsActionTypes,
+  Answer,
+} from '../types';
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
 export const SAVE_ANSWER_TO_QUESTION = 'SAVE_ANSWER_TO_QUESTION';
@@ -21,7 +26,7 @@ export const saveAnswerToQuestion = ({
 }: {
   authedUser: string;
   qid: string;
-  answer: 'optionOne' | 'optionTwo';
+  answer: Answer;
 }): QuestionsActionTypes => {
   return {
     type: SAVE_ANSWER_TO_QUESTION,
@@ -38,7 +43,7 @@ export const removeAnswerToQuestion = ({
 }: {
   authedUser: string;
   qid: string;
-  answer: string;
+  answer: Answer;
 }): QuestionsActionTypes => {
   return {
     type: REMOVE_ANSWER_TO_QUESTION,
