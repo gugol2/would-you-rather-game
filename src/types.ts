@@ -53,7 +53,7 @@ export interface Question {
   [key: string]: any;
 }
 
-interface Option {
+export interface Option {
   votes: string[];
   text: string;
 }
