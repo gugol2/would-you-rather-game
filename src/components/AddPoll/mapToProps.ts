@@ -1,4 +1,4 @@
-import { handleSaveNewQuestion } from '../../actions/questionsDispatch';
+import { handleSaveNewQuestion } from '../../actions/questionsFunctions';
 import { ReduxState, AuthedUserState, AppDispatch } from '../../types';
 
 export const mapStateToProps = ({

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { PollHeader } from '../PollHeader';
 import { AvatarImage } from '../AvatarImage';
-import { handleSaveAnswerToQuestion } from '../../actions/questionsDispatch';
+import { handleSaveAnswerToQuestion } from '../../actions/questionsFunctions';
 import PropTypes from 'prop-types';
 
 export const UnansweredPoll = ({
