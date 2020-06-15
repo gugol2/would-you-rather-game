@@ -108,6 +108,7 @@ export interface ReduxState {
 
 // dispatch
 export type AppDispatch = typeof store.dispatch;
+export type AppGetState = typeof store.getState;
 
 // match
 export type { RouteComponentProps } from 'react-router-dom';

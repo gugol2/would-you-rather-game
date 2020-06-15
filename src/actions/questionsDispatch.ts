@@ -5,9 +5,26 @@ import {
 } from './questions';
 import { saveQuestionAnswer, saveQuestion } from '../utils/api';
 import { showLoading, hideLoading } from 'react-redux-loading';
+import {
+  Answer,
+  AppDispatch,
+  AppGetState,
+  QuestionsActionTypes,
+} from '../types';
 
-export const handleSaveAnswerToQuestion = ({ authedUser, qid, answer }) => {
-  return async (dispatch, getState) => {
+export const handleSaveAnswerToQuestion = ({
+  authedUser,
+  qid,
+  answer,
+}: {
+  authedUser: string;
+  qid: string;
+  answer: Answer;
+}) => {
+  return async (
+    dispatch: (action: QuestionsActionTypes) => void,
+    getState: AppGetState,
+  ): Promise<void> => {
     const { users } = getState();
 
     const pollAlreadyVoted = Object.prototype.hasOwnProperty.call(
@@ -27,7 +44,6 @@ export const handleSaveAnswerToQuestion = ({ authedUser, qid, answer }) => {
       }
     } else {
       alert('You alredy voted this poll my friend, try another poll!!');
-      return Promise.resolve({ authedUser, qid, answer });
     }
   };
 };
@@ -36,8 +52,12 @@ export const handleSaveNewQuestion = ({
   optionOneText,
   optionTwoText,
   author,
+}: {
+  optionOneText: string;
+  optionTwoText: string;
+  author: string;
 }) => {
-  return async dispatch => {
+  return async (dispatch: AppDispatch): Promise<void> => {
     dispatch(showLoading());
     const question = await saveQuestion({
       optionOneText,

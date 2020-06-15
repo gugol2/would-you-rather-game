@@ -108,11 +108,7 @@ describe('handleSaveAnswerToQuestion should return a function that receives disp
     expect(window.alert).toHaveBeenCalledWith(
       expect.stringMatching(/alredy voted/i),
     );
-    expect(saveAnswerToQuestionPromise).toEqual({
-      authedUser,
-      qid,
-      answer,
-    });
+    expect(saveAnswerToQuestionPromise).toEqual(undefined);
   });
 
   test('If the poll is NOT voted yet dispatch a SAVE_ANSWER_TO_QUESTION action and also dispatch a REMOVE_ANSWER_TO_QUESTION action because the API fails', async () => {
