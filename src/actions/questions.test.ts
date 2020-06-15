@@ -8,9 +8,10 @@ import {
   removeAnswerToQuestion,
   saveNewQuestion,
 } from './questions';
+import { Answer, Question } from '../types';
 
 test('should return a receiveQuestions action', () => {
-  const questions = '::questions::';
+  const questions = {};
   const action = receiveQuestions(questions);
 
   expect(action).toEqual({
@@ -20,7 +21,7 @@ test('should return a receiveQuestions action', () => {
 });
 
 test('should return a saveAnswerToQuestion action', () => {
-  const answer = '::answer::';
+  const answer = '::answer::' as Answer;
   const authedUser = '::authedUser::';
   const qid = '::qid::';
 
@@ -35,7 +36,7 @@ test('should return a saveAnswerToQuestion action', () => {
 });
 
 test('should return a removeAnswerToQuestion action', () => {
-  const answer = '::answer::';
+  const answer = '::answer::' as Answer;
   const authedUser = '::authedUser::';
   const qid = '::qid::';
 
@@ -51,7 +52,7 @@ test('should return a removeAnswerToQuestion action', () => {
 
 test('should return a saveNewQuestion action', () => {
   const id = '::id::';
-  const question = { id };
+  const question = { id } as Question;
   const action = saveNewQuestion(question);
 
   expect(action).toEqual({
