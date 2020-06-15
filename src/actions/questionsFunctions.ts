@@ -37,7 +37,7 @@ export const handleSaveAnswerToQuestion = ({
       dispatch(saveAnswerToQuestion({ authedUser, qid, answer }));
 
       try {
-        return await saveQuestionAnswer({ authedUser, qid, answer });
+        await saveQuestionAnswer({ authedUser, qid, answer });
       } catch (e) {
         dispatch(removeAnswerToQuestion({ authedUser, qid, answer }));
         alert('Your answer could not be save, please try again!!');
