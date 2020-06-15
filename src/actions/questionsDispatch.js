@@ -35,13 +35,14 @@ export const handleSaveNewQuestion = ({
   optionTwoText,
   author,
 }) => {
-  return dispatch => {
+  return async dispatch => {
     dispatch(showLoading());
-    return saveQuestion({ optionOneText, optionTwoText, author }).then(
-      question => {
-        dispatch(saveNewQuestion(question));
-        dispatch(hideLoading());
-      },
-    );
+    const question = await saveQuestion({
+      optionOneText,
+      optionTwoText,
+      author,
+    });
+    dispatch(saveNewQuestion(question));
+    dispatch(hideLoading());
   };
 };
