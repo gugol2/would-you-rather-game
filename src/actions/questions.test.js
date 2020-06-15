@@ -15,7 +15,7 @@ import { showLoading, hideLoading } from 'react-redux-loading';
 import {
   handleSaveNewQuestion,
   handleSaveAnswerToQuestion,
-} from './questionsDispatch';
+} from './questionsFunctions';
 
 jest.mock('../utils/api', () => ({
   saveQuestion: jest.fn(),
