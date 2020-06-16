@@ -1,7 +1,5 @@
 import React from 'react';
-
-// eslint-disable-next-line no-undef
-const imagesPath = `${process.env.PUBLIC_URL}/images/`;
+import { imagesPath } from '../../utils/constants';
 
 export const NoMatch = () => {
   return (
