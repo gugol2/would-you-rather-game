@@ -1,5 +1,4 @@
-// eslint-disable-next-line no-undef
-const imagesPath = process.env.PUBLIC_URL + '/images/';
+import { imagesPath } from './constants';
 
 let users = {
   catwoman: {
