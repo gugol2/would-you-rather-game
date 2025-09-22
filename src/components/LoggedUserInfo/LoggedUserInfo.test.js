@@ -1,8 +1,9 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { LoggedUserInfo } from './LoggedUserInfo';
-import { AvatarImage as MockedAvatarImage } from '../AvatarImage';
 import userEvent from '@testing-library/user-event';
+
+/* eslint-disable react/prop-types */
 
 const mockHistoryPush = jest.fn();
 
@@ -14,7 +15,15 @@ jest.mock('react-router-dom', () => ({
 }));
 
 jest.mock('../AvatarImage', () => ({
-  AvatarImage: jest.fn(() => <>Mocked AvatarImage</>),
+  AvatarImage: ({ user, size }) => {
+    return (
+      <div
+        data-testid='mocked-avatar-image'
+        data-user-name={user?.name}
+        data-size={size}
+      />
+    );
+  },
 }));
 
 afterEach(() => {
@@ -30,35 +39,30 @@ describe('LoggedUserInfo', () => {
     dispatch,
   };
 
-  const context = {};
+  test('should render LoggedUserInfo', () => {
+    const { getByTestId, getByRole } = render(<LoggedUserInfo {...props} />);
 
-  test.skip('should render LoggedUserInfo', () => {
-    render(<LoggedUserInfo {...props} />);
-
-    const component = screen.getByTestId('loggedUserInfo');
-    const greeting = screen.getByTestId('greeting');
-    const logOutButton = screen.getByRole('button');
+    const component = getByTestId('loggedUserInfo');
+    const greeting = getByTestId('greeting');
+    const logOutButton = getByRole('button');
 
     expect(component).toBeInTheDocument();
     expect(greeting).toHaveTextContent(`Hello, ${userLogged.name}`);
-    expect(MockedAvatarImage).toHaveBeenCalledTimes(1);
-    expect(MockedAvatarImage).toHaveBeenCalledWith(
-      {
-        user: userLogged,
-        size: 'small',
-      },
-      context,
-    );
+
+    const MockedAvatarImage = screen.getByTestId('mocked-avatar-image');
+    expect(MockedAvatarImage).toBeInTheDocument();
+    expect(MockedAvatarImage).toHaveAttribute('data-user-name', name);
+    expect(MockedAvatarImage).toHaveAttribute('data-size', 'small');
 
     expect(logOutButton).toHaveTextContent(/logout/i);
   });
 
-  test.skip('should call dispatch and return to path / when logging out', async () => {
-    render(<LoggedUserInfo {...props} />);
+  test('should call dispatch and return to path / when logging out', async () => {
+    const { getByRole } = render(<LoggedUserInfo {...props} />);
 
-    const logOutButton = screen.getByRole('button');
+    const logOutButton = getByRole('button');
 
-    await userEvent.click(logOutButton);
+    userEvent.click(logOutButton);
 
     expect(dispatch).toHaveBeenCalledTimes(1);
     expect(dispatch).toHaveBeenCalledWith({ type: 'LOGOUT_AUTHED_USER' });
