@@ -1,25 +1,33 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { UnansweredPoll } from './UnansweredPoll';
-import { AvatarImage as MockedAvatarImage } from '../AvatarImage';
-import { PollHeader as MockedPollHeader } from '../PollHeader';
 import user from '@testing-library/user-event';
 
+/* eslint-disable react/prop-types */
+
 jest.mock('../AvatarImage', () => ({
-  AvatarImage: jest.fn(() => <>Mocked AvatarImage</>),
+  AvatarImage: ({ user, size }) => {
+    return (
+      <div
+        data-testid='mocked-avatar-image'
+        data-user={JSON.stringify(user)}
+        data-size={size}
+      />
+    );
+  },
 }));
 
 jest.mock('../PollHeader', () => ({
-  PollHeader: jest.fn(() => <>Mocked PollHeader</>),
+  PollHeader: () => (
+    <div data-testid='mocked-poll-header'>Mocked PollHeader</div>
+  ),
 }));
 
 const mockedHandleSaveAnswerToQuestionResponse =
   '::mockedHandleSaveAnswerToQuestionResponse::';
 
 jest.mock('../../actions/questionsFunctions', () => ({
-  handleSaveAnswerToQuestion: jest.fn(
-    () => mockedHandleSaveAnswerToQuestionResponse,
-  ),
+  handleSaveAnswerToQuestion: () => mockedHandleSaveAnswerToQuestionResponse,
 }));
 
 afterEach(() => {
@@ -29,9 +37,8 @@ afterEach(() => {
 describe('UnasnweredPoll component', () => {
   const dispatch = jest.fn();
   const authedUser = '::authedUser::';
-  const context = {};
 
-  test.skip('should render the component without failures', () => {
+  test('should render the component without failures', () => {
     const question = {};
     const pollAuthor = {};
 
@@ -41,31 +48,29 @@ describe('UnasnweredPoll component', () => {
       dispatch,
       authedUser,
     };
-    render(<UnansweredPoll {...props} />);
 
-    const element = screen.getByTestId('pollUnanswered');
+    const { queryAllByTestId, getByTestId } = render(
+      <UnansweredPoll {...props} />,
+    );
+
+    const element = getByTestId('pollUnanswered');
 
     expect(element).toBeInTheDocument();
 
-    expect(MockedAvatarImage).toHaveBeenCalledTimes(1);
-    expect(MockedAvatarImage).toHaveBeenCalledWith(
-      {
-        size: 'medium',
-        user: pollAuthor,
-      },
-      context,
+    const MockedAvatarImage = queryAllByTestId('mocked-avatar-image');
+    expect(MockedAvatarImage).toHaveLength(1);
+    expect(MockedAvatarImage[0]).toHaveAttribute('data-size', 'medium');
+    expect(MockedAvatarImage[0]).toHaveAttribute(
+      'data-user',
+      JSON.stringify(pollAuthor),
     );
 
-    expect(MockedPollHeader).toHaveBeenCalledTimes(1);
-    expect(MockedPollHeader).toHaveBeenCalledWith(
-      {
-        author: pollAuthor,
-      },
-      context,
-    );
+    const MockedPollHeader = queryAllByTestId('mocked-poll-header');
+    expect(MockedPollHeader).toHaveLength(1);
+    expect(MockedPollHeader[0]).toHaveTextContent('Mocked PollHeader');
   });
 
-  test.skip('should select the first option by default', () => {
+  test('should select the first option by default', () => {
     const textOptionOne = '::textOptionOne::';
     const textOptionTwo = '::textOptionTwo::';
 
@@ -82,16 +87,16 @@ describe('UnasnweredPoll component', () => {
       authedUser,
     };
 
-    render(<UnansweredPoll {...props} />);
+    const { getByLabelText } = render(<UnansweredPoll {...props} />);
 
-    const optionOneInput = screen.getByLabelText(textOptionOne);
-    const optionTwoInput = screen.getByLabelText(textOptionTwo);
+    const optionOneInput = getByLabelText(textOptionOne);
+    const optionTwoInput = getByLabelText(textOptionTwo);
 
     expect(optionOneInput).toBeChecked();
     expect(optionTwoInput).not.toBeChecked();
   });
 
-  test.skip('should select the second option', () => {
+  test('should select the second option', () => {
     const textOptionOne = '::textOptionOne::';
     const textOptionTwo = '::textOptionTwo::';
 
@@ -108,10 +113,10 @@ describe('UnasnweredPoll component', () => {
       authedUser,
     };
 
-    render(<UnansweredPoll {...props} />);
+    const { getByLabelText } = render(<UnansweredPoll {...props} />);
 
-    const optionOneInput = screen.getByLabelText(textOptionOne);
-    const optionTwoInput = screen.getByLabelText(textOptionTwo);
+    const optionOneInput = getByLabelText(textOptionOne);
+    const optionTwoInput = getByLabelText(textOptionTwo);
 
     expect(optionOneInput).toBeChecked();
     expect(optionTwoInput).not.toBeChecked();
@@ -122,7 +127,7 @@ describe('UnasnweredPoll component', () => {
     expect(optionTwoInput).toBeChecked();
   });
 
-  test.skip('should submit the poll', () => {
+  test('should submit the poll', () => {
     const textOptionOne = '::textOptionOne::';
     const textOptionTwo = '::textOptionTwo::';
 
@@ -139,9 +144,9 @@ describe('UnasnweredPoll component', () => {
       authedUser,
     };
 
-    render(<UnansweredPoll {...props} />);
+    const { getByRole } = render(<UnansweredPoll {...props} />);
 
-    const submitButton = screen.getByRole('button');
+    const submitButton = getByRole('button');
 
     user.click(submitButton);
 
