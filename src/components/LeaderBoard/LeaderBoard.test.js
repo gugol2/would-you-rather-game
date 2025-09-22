@@ -5,7 +5,7 @@ import { AvatarImage as MockedAvatarImage } from '../AvatarImage';
 
 jest.mock('../AvatarImage', () => {
   return {
-    AvatarImage: jest.fn(() => 'MockedAvatarImage'),
+    AvatarImage: jest.fn(() => <>MockedAvatarImage</>),
   };
 });
 

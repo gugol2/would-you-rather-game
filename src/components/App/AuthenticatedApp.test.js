@@ -9,28 +9,28 @@ import { ConnectedPollDetailsContainer as MockedPollDetailsContainer } from '../
 import { renderWithRouter } from '../../setupTests';
 
 jest.mock('../PollTabs', () => ({
-  ConnectedPollTabs: jest.fn(() => 'MockedPollTabs'),
+  ConnectedPollTabs: jest.fn(() => <>MockedPollTabs</>),
 }));
 
 jest.mock('../AddPoll', () => ({
-  ConnectedAddPoll: jest.fn(() => 'MockedAddpoll'),
+  ConnectedAddPoll: jest.fn(() => <>MockedAddpoll</>),
 }));
 
 jest.mock('../LeaderBoard', () => ({
-  ConnectedLeaderBoard: jest.fn(() => 'MockedLeaderBoard'),
+  ConnectedLeaderBoard: jest.fn(() => <>MockedLeaderBoard</>),
 }));
 
 jest.mock('../NoMatch', () => ({
-  NoMatch: jest.fn(() => 'MockedNoMatch'),
+  NoMatch: jest.fn(() => <>MockedNoMatch</>),
 }));
 
 jest.mock('../PollDetailsContainer', () => ({
-  ConnectedPollDetailsContainer: jest.fn(() => 'MockedPollDetailsContainer'),
+  ConnectedPollDetailsContainer: jest.fn(() => <>MockedPollDetailsContainer</>),
 }));
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
-  Redirect: jest.fn(() => 'MockedRedirect'),
+  Redirect: jest.fn(() => <>MockedRedirect</>),
 }));
 
 afterEach(() => {

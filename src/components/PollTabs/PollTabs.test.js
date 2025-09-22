@@ -4,7 +4,7 @@ import { PollTabs } from './PollTabs';
 import { PollBrief as MockedPollBrief } from '../PollBrief';
 
 jest.mock('../PollBrief', () => ({
-  PollBrief: jest.fn(() => 'Mocked PollBrief Component'),
+  PollBrief: jest.fn(() => <>Mocked PollBrief Component</>),
 }));
 
 // jest.mock('../PollBrief');
