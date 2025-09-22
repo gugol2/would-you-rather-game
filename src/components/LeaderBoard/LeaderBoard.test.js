@@ -6,8 +6,14 @@ import { AvatarImage as MockAvatarImage } from '../AvatarImage';
 jest.mock('../AvatarImage');
 
 beforeEach(() => {
-  MockAvatarImage.mockImplementation(() => {
-    return <>Mock Avatar Image</>;
+  MockAvatarImage.mockImplementation(({ user, size }) => {
+    return (
+      <div
+        data-testid='avatar-image'
+        data-user-name={user?.name}
+        data-size={size}
+      />
+    );
   });
 });
 
@@ -28,7 +34,6 @@ test('renders the LeaderBoard empty', () => {
 });
 
 test('renders the LeaderBoard with one user', () => {
-  const context = {};
   const id = '::id::';
   const answer = {};
   const answers = { answer };
@@ -43,11 +48,10 @@ test('renders the LeaderBoard with one user', () => {
   const leaderBoardItem = getAllByTestId('leaderboarditem');
   expect(leaderBoardItem.length).toBe(1);
 
-  expect(MockAvatarImage).toHaveBeenCalledTimes(1);
-  expect(MockAvatarImage).toHaveBeenCalledWith(
-    { user, size: 'medium' },
-    context,
-  );
+  const AvatarImageComponent = getByTestId('avatar-image');
+  expect(AvatarImageComponent).toBeInTheDocument();
+  expect(AvatarImageComponent).toHaveAttribute('data-user-name', name);
+  expect(AvatarImageComponent).toHaveAttribute('data-size', 'medium');
 
   const answeredQuestions = getByTestId('answeredquestions');
   expect(answeredQuestions).toHaveTextContent(Object.keys(answers).length);
