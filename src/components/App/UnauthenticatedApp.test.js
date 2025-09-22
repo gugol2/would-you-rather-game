@@ -1,18 +1,24 @@
 import React from 'react';
 import { UnauthenticatedApp } from './UnauthenticatedApp';
 import { renderWithRouter } from '../../setupTests';
-import { ConnectedSignIn as MockedSingIn } from '../SignIn';
-import { Redirect as MockedRedirect } from 'react-router-dom';
+
+/* eslint-disable react/prop-types */
 
 jest.mock('../SignIn', () => {
   return {
-    ConnectedSignIn: jest.fn(() => <>Mocked SingIn</>),
+    ConnectedSignIn: () => (
+      <div data-testid='mocked-sign-in'>Mocked SignIn</div>
+    ),
   };
 });
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
-  Redirect: jest.fn(() => <>Mocked Redirect</>),
+  Redirect: ({ to }) => (
+    <div data-testid='mocked-redirect' to={JSON.stringify(to)}>
+      Mocked Redirect
+    </div>
+  ),
 }));
 
 afterEach(() => {
@@ -25,16 +31,18 @@ const renderUnauthenticatedApp = initialEntry => {
   });
 };
 
-const context = {};
+test('render the SignIn component when the path is /login', () => {
+  const { queryByTestId } = renderUnauthenticatedApp('/login');
 
-test.skip('render the SignIn component when the path is /login', () => {
-  renderUnauthenticatedApp('/login');
+  const MockedSingIn = queryByTestId('mocked-sign-in');
+  expect(MockedSingIn).toBeInTheDocument();
+  expect(MockedSingIn).not.toHaveAttribute();
 
-  expect(MockedSingIn).toHaveBeenCalledTimes(1);
-  expect(MockedSingIn).toHaveBeenCalledWith({}, context);
+  const MockedRedirect = queryByTestId('mocked-redirect');
+  expect(MockedRedirect).not.toBeInTheDocument();
 });
 
-test.skip('render the Redirect component when the path is ANYTHING than /login', () => {
+test('render the Redirect component when the path is ANYTHING than /login', () => {
   const previousPathname = '::previousPathname::';
 
   const entry = {
@@ -45,23 +53,26 @@ test.skip('render the Redirect component when the path is ANYTHING than /login',
     key: '::key::',
   };
 
-  renderUnauthenticatedApp(entry);
-  expect(MockedRedirect).toHaveBeenCalledTimes(1);
-  expect(MockedRedirect).toHaveBeenCalledWith(
-    {
-      to: {
-        pathname: '/login',
-        state: {
-          from: {
-            hash: '',
-            key: '::key::',
-            pathname: '/anything',
-            search: '',
-            state: { from: { pathname: '::previousPathname::' } },
-          },
-        },
+  const { queryByTestId } = renderUnauthenticatedApp(entry);
+
+  const MockedRedirect = queryByTestId('mocked-redirect');
+  expect(MockedRedirect).toBeInTheDocument();
+
+  const expectedTo = {
+    pathname: '/login',
+    state: {
+      from: {
+        hash: '',
+        key: '::key::',
+        pathname: '/anything',
+        search: '',
+        state: { from: { pathname: previousPathname } },
       },
     },
-    context,
-  );
+  };
+
+  expect(JSON.parse(MockedRedirect.getAttribute('to'))).toEqual(expectedTo);
+
+  const MockedSingIn = queryByTestId('mocked-sign-in');
+  expect(MockedSingIn).not.toBeInTheDocument();
 });
