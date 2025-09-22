@@ -1,13 +1,20 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import { PollTabs } from './PollTabs';
-import { PollBrief as MockedPollBrief } from '../PollBrief';
+
+/* eslint-disable react/prop-types */
 
 jest.mock('../PollBrief', () => ({
-  PollBrief: jest.fn().mockImplementation(() => null),
+  PollBrief: ({ question, qauthor }) => (
+    <div
+      data-testid='mocked-poll-brief'
+      data-question={JSON.stringify(question)}
+      data-qauthor={JSON.stringify(qauthor)}
+    >
+      Mocked PollBrief Component
+    </div>
+  ),
 }));
-
-// jest.mock('../PollBrief');
 
 afterEach(() => {
   jest.clearAllMocks();
@@ -53,7 +60,7 @@ test('should show the PollTabs component with the unaswered tab selected by defa
   expect(noPollsMessage).toBeInTheDocument();
 });
 
-test.skip('should toggle the class active in the tabs when clicking on an tab', async () => {
+test('should toggle the class active in the tabs when clicking on an tab', async () => {
   // MockedPollBrief.mockReturnValue('Mocked PollBrief Component');
   const author = '::author::';
   const unAnsweredQuestions = [
@@ -67,35 +74,34 @@ test.skip('should toggle the class active in the tabs when clicking on an tab', 
   const answeredQuestions = [];
   const users = { [author]: { name: author, avatarURL: 'test.jpg' } };
 
-  let { answeredTab, findByRole, noPollsMessage } = renderPollTabs({
-    unAnsweredQuestions,
-    answeredQuestions,
-    users,
-  });
+  let { answeredTab, findByRole, noPollsMessage, queryByTestId } =
+    renderPollTabs({
+      unAnsweredQuestions,
+      answeredQuestions,
+      users,
+    });
 
-  expect(MockedPollBrief).toHaveBeenCalledWith(
-    {
-      qauthor: { name: '::author::', avatarURL: 'test.jpg' },
-      question: {
-        author: '::author::',
-        id: '::unAnsweredQuestionsId::',
-        optionOne: { text: 'Option one text' },
-        optionTwo: { text: 'Option two text' },
-      },
-    },
-    {},
+  expect(answeredTab).not.toHaveClass('active');
+  const MockedPollBrief = queryByTestId('mocked-poll-brief');
+  expect(MockedPollBrief).toBeInTheDocument();
+  expect(MockedPollBrief).toHaveAttribute(
+    'data-question',
+    JSON.stringify(unAnsweredQuestions[0]),
   );
-  expect(MockedPollBrief).toHaveBeenCalledTimes(1);
+  expect(MockedPollBrief).toHaveAttribute(
+    'data-qauthor',
+    JSON.stringify(users[author]),
+  );
+
   expect(noPollsMessage).toBeNull();
 
   // click on the answered tab
-  MockedPollBrief.mockClear();
   fireEvent.click(answeredTab);
 
   // find by queries are asynchronous.
   // They'll continue to query the DOM as DOM changes are made until it can find the element that it's looking for or until a timeout time is reached.
   noPollsMessage = await findByRole('alert');
 
-  expect(MockedPollBrief).not.toHaveBeenCalled();
+  expect(MockedPollBrief).not.toBeInTheDocument();
   expect(noPollsMessage).toBeInTheDocument();
 });
