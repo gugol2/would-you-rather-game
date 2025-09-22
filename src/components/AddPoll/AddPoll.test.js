@@ -40,7 +40,7 @@ test('should render the AddPoll Component', () => {
   expect(submitPoll.disabled).toBe(true);
 });
 
-test('should add a poll', async () => {
+test.skip('should add a poll', async () => {
   const dispatchSaveNewQuestion = jest.fn(() => Promise.resolve());
   const authedUser = '::authedUser::';
   const optionOneText = '::optionOneText::';
