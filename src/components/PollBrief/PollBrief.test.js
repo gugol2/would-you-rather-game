@@ -1,21 +1,36 @@
 import React from 'react';
 import { PollBrief } from './PollBrief';
 import { renderWithRouter } from '../../testHelpers/renderWithRouter';
-import { PollHeader as MockedPollHeader } from '../PollHeader';
-import { AvatarImage as MockedAvatarImage } from '../AvatarImage';
-import { Link as MockedLink } from 'react-router-dom';
+
+/* eslint-disable react/prop-types */
 
 jest.mock('../PollHeader', () => ({
-  PollHeader: jest.fn(() => <>Mocked PollHeader</>),
+  PollHeader: ({ author }) => (
+    <div data-testid='mocked-poll-header' data-author={JSON.stringify(author)}>
+      Mocked PollHeader
+    </div>
+  ),
 }));
 
 jest.mock('../AvatarImage', () => ({
-  AvatarImage: jest.fn(() => <>Mocked AvatarImage</>),
+  AvatarImage: ({ user, size }) => (
+    <div
+      data-testid='mocked-avatar-image'
+      data-user={JSON.stringify(user)}
+      data-size={size}
+    >
+      Mocked AvatarImage
+    </div>
+  ),
 }));
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
-  Link: jest.fn(() => <>Mocked Link</>),
+  Link: ({ to }) => (
+    <div data-testid='mocked-link' data-to={JSON.stringify(to)}>
+      Mocked Link
+    </div>
+  ),
 }));
 
 afterEach(() => {
@@ -23,9 +38,7 @@ afterEach(() => {
 });
 
 describe('PollBrief', () => {
-  const context = {};
-
-  test.skip('should render the PollBrief', () => {
+  test('should render the PollBrief', () => {
     const textOptionOne = '::textOptionOne::';
     const textOptionTwo = '::textOptionTwo::';
     const id = '::id::';
@@ -46,27 +59,29 @@ describe('PollBrief', () => {
     const { getByTestId } = renderWithRouter(<PollBrief {...props} />);
     const pollQuestionText = getByTestId('poll-question-text');
 
-    expect(MockedPollHeader).toHaveBeenCalledTimes(1);
-    expect(MockedPollHeader).toHaveBeenCalledWith({ author: qauthor }, context);
-    expect(MockedAvatarImage).toHaveBeenCalledTimes(1);
-    expect(MockedAvatarImage).toHaveBeenCalledWith(
-      {
-        user: qauthor,
-        size: expect.any(String),
-      },
-      context,
-    );
-
     expect(pollQuestionText).toHaveTextContent(textOptionOne);
 
-    expect(MockedLink).toHaveBeenCalledTimes(1);
-    expect(MockedLink).toHaveBeenCalledWith(
-      {
-        children: expect.stringMatching(/view poll/i),
-        className: expect.any(String),
-        to: `/questions/${question.id}`,
-      },
-      context,
+    const MockedPollHeader = getByTestId('mocked-poll-header');
+    expect(MockedPollHeader).toBeInTheDocument();
+    expect(MockedPollHeader).toHaveAttribute(
+      'data-author',
+      JSON.stringify(qauthor),
+    );
+
+    const MockedAvatarImage = getByTestId('mocked-avatar-image');
+    expect(MockedAvatarImage).toBeInTheDocument();
+    expect(MockedAvatarImage).toHaveAttribute(
+      'data-user',
+      JSON.stringify(qauthor),
+    );
+    expect(MockedAvatarImage).toHaveAttribute('data-size', 'medium');
+
+    const MockedLink = getByTestId('mocked-link');
+    expect(MockedLink).toBeInTheDocument();
+    expect(MockedLink).not.toHaveClass();
+    const expectedDataToAttribute = MockedLink.getAttribute('data-to');
+    expect(JSON.parse(expectedDataToAttribute)).toBe(
+      `/questions/${question.id}`,
     );
   });
 });
