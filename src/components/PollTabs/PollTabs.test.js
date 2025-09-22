@@ -34,12 +34,8 @@ test('should show the PollTabs component with the unaswered tab selected by defa
   const answeredQuestions = [];
   const users = {};
 
-  const {
-    pollTabsRendered,
-    unansweredTab,
-    answeredTab,
-    noPollsMessage,
-  } = renderPollTabs({ unAnsweredQuestions, answeredQuestions, users });
+  const { pollTabsRendered, unansweredTab, answeredTab, noPollsMessage } =
+    renderPollTabs({ unAnsweredQuestions, answeredQuestions, users });
 
   expect(pollTabsRendered).toBeInTheDocument();
   expect(unansweredTab).toHaveClass('active');
