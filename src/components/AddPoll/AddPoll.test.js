@@ -1,8 +1,8 @@
-import { wait } from '@testing-library/react';
+import { waitFor } from '@testing-library/react';
 import user from '@testing-library/user-event';
-import { AddPoll } from './AddPoll';
 import React from 'react';
 import { renderWithRouter } from '../../testHelpers/renderWithRouter';
+import { AddPoll } from './AddPoll';
 
 const mockHistoryPush = jest.fn();
 
@@ -40,7 +40,7 @@ test('should render the AddPoll Component', () => {
   expect(submitPoll.disabled).toBe(true);
 });
 
-test.skip('should add a poll', async () => {
+test('should add a poll', async () => {
   const dispatchSaveNewQuestion = jest.fn(() => Promise.resolve());
   const authedUser = '::authedUser::';
   const optionOneText = '::optionOneText::';
@@ -82,7 +82,7 @@ test.skip('should add a poll', async () => {
   });
 
   // Reset the form
-  await wait(() => {
+  await waitFor(() => {
     expect(inputOptionOne.value).toBe('');
     expect(inputOptionTwo.value).toBe('');
   });
