@@ -1,13 +1,22 @@
 import React from 'react';
 import { LeaderBoard } from './LeaderBoard';
 import { render } from '@testing-library/react';
-import { AvatarImage as MockedAvatarImage } from '../AvatarImage';
 
-jest.mock('../AvatarImage', () => {
-  return {
-    AvatarImage: jest.fn(() => <>MockedAvatarImage</>),
-  };
-});
+const MockAvatarImage = jest.fn(() => <>MockedAvatarImage</>);
+
+jest.mock('../AvatarImage', () => ({
+  AvatarImage: ({ user, size }) => {
+    MockAvatarImage({ user, size });
+
+    return (
+      <div
+        data-testid='avatar-image'
+        data-user-name={user?.name}
+        data-size={size}
+      />
+    );
+  },
+}));
 
 afterEach(() => {
   jest.clearAllMocks();
@@ -25,8 +34,7 @@ test('renders the LeaderBoard empty', () => {
   expect(leaderBoardItem).toBeNull();
 });
 
-test.skip('renders the LeaderBoard with one user', () => {
-  const context = {};
+test('renders the LeaderBoard with one user', () => {
   const id = '::id::';
   const answer = {};
   const answers = { answer };
@@ -40,11 +48,8 @@ test.skip('renders the LeaderBoard with one user', () => {
   const leaderBoardItem = getAllByTestId('leaderboarditem');
   expect(leaderBoardItem.length).toBe(1);
 
-  expect(MockedAvatarImage).toHaveBeenCalledTimes(1);
-  expect(MockedAvatarImage).toHaveBeenCalledWith(
-    { user, size: 'medium' },
-    context,
-  );
+  expect(MockAvatarImage).toHaveBeenCalledTimes(1);
+  expect(MockAvatarImage).toHaveBeenCalledWith({ user, size: 'medium' });
 
   const answeredQuestions = getByTestId('answeredquestions');
   expect(answeredQuestions).toHaveTextContent(Object.keys(answers).length);
