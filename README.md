@@ -29,7 +29,7 @@ questions, create new questions and see the users on a ranking leaderboard.
 Clone this repository on your local machine:
 
 ```sh
-cd would-you-rather
+cd into it
 npm install
 npm start
 ```
