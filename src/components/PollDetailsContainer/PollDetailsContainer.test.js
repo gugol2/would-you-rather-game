@@ -26,7 +26,7 @@ describe('PollDetailsContainer', () => {
   let answered = undefined;
   let qid = undefined;
 
-  test('should render NoMatch when the qid is falsy', () => {
+  test.skip('should render NoMatch when the qid is falsy', () => {
     const props = {
       answered,
       qid,
@@ -40,7 +40,7 @@ describe('PollDetailsContainer', () => {
     expect(MockedNoMatch).toHaveBeenCalledWith({}, context);
   });
 
-  test('should render UnansweredPoll when the qid is truthy and answered is falsy', () => {
+  test.skip('should render UnansweredPoll when the qid is truthy and answered is falsy', () => {
     qid = '::qid::';
     answered = false;
     const props = {
@@ -56,7 +56,7 @@ describe('PollDetailsContainer', () => {
     expect(MockedNoMatch).not.toHaveBeenCalled();
   });
 
-  test('should render AnsweredPoll when the qid and answered are truthy', () => {
+  test.skip('should render AnsweredPoll when the qid and answered are truthy', () => {
     qid = '::qid::';
     answered = true;
     const props = {

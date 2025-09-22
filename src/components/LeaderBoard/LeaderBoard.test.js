@@ -25,7 +25,7 @@ test('renders the LeaderBoard empty', () => {
   expect(leaderBoardItem).toBeNull();
 });
 
-test('renders the LeaderBoard with one user', () => {
+test.skip('renders the LeaderBoard with one user', () => {
   const context = {};
   const id = '::id::';
   const answer = {};

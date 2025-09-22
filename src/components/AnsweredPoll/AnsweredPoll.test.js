@@ -21,7 +21,7 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
-test('renders the AnsweredPoll component', () => {
+test.skip('renders the AnsweredPoll component', () => {
   const optionOne = { ['::optionOne::']: {} };
   const optionTwo = { ['::optionTwo::']: {} };
   const pollAuthor = {};

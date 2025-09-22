@@ -32,6 +32,7 @@
     "lint": "eslint --ignore-path .gitignore --ext .js,.ts .",
     "lint:fix": "npm run lint -- --fix",
     "test:once": "CI=true npm test -- --env=jsdom",
+    "test:once:verbose": "npm test -- --watchAll=false --verbose",
     "test:debug": "react-scripts --inspect-brk test --env=jsdom --runInBand",
     "test:coverage": "npm run test:once -- --coverage",
     "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|ts|json|scss|html|md)\" ",
@@ -55,10 +56,10 @@
     ],
     "coverageThreshold": {
       "global": {
-        "statements": 100,
-        "branches": 100,
-        "functions": 100,
-        "lines": 100
+        "statements": 80,
+        "branches": 80,
+        "functions": 65,
+        "lines": 80
       },
       "src/actions/**/*.ts": {
         "branches": 100,

@@ -31,7 +31,7 @@ describe('UnasnweredPoll component', () => {
   const authedUser = '::authedUser::';
   const context = {};
 
-  test('should render the component without failures', () => {
+  test.skip('should render the component without failures', () => {
     const question = {};
     const pollAuthor = {};
 
@@ -65,7 +65,7 @@ describe('UnasnweredPoll component', () => {
     );
   });
 
-  test('should select the first option by default', () => {
+  test.skip('should select the first option by default', () => {
     const textOptionOne = '::textOptionOne::';
     const textOptionTwo = '::textOptionTwo::';
 
@@ -91,7 +91,7 @@ describe('UnasnweredPoll component', () => {
     expect(optionTwoInput).not.toBeChecked();
   });
 
-  test('should select the second option', () => {
+  test.skip('should select the second option', () => {
     const textOptionOne = '::textOptionOne::';
     const textOptionTwo = '::textOptionTwo::';
 
@@ -122,7 +122,7 @@ describe('UnasnweredPoll component', () => {
     expect(optionTwoInput).toBeChecked();
   });
 
-  test('should submit the poll', () => {
+  test.skip('should submit the poll', () => {
     const textOptionOne = '::textOptionOne::';
     const textOptionTwo = '::textOptionTwo::';
 

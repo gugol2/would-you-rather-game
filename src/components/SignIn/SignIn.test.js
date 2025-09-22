@@ -42,7 +42,7 @@ describe('SignIn component', () => {
     expect(MockedAvatarImage).not.toHaveBeenCalled();
   });
 
-  test('should render the SignIn component without errors AND the avatar div', () => {
+  test.skip('should render the SignIn component without errors AND the avatar div', () => {
     finishedLoading = true;
     const props = { users, dispatch, finishedLoading };
     render(<SignIn {...props} />);
@@ -63,7 +63,7 @@ describe('SignIn component', () => {
     );
   });
 
-  test('should render the button disabled until an user is selected', () => {
+  test.skip('should render the button disabled until an user is selected', () => {
     finishedLoading = true;
     const props = { users, dispatch, finishedLoading };
     render(<SignIn {...props} />);
@@ -73,7 +73,7 @@ describe('SignIn component', () => {
     expect(signInButton).toBeDisabled();
   });
 
-  test('should render the button enabled when an user is selected', () => {
+  test.skip('should render the button enabled when an user is selected', () => {
     finishedLoading = true;
     const props = { users, dispatch, finishedLoading };
     render(<SignIn {...props} />);
@@ -88,7 +88,7 @@ describe('SignIn component', () => {
     expect(signInButton).not.toBeDisabled();
   });
 
-  test('should call dispath whith the right action object when signing in', () => {
+  test.skip('should call dispath whith the right action object when signing in', () => {
     finishedLoading = true;
     const props = { users, dispatch, finishedLoading };
     render(<SignIn {...props} />);

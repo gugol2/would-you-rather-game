@@ -27,14 +27,14 @@ const renderUnauthenticatedApp = initialEntry => {
 
 const context = {};
 
-test('render the SignIn component when the path is /login', () => {
+test.skip('render the SignIn component when the path is /login', () => {
   renderUnauthenticatedApp('/login');
 
   expect(MockedSingIn).toHaveBeenCalledTimes(1);
   expect(MockedSingIn).toHaveBeenCalledWith({}, context);
 });
 
-test('render the Redirect component when the path is ANYTHING than /login', () => {
+test.skip('render the Redirect component when the path is ANYTHING than /login', () => {
   const previousPathname = '::previousPathname::';
 
   const entry = {

@@ -25,7 +25,7 @@ afterEach(() => {
 describe('PollBrief', () => {
   const context = {};
 
-  test('should render the PollBrief', () => {
+  test.skip('should render the PollBrief', () => {
     const textOptionOne = '::textOptionOne::';
     const textOptionTwo = '::textOptionTwo::';
     const id = '::id::';

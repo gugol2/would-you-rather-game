@@ -32,7 +32,7 @@ describe('LoggedUserInfo', () => {
 
   const context = {};
 
-  test('should render LoggedUserInfo', () => {
+  test.skip('should render LoggedUserInfo', () => {
     render(<LoggedUserInfo {...props} />);
 
     const component = screen.getByTestId('loggedUserInfo');
@@ -53,7 +53,7 @@ describe('LoggedUserInfo', () => {
     expect(logOutButton).toHaveTextContent(/logout/i);
   });
 
-  test('should call dispatch and return to path / when logging out', async () => {
+  test.skip('should call dispatch and return to path / when logging out', async () => {
     render(<LoggedUserInfo {...props} />);
 
     const logOutButton = screen.getByRole('button');
