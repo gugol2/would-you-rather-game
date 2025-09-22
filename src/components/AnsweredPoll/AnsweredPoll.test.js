@@ -1,37 +1,67 @@
-import { AnsweredPoll } from './AnsweredPoll';
 import { render } from '@testing-library/react';
 import React from 'react';
-import { PollHeader as MockedPollHeader } from '../PollHeader';
-import { AvatarImage as MockedAvatarImage } from '../AvatarImage';
-import { PollResultOption as MockedPollResultOption } from '../PollResultOption';
+import { AnsweredPoll } from './AnsweredPoll';
 
+/* eslint-disable react/prop-types */
 jest.mock('../PollHeader', () => ({
-  PollHeader: jest.fn(() => <>Mocked PollHeader</>),
+  PollHeader: ({ author }) => (
+    <div
+      data-testid='poll-header'
+      data-author-name={author?.name}
+      data-author-id={author?.id}
+    >
+      Mocked PollHeader
+    </div>
+  ),
 }));
 
 jest.mock('../PollResultOption', () => ({
-  PollResultOption: jest.fn(() => <>Mocked PollResultOption</>),
+  PollResultOption: ({
+    option,
+    percentageOption,
+    votesOption,
+    totalVotes,
+    authedUser,
+  }) => (
+    <div
+      data-testid='poll-result-option'
+      data-option={Object.keys(option)[0]}
+      data-percentage={percentageOption}
+      data-votes={votesOption}
+      data-total={totalVotes}
+      data-authed-user={authedUser}
+    >
+      Mocked PollResultOption
+    </div>
+  ),
 }));
 
 jest.mock('../AvatarImage', () => ({
-  AvatarImage: jest.fn(() => <>Mocked AvatarImage</>),
+  AvatarImage: ({ user, size }) => {
+    return (
+      <div
+        data-testid='avatar-image'
+        data-user-name={user?.name}
+        data-size={size}
+      />
+    );
+  },
 }));
 
 afterEach(() => {
   jest.clearAllMocks();
 });
 
-test.skip('renders the AnsweredPoll component', () => {
+test('renders the AnsweredPoll component', () => {
   const optionOne = { ['::optionOne::']: {} };
   const optionTwo = { ['::optionTwo::']: {} };
-  const pollAuthor = {};
+  const pollAuthor = { name: '::authorName::', id: '::authorId::' };
   const votesOptionOne = 1;
   const votesOptionTwo = 2;
   const totalVotes = 3;
   const percentageOptionOne = '::percentageOptionOne::';
   const percentageOptionTwo = '::percentageOptionTwo::';
   const authedUser = '::authedUser::';
-  const context = {};
 
   const props = {
     optionOne,
@@ -45,44 +75,59 @@ test.skip('renders the AnsweredPoll component', () => {
     authedUser,
   };
 
-  render(<AnsweredPoll {...props} />);
-  expect(MockedPollHeader).toHaveBeenCalledTimes(1);
-  expect(MockedPollHeader).toHaveBeenCalledWith(
-    { author: pollAuthor },
-    context,
+  const { getByTestId, getAllByTestId } = render(<AnsweredPoll {...props} />);
+  const MockedPollHeader = getByTestId('poll-header');
+  expect(MockedPollHeader).toBeInTheDocument();
+  expect(MockedPollHeader).toHaveAttribute('data-author-name', pollAuthor.name);
+  expect(MockedPollHeader).toHaveAttribute('data-author-id', pollAuthor.id);
+
+  const MockedAvatarImage = getByTestId('avatar-image');
+  expect(MockedAvatarImage).toBeInTheDocument();
+  expect(MockedAvatarImage).toHaveAttribute('data-user-name', pollAuthor.name);
+  expect(MockedAvatarImage).toHaveAttribute('data-size', 'medium');
+
+  const MockedPollResultOption = getAllByTestId('poll-result-option');
+  expect(MockedPollResultOption).toHaveLength(2);
+
+  expect(MockedPollResultOption[0]).toHaveAttribute(
+    'data-option',
+    '::optionOne::',
+  );
+  expect(MockedPollResultOption[0]).toHaveAttribute(
+    'data-percentage',
+    percentageOptionOne,
+  );
+  expect(MockedPollResultOption[0]).toHaveAttribute(
+    'data-votes',
+    votesOptionOne.toString(),
+  );
+  expect(MockedPollResultOption[0]).toHaveAttribute(
+    'data-total',
+    totalVotes.toString(),
+  );
+  expect(MockedPollResultOption[0]).toHaveAttribute(
+    'data-authed-user',
+    authedUser,
   );
 
-  expect(MockedAvatarImage).toHaveBeenCalledTimes(1);
-  expect(MockedAvatarImage).toHaveBeenCalledWith(
-    {
-      user: pollAuthor,
-      size: expect.any(String),
-    },
-    context,
+  expect(MockedPollResultOption[1]).toHaveAttribute(
+    'data-option',
+    '::optionTwo::',
   );
-
-  expect(MockedPollResultOption).toHaveBeenCalledTimes(2);
-  expect(MockedPollResultOption).toHaveBeenNthCalledWith(
-    1,
-    {
-      authedUser,
-      option: optionOne,
-      percentageOption: percentageOptionOne,
-      totalVotes,
-      votesOption: votesOptionOne,
-    },
-    context,
+  expect(MockedPollResultOption[1]).toHaveAttribute(
+    'data-percentage',
+    percentageOptionTwo,
   );
-
-  expect(MockedPollResultOption).toHaveBeenNthCalledWith(
-    2,
-    {
-      authedUser,
-      option: optionTwo,
-      percentageOption: percentageOptionTwo,
-      totalVotes,
-      votesOption: votesOptionTwo,
-    },
-    context,
+  expect(MockedPollResultOption[1]).toHaveAttribute(
+    'data-votes',
+    votesOptionTwo.toString(),
+  );
+  expect(MockedPollResultOption[1]).toHaveAttribute(
+    'data-total',
+    totalVotes.toString(),
+  );
+  expect(MockedPollResultOption[1]).toHaveAttribute(
+    'data-authed-user',
+    authedUser,
   );
 });
