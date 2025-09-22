@@ -56,6 +56,7 @@ export const SignIn = ({ users, dispatch, finishedLoading }) => {
               type='submit'
               value='Sign In'
               disabled={selectedUser === ''}
+              data-testid='signInButton'
             />
           </form>
         </div>

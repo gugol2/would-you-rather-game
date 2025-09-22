@@ -1,10 +1,19 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import { SignIn } from './SignIn';
+import { fireEvent, render } from '@testing-library/react';
 import React from 'react';
-import { AvatarImage as MockedAvatarImage } from '../AvatarImage';
+import { SignIn } from './SignIn';
+
+/* eslint-disable react/prop-types */
 
 jest.mock('../AvatarImage', () => ({
-  AvatarImage: jest.fn(() => <>Mocked AvatarImage</>),
+  AvatarImage: ({ user, size }) => {
+    return (
+      <div
+        data-testid='mocked-avatar-image'
+        data-user={user}
+        data-size={size}
+      />
+    );
+  },
 }));
 
 const mockedHandleReceiveDataResponse = {
@@ -13,7 +22,7 @@ const mockedHandleReceiveDataResponse = {
 };
 
 jest.mock('../../actions/shared', () => ({
-  handleReceiveData: jest.fn(() => mockedHandleReceiveDataResponse),
+  handleReceiveData: () => mockedHandleReceiveDataResponse,
 }));
 
 afterEach(() => {
@@ -21,7 +30,6 @@ afterEach(() => {
 });
 
 describe('SignIn component', () => {
-  const context = {};
   const id = '::id::';
   const name = '::name::';
   const user1 = '::user1::';
@@ -32,54 +40,52 @@ describe('SignIn component', () => {
   test('should render the SignIn component without errors BUT NOT the avatar div', () => {
     finishedLoading = false;
     const props = { users, dispatch, finishedLoading };
-    render(<SignIn {...props} />);
+    const { getByTestId, queryByTestId } = render(<SignIn {...props} />);
 
-    const signInComponent = screen.getByTestId('signIn');
-    const signInComponentBody = screen.queryByTestId('signInBody');
+    const signInComponent = getByTestId('signIn');
+    const signInComponentBody = queryByTestId('signInBody');
 
     expect(signInComponent).toBeInTheDocument();
     expect(signInComponentBody).not.toBeInTheDocument();
-    expect(MockedAvatarImage).not.toHaveBeenCalled();
+
+    const mockedAvatarImage = queryByTestId('mocked-avatar-image');
+    expect(mockedAvatarImage).not.toBeInTheDocument();
   });
 
-  test.skip('should render the SignIn component without errors AND the avatar div', () => {
+  test('should render the SignIn component without errors AND the avatar div', () => {
     finishedLoading = true;
     const props = { users, dispatch, finishedLoading };
-    render(<SignIn {...props} />);
+    const { getByTestId, queryByTestId } = render(<SignIn {...props} />);
 
-    const signInComponent = screen.getByTestId('signIn');
-    const signInComponentBody = screen.queryByTestId('signInBody');
+    const signInComponent = getByTestId('signIn');
+    const signInComponentBody = getByTestId('signInBody');
 
     expect(signInComponent).toBeInTheDocument();
     expect(signInComponentBody).toBeInTheDocument();
 
-    expect(MockedAvatarImage).toHaveBeenCalledTimes(1);
-    expect(MockedAvatarImage).toHaveBeenCalledWith(
-      {
-        size: 'large',
-        user: undefined,
-      },
-      context,
-    );
+    const mockedAvatarImage = queryByTestId('mocked-avatar-image');
+    expect(mockedAvatarImage).toBeInTheDocument();
+    expect(mockedAvatarImage).toHaveAttribute('data-size', 'large');
+    expect(mockedAvatarImage).not.toHaveAttribute('data-user');
   });
 
-  test.skip('should render the button disabled until an user is selected', () => {
+  test('should render the button disabled until an user is selected', () => {
     finishedLoading = true;
     const props = { users, dispatch, finishedLoading };
-    render(<SignIn {...props} />);
+    const { getByTestId } = render(<SignIn {...props} />);
 
-    const signInButton = screen.getByRole('button');
+    const signInButton = getByTestId('signInButton');
 
     expect(signInButton).toBeDisabled();
   });
 
-  test.skip('should render the button enabled when an user is selected', () => {
+  test('should render the button enabled when an user is selected', () => {
     finishedLoading = true;
     const props = { users, dispatch, finishedLoading };
-    render(<SignIn {...props} />);
+    const { getByTestId } = render(<SignIn {...props} />);
 
-    const signInButton = screen.getByRole('button');
-    const userSelector = screen.getByTestId('userSelector');
+    const signInButton = getByTestId('signInButton');
+    const userSelector = getByTestId('userSelector');
 
     expect(signInButton).toBeDisabled();
 
@@ -88,13 +94,13 @@ describe('SignIn component', () => {
     expect(signInButton).not.toBeDisabled();
   });
 
-  test.skip('should call dispath whith the right action object when signing in', () => {
+  test('should call dispatch with the right action object when signing in', () => {
     finishedLoading = true;
     const props = { users, dispatch, finishedLoading };
-    render(<SignIn {...props} />);
+    const { getByTestId } = render(<SignIn {...props} />);
 
-    const signInButton = screen.getByRole('button');
-    const userSelector = screen.getByTestId('userSelector');
+    const signInButton = getByTestId('signInButton');
+    const userSelector = getByTestId('userSelector');
 
     fireEvent.change(userSelector, { target: { value: id } });
     fireEvent.click(signInButton);
