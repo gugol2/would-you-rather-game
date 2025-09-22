@@ -1,43 +1,51 @@
 import React from 'react';
 import { AuthenticatedApp } from './AuthenticatedApp';
-import { Redirect as MockedRedirect } from 'react-router-dom';
-import { ConnectedPollTabs as MockedPollTabs } from '../PollTabs';
-import { ConnectedAddPoll as MockedAddpoll } from '../AddPoll';
-import { ConnectedLeaderBoard as MockedLeaderBoard } from '../LeaderBoard';
-import { NoMatch as MockedNoMatch } from '../NoMatch';
-import { ConnectedPollDetailsContainer as MockedPollDetailsContainer } from '../PollDetailsContainer';
 import { renderWithRouter } from '../../setupTests';
 
+/* eslint-disable react/prop-types */
+
 jest.mock('../PollTabs', () => ({
-  ConnectedPollTabs: jest.fn(() => <>MockedPollTabs</>),
+  ConnectedPollTabs: () => (
+    <div data-testid='mocked-poll-tabs'>MockedPollTabs</div>
+  ),
 }));
 
 jest.mock('../AddPoll', () => ({
-  ConnectedAddPoll: jest.fn(() => <>MockedAddpoll</>),
+  ConnectedAddPoll: () => (
+    <div data-testid='mocked-add-poll'>MockedAddpoll</div>
+  ),
 }));
 
 jest.mock('../LeaderBoard', () => ({
-  ConnectedLeaderBoard: jest.fn(() => <>MockedLeaderBoard</>),
+  ConnectedLeaderBoard: () => (
+    <div data-testid='mocked-leaderboard'>MockedLeaderBoard</div>
+  ),
 }));
 
 jest.mock('../NoMatch', () => ({
-  NoMatch: jest.fn(() => <>MockedNoMatch</>),
+  NoMatch: () => <div data-testid='mocked-no-match'>MockedNoMatch</div>,
 }));
 
 jest.mock('../PollDetailsContainer', () => ({
-  ConnectedPollDetailsContainer: jest.fn(() => <>MockedPollDetailsContainer</>),
+  ConnectedPollDetailsContainer: () => (
+    <div data-testid='mocked-poll-details-container'>
+      MockedPollDetailsContainer
+    </div>
+  ),
 }));
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
-  Redirect: jest.fn(() => <>MockedRedirect</>),
+  Redirect: ({ to }) => (
+    <div data-testid='mocked-redirect' data-to={JSON.stringify(to)}>
+      MockedRedirect
+    </div>
+  ),
 }));
 
 afterEach(() => {
   jest.clearAllMocks();
 });
-
-const context = {};
 
 const renderAuthenticatedApp = initialEntry => {
   return renderWithRouter(<AuthenticatedApp />, {
@@ -45,7 +53,7 @@ const renderAuthenticatedApp = initialEntry => {
   });
 };
 
-test.skip("render the Redirect Component when route is '/login' with the pathname from location.state", () => {
+test("render the Redirect Component when route is '/login' with the pathname from location.state", () => {
   const previousPathname = '::previousPathname::';
 
   const entry = {
@@ -56,67 +64,102 @@ test.skip("render the Redirect Component when route is '/login' with the pathnam
     key: '::key::',
   };
 
-  renderAuthenticatedApp(entry);
+  const { queryAllByTestId } = renderAuthenticatedApp(entry);
 
-  expect(MockedRedirect).toHaveBeenCalledTimes(1);
-  expect(MockedRedirect).toHaveBeenCalledWith(
-    {
-      to: { pathname: previousPathname },
-    },
-    context,
+  const MockedRedirect = queryAllByTestId('mocked-redirect');
+  expect(MockedRedirect).toHaveLength(1);
+  expect(MockedRedirect[0]).toHaveAttribute(
+    'data-to',
+    JSON.stringify({
+      pathname: previousPathname,
+    }),
   );
 });
 
-test.skip("render the Redirect Component when route is '/login' with '/' as pathname", () => {
-  renderAuthenticatedApp('/login');
+test("render the Redirect Component when route is '/login' with '/' as pathname", () => {
+  const { queryAllByTestId } = renderAuthenticatedApp('/login');
 
-  expect(MockedRedirect).toHaveBeenCalledTimes(1);
-  expect(MockedRedirect).toHaveBeenCalledWith(
-    {
-      to: { pathname: '/' },
-    },
-    context,
+  const MockedRedirect = queryAllByTestId('mocked-redirect');
+  expect(MockedRedirect).toHaveLength(1);
+  expect(MockedRedirect[0]).toHaveAttribute(
+    'data-to',
+    JSON.stringify({
+      pathname: '/',
+    }),
   );
+
+  const MockedPollTabs = queryAllByTestId('mocked-poll-tabs');
+  expect(MockedPollTabs).toHaveLength(0);
+
+  const MockedLeaderBoard = queryAllByTestId('mocked-leaderboard');
+  expect(MockedLeaderBoard).toHaveLength(0);
+
+  const MockedNoMatch = queryAllByTestId('mocked-no-match');
+  expect(MockedNoMatch).toHaveLength(0);
 });
 
-test.skip("render the PollTabs Component when route is '/'", () => {
-  renderAuthenticatedApp('/');
+test("render the PollTabs Component when route is '/'", () => {
+  const { queryAllByTestId } = renderAuthenticatedApp('/');
 
-  expect(MockedPollTabs).toHaveBeenCalledTimes(1);
-  expect(MockedPollTabs).toHaveBeenCalledWith({}, context);
+  const MockedPollTabs = queryAllByTestId('mocked-poll-tabs');
+  expect(MockedPollTabs).toHaveLength(1);
+
+  const MockedLeaderBoard = queryAllByTestId('mocked-leaderboard');
+  expect(MockedLeaderBoard).toHaveLength(0);
+
+  const MockedNoMatch = queryAllByTestId('mocked-no-match');
+  expect(MockedNoMatch).toHaveLength(0);
 });
 
-test.skip("render the AddPoll Component when route is '/add'", () => {
-  renderAuthenticatedApp('/add');
+test("render the AddPoll Component when route is '/add'", () => {
+  const { queryAllByTestId } = renderAuthenticatedApp('/add');
 
-  expect(MockedAddpoll).toHaveBeenCalledTimes(1);
-  expect(MockedAddpoll).toHaveBeenCalledWith({}, context);
+  const MockedAddPoll = queryAllByTestId('mocked-add-poll');
+  expect(MockedAddPoll).toHaveLength(1);
+
+  const MockedLeaderBoard = queryAllByTestId('mocked-leaderboard');
+  expect(MockedLeaderBoard).toHaveLength(0);
+
+  const MockedNoMatch = queryAllByTestId('mocked-no-match');
+  expect(MockedNoMatch).toHaveLength(0);
 });
 
-test.skip("render the LeaderBoard Component when route is '/leaderboard'", () => {
-  renderAuthenticatedApp('/leaderboard');
+test("render the LeaderBoard Component when route is '/leaderboard'", () => {
+  const { queryAllByTestId } = renderAuthenticatedApp('/leaderboard');
 
-  expect(MockedLeaderBoard).toHaveBeenCalledTimes(1);
-  expect(MockedLeaderBoard).toHaveBeenCalledWith({}, context);
+  const MockedAddPoll = queryAllByTestId('mocked-add-poll');
+  expect(MockedAddPoll).toHaveLength(0);
+
+  const MockedNoMatch = queryAllByTestId('mocked-no-match');
+  expect(MockedNoMatch).toHaveLength(0);
+
+  const MockedLeaderBoard = queryAllByTestId('mocked-leaderboard');
+  expect(MockedLeaderBoard).toHaveLength(1);
 });
 
-test.skip('render the NoMatch Component when route is anythng does NOT match any routes', () => {
-  renderAuthenticatedApp('/anyroute-that-not-match');
-
-  expect(MockedNoMatch).toHaveBeenCalledTimes(1);
-  expect(MockedNoMatch).toHaveBeenCalledWith({}, context);
-});
-
-test.skip("render the ConnectedPollDetailsContainer Component when route is '/questions/:question_id'", () => {
-  const { history } = renderAuthenticatedApp('/questions/anyquestion');
-
-  expect(MockedPollDetailsContainer).toHaveBeenCalledTimes(1);
-  expect(MockedPollDetailsContainer).toHaveBeenCalledWith(
-    {
-      history,
-      match: expect.any(Object),
-      location: expect.any(Object),
-    },
-    context,
+test('render the NoMatch Component when route is anythng does NOT match any routes', () => {
+  const { queryAllByTestId } = renderAuthenticatedApp(
+    '/anyroute-that-not-match',
   );
+
+  const MockedNoMatch = queryAllByTestId('mocked-no-match');
+  expect(MockedNoMatch).toHaveLength(1);
+
+  const MockedAddPoll = queryAllByTestId('mocked-add-poll');
+  expect(MockedAddPoll).toHaveLength(0);
+
+  const MockedLeaderBoard = queryAllByTestId('mocked-leaderboard');
+  expect(MockedLeaderBoard).toHaveLength(0);
+});
+
+test("render the ConnectedPollDetailsContainer Component when route is '/questions/:question_id'", () => {
+  const { history, queryAllByTestId } = renderAuthenticatedApp(
+    '/questions/anyquestion',
+  );
+
+  const MockedPollDetailsContainer = queryAllByTestId(
+    'mocked-poll-details-container',
+  );
+  expect(MockedPollDetailsContainer).toHaveLength(1);
+  expect(history.location.pathname).toBe('/questions/anyquestion');
 });
