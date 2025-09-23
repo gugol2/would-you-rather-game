@@ -1,4 +1,5 @@
 import React from 'react';
+import { screen } from '@testing-library/react';
 import { PollBrief } from './PollBrief';
 import { renderWithRouter } from '../../testHelpers/renderWithRouter';
 
@@ -56,19 +57,19 @@ describe('PollBrief', () => {
       question,
     };
 
-    const { getByTestId } = renderWithRouter(<PollBrief {...props} />);
-    const pollQuestionText = getByTestId('poll-question-text');
+    renderWithRouter(<PollBrief {...props} />);
+    const pollQuestionText = screen.getByTestId('poll-question-text');
 
     expect(pollQuestionText).toHaveTextContent(textOptionOne);
 
-    const MockedPollHeader = getByTestId('mocked-poll-header');
+    const MockedPollHeader = screen.getByTestId('mocked-poll-header');
     expect(MockedPollHeader).toBeInTheDocument();
     expect(MockedPollHeader).toHaveAttribute(
       'data-author',
       JSON.stringify(qauthor),
     );
 
-    const MockedAvatarImage = getByTestId('mocked-avatar-image');
+    const MockedAvatarImage = screen.getByTestId('mocked-avatar-image');
     expect(MockedAvatarImage).toBeInTheDocument();
     expect(MockedAvatarImage).toHaveAttribute(
       'data-user',
@@ -76,7 +77,7 @@ describe('PollBrief', () => {
     );
     expect(MockedAvatarImage).toHaveAttribute('data-size', 'medium');
 
-    const MockedLink = getByTestId('mocked-link');
+    const MockedLink = screen.getByTestId('mocked-link');
     expect(MockedLink).toBeInTheDocument();
     expect(MockedLink).not.toHaveClass();
     const expectedDataToAttribute = MockedLink.getAttribute('data-to');

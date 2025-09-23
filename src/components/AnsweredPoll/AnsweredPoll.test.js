@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { AnsweredPoll } from './AnsweredPoll';
 
@@ -75,18 +75,18 @@ test('renders the AnsweredPoll component', () => {
     authedUser,
   };
 
-  const { getByTestId, getAllByTestId } = render(<AnsweredPoll {...props} />);
-  const MockedPollHeader = getByTestId('poll-header');
+  render(<AnsweredPoll {...props} />);
+  const MockedPollHeader = screen.getByTestId('poll-header');
   expect(MockedPollHeader).toBeInTheDocument();
   expect(MockedPollHeader).toHaveAttribute('data-author-name', pollAuthor.name);
   expect(MockedPollHeader).toHaveAttribute('data-author-id', pollAuthor.id);
 
-  const MockedAvatarImage = getByTestId('avatar-image');
+  const MockedAvatarImage = screen.getByTestId('avatar-image');
   expect(MockedAvatarImage).toBeInTheDocument();
   expect(MockedAvatarImage).toHaveAttribute('data-user-name', pollAuthor.name);
   expect(MockedAvatarImage).toHaveAttribute('data-size', 'medium');
 
-  const MockedPollResultOption = getAllByTestId('poll-result-option');
+  const MockedPollResultOption = screen.getAllByTestId('poll-result-option');
   expect(MockedPollResultOption).toHaveLength(2);
 
   expect(MockedPollResultOption[0]).toHaveAttribute(

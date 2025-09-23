@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { App } from './App';
 
@@ -51,21 +51,21 @@ afterEach(() => {
 });
 
 test('should render the common components no matter the authedUser ', () => {
-  const { getByTestId, queryAllByTestId } = render(<App />);
+  render(<App />);
 
-  const MockedBrowserRouter = getByTestId('mocked-browser-router');
+  const MockedBrowserRouter = screen.getByTestId('mocked-browser-router');
   expect(MockedBrowserRouter).toBeInTheDocument();
 
-  const MockdedNavBar = queryAllByTestId('mocked-nav-bar');
+  const MockdedNavBar = screen.queryAllByTestId('mocked-nav-bar');
   expect(MockdedNavBar).toHaveLength(1);
   expect(MockdedNavBar[0]).toHaveTextContent('Mockded NavBar');
 
-  const MockedUnauthenticatedApp = queryAllByTestId(
+  const MockedUnauthenticatedApp = screen.queryAllByTestId(
     'mocked-unauthenticated-app',
   );
   expect(MockedUnauthenticatedApp).toHaveLength(1);
 
-  const MockedLoadingBar = queryAllByTestId('mocked-loading-bar');
+  const MockedLoadingBar = screen.queryAllByTestId('mocked-loading-bar');
   expect(MockedLoadingBar).toHaveLength(1);
   expect(MockedLoadingBar[0]).toHaveTextContent('Mocked LoadingBar');
   expect(MockedLoadingBar[0]).toHaveClass('loading-bar');
@@ -73,19 +73,19 @@ test('should render the common components no matter the authedUser ', () => {
 
 test('should render the UnauthenticatedApp when authedUser is falsy but not LoggedUserInfo and the AuthenticatedApp', () => {
   const authedUser = null;
-  const { queryAllByTestId } = render(<App authedUser={authedUser} />);
+  render(<App authedUser={authedUser} />);
 
-  const MockedConnectedLoggedUserInfo = queryAllByTestId(
+  const MockedConnectedLoggedUserInfo = screen.queryAllByTestId(
     'mocked-logged-user-info',
   );
   expect(MockedConnectedLoggedUserInfo).toHaveLength(0);
 
-  const MockedLoadingBar = queryAllByTestId('mocked-loading-bar');
+  const MockedLoadingBar = screen.queryAllByTestId('mocked-loading-bar');
   expect(MockedLoadingBar).toHaveLength(1);
   expect(MockedLoadingBar[0]).toHaveTextContent('Mocked LoadingBar');
   expect(MockedLoadingBar[0]).toHaveClass('loading-bar');
 
-  const MockedUnauthenticatedApp = queryAllByTestId(
+  const MockedUnauthenticatedApp = screen.queryAllByTestId(
     'mocked-unauthenticated-app',
   );
   expect(MockedUnauthenticatedApp).toHaveLength(1);
@@ -93,15 +93,17 @@ test('should render the UnauthenticatedApp when authedUser is falsy but not Logg
     'Mocked UnauthenticatedApp',
   );
 
-  const MockedAuthenticatedApp = queryAllByTestId('mocked-authenticated-app');
+  const MockedAuthenticatedApp = screen.queryAllByTestId(
+    'mocked-authenticated-app',
+  );
   expect(MockedAuthenticatedApp).toHaveLength(0);
 });
 
 test('should render the LoggedUserInfo and the AuthenticatedApp when authedUser is truthy but not UnauthenticatedApp', () => {
   const authedUser = '::authedUser::';
-  const { queryAllByTestId } = render(<App authedUser={authedUser} />);
+  render(<App authedUser={authedUser} />);
 
-  const MockedConnectedLoggedUserInfo = queryAllByTestId(
+  const MockedConnectedLoggedUserInfo = screen.queryAllByTestId(
     'mocked-logged-user-info',
   );
   expect(MockedConnectedLoggedUserInfo).toHaveLength(1);
@@ -109,18 +111,20 @@ test('should render the LoggedUserInfo and the AuthenticatedApp when authedUser 
     'Mocked ConnectedLoggedUserInfo',
   );
 
-  const MockedLoadingBar = queryAllByTestId('mocked-loading-bar');
+  const MockedLoadingBar = screen.queryAllByTestId('mocked-loading-bar');
   expect(MockedLoadingBar).toHaveLength(1);
   expect(MockedLoadingBar[0]).toHaveTextContent('Mocked LoadingBar');
   expect(MockedLoadingBar[0]).toHaveClass('loading-bar');
 
-  const MockedAuthenticatedApp = queryAllByTestId('mocked-authenticated-app');
+  const MockedAuthenticatedApp = screen.queryAllByTestId(
+    'mocked-authenticated-app',
+  );
   expect(MockedAuthenticatedApp).toHaveLength(1);
   expect(MockedAuthenticatedApp[0]).toHaveTextContent(
     'Mocked AuthenticatedApp',
   );
 
-  const MockedUnauthenticatedApp = queryAllByTestId(
+  const MockedUnauthenticatedApp = screen.queryAllByTestId(
     'mocked-unauthenticated-app',
   );
   expect(MockedUnauthenticatedApp).toHaveLength(0);

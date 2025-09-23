@@ -1,4 +1,5 @@
 import React from 'react';
+import { screen } from '@testing-library/react';
 import { UnauthenticatedApp } from './UnauthenticatedApp';
 import { renderWithRouter } from '../../setupTests';
 
@@ -32,13 +33,13 @@ const renderUnauthenticatedApp = initialEntry => {
 };
 
 test('render the SignIn component when the path is /login', () => {
-  const { queryByTestId } = renderUnauthenticatedApp('/login');
+  renderUnauthenticatedApp('/login');
 
-  const MockedSingIn = queryByTestId('mocked-sign-in');
+  const MockedSingIn = screen.queryByTestId('mocked-sign-in');
   expect(MockedSingIn).toBeInTheDocument();
   expect(MockedSingIn).not.toHaveAttribute();
 
-  const MockedRedirect = queryByTestId('mocked-redirect');
+  const MockedRedirect = screen.queryByTestId('mocked-redirect');
   expect(MockedRedirect).not.toBeInTheDocument();
 });
 
@@ -53,9 +54,9 @@ test('render the Redirect component when the path is ANYTHING than /login', () =
     key: '::key::',
   };
 
-  const { queryByTestId } = renderUnauthenticatedApp(entry);
+  renderUnauthenticatedApp(entry);
 
-  const MockedRedirect = queryByTestId('mocked-redirect');
+  const MockedRedirect = screen.queryByTestId('mocked-redirect');
   expect(MockedRedirect).toBeInTheDocument();
 
   const expectedTo = {
@@ -73,6 +74,6 @@ test('render the Redirect component when the path is ANYTHING than /login', () =
 
   expect(JSON.parse(MockedRedirect.getAttribute('to'))).toEqual(expectedTo);
 
-  const MockedSingIn = queryByTestId('mocked-sign-in');
+  const MockedSingIn = screen.queryByTestId('mocked-sign-in');
   expect(MockedSingIn).not.toBeInTheDocument();
 });

@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { PollResultOption } from './PollResultOption';
 import React from 'react';
 
@@ -21,11 +21,17 @@ describe('PollResultOption', () => {
       totalVotes,
       authedUser,
     };
-    const { getByTestId } = render(<PollResultOption {...props} />);
+    render(<PollResultOption {...props} />);
 
-    const pollResultsOptionText = getByTestId('poll-results-option-text');
-    const pollResultsOptionPercent = getByTestId('poll-results-option-percent');
-    const pollResultsOptionNumber = getByTestId('poll-results-option-number');
+    const pollResultsOptionText = screen.getByTestId(
+      'poll-results-option-text',
+    );
+    const pollResultsOptionPercent = screen.getByTestId(
+      'poll-results-option-percent',
+    );
+    const pollResultsOptionNumber = screen.getByTestId(
+      'poll-results-option-number',
+    );
 
     expect(pollResultsOptionText).toHaveTextContent(text);
     expect(pollResultsOptionPercent).toHaveTextContent(percentageOption);
@@ -44,8 +50,8 @@ describe('PollResultOption', () => {
       totalVotes,
       authedUser,
     };
-    const { getByTestId } = render(<PollResultOption {...props} />);
-    const pollResultsOptionSelected = getByTestId(
+    render(<PollResultOption {...props} />);
+    const pollResultsOptionSelected = screen.getByTestId(
       'poll-results-option-selected',
     );
 
@@ -62,8 +68,8 @@ describe('PollResultOption', () => {
       totalVotes,
       authedUser,
     };
-    const { getByTestId } = render(<PollResultOption {...props} />);
-    const pollResultsOptionSelected = getByTestId(
+    render(<PollResultOption {...props} />);
+    const pollResultsOptionSelected = screen.getByTestId(
       'poll-results-option-selected',
     );
 

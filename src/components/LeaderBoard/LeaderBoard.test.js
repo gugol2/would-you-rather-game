@@ -1,6 +1,6 @@
 import React from 'react';
 import { LeaderBoard } from './LeaderBoard';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { AvatarImage as MockAvatarImage } from '../AvatarImage';
 
 jest.mock('../AvatarImage');
@@ -23,12 +23,10 @@ afterEach(() => {
 
 test('renders the LeaderBoard empty', () => {
   const usersOrderedByScore = [];
-  const { getByTestId, queryByTestId } = render(
-    <LeaderBoard usersOrderedByScore={usersOrderedByScore} />,
-  );
+  render(<LeaderBoard usersOrderedByScore={usersOrderedByScore} />);
 
-  const leaderBoardRendered = getByTestId('leaderboard');
-  const leaderBoardItem = queryByTestId('leaderboarditem');
+  const leaderBoardRendered = screen.getByTestId('leaderboard');
+  const leaderBoardItem = screen.queryByTestId('leaderboarditem');
   expect(leaderBoardRendered).toBeInTheDocument();
   expect(leaderBoardItem).toBeNull();
 });
@@ -41,23 +39,21 @@ test('renders the LeaderBoard with one user', () => {
   const name = '::name::';
   const user = { answers, questions, id, name };
   const usersOrderedByScore = [user];
-  const { getByTestId, getAllByTestId } = render(
-    <LeaderBoard usersOrderedByScore={usersOrderedByScore} />,
-  );
+  render(<LeaderBoard usersOrderedByScore={usersOrderedByScore} />);
 
-  const leaderBoardItem = getAllByTestId('leaderboarditem');
+  const leaderBoardItem = screen.getAllByTestId('leaderboarditem');
   expect(leaderBoardItem.length).toBe(1);
 
-  const AvatarImageComponent = getByTestId('avatar-image');
+  const AvatarImageComponent = screen.getByTestId('avatar-image');
   expect(AvatarImageComponent).toBeInTheDocument();
   expect(AvatarImageComponent).toHaveAttribute('data-user-name', name);
   expect(AvatarImageComponent).toHaveAttribute('data-size', 'medium');
 
-  const answeredQuestions = getByTestId('answeredquestions');
+  const answeredQuestions = screen.getByTestId('answeredquestions');
   expect(answeredQuestions).toHaveTextContent(Object.keys(answers).length);
-  const createdQuestions = getByTestId('createdquestions');
+  const createdQuestions = screen.getByTestId('createdquestions');
   expect(createdQuestions).toHaveTextContent(questions.length);
-  const score = getByTestId('score');
+  const score = screen.getByTestId('score');
   expect(score).toHaveTextContent(
     Object.keys(answers).length + questions.length,
   );

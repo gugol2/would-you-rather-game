@@ -1,7 +1,7 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { UnansweredPoll } from './UnansweredPoll';
-import user from '@testing-library/user-event';
+import userEvent from '@testing-library/user-event';
 
 /* eslint-disable react/prop-types */
 
@@ -49,15 +49,13 @@ describe('UnasnweredPoll component', () => {
       authedUser,
     };
 
-    const { queryAllByTestId, getByTestId } = render(
-      <UnansweredPoll {...props} />,
-    );
+    render(<UnansweredPoll {...props} />);
 
-    const element = getByTestId('pollUnanswered');
+    const element = screen.getByTestId('pollUnanswered');
 
     expect(element).toBeInTheDocument();
 
-    const MockedAvatarImage = queryAllByTestId('mocked-avatar-image');
+    const MockedAvatarImage = screen.queryAllByTestId('mocked-avatar-image');
     expect(MockedAvatarImage).toHaveLength(1);
     expect(MockedAvatarImage[0]).toHaveAttribute('data-size', 'medium');
     expect(MockedAvatarImage[0]).toHaveAttribute(
@@ -65,7 +63,7 @@ describe('UnasnweredPoll component', () => {
       JSON.stringify(pollAuthor),
     );
 
-    const MockedPollHeader = queryAllByTestId('mocked-poll-header');
+    const MockedPollHeader = screen.queryAllByTestId('mocked-poll-header');
     expect(MockedPollHeader).toHaveLength(1);
     expect(MockedPollHeader[0]).toHaveTextContent('Mocked PollHeader');
   });
@@ -87,16 +85,16 @@ describe('UnasnweredPoll component', () => {
       authedUser,
     };
 
-    const { getByLabelText } = render(<UnansweredPoll {...props} />);
+    render(<UnansweredPoll {...props} />);
 
-    const optionOneInput = getByLabelText(textOptionOne);
-    const optionTwoInput = getByLabelText(textOptionTwo);
+    const optionOneInput = screen.getByLabelText(textOptionOne);
+    const optionTwoInput = screen.getByLabelText(textOptionTwo);
 
     expect(optionOneInput).toBeChecked();
     expect(optionTwoInput).not.toBeChecked();
   });
 
-  test('should select the second option', () => {
+  test('should select the second option', async () => {
     const textOptionOne = '::textOptionOne::';
     const textOptionTwo = '::textOptionTwo::';
 
@@ -113,21 +111,21 @@ describe('UnasnweredPoll component', () => {
       authedUser,
     };
 
-    const { getByLabelText } = render(<UnansweredPoll {...props} />);
+    render(<UnansweredPoll {...props} />);
 
-    const optionOneInput = getByLabelText(textOptionOne);
-    const optionTwoInput = getByLabelText(textOptionTwo);
+    const optionOneInput = screen.getByLabelText(textOptionOne);
+    const optionTwoInput = screen.getByLabelText(textOptionTwo);
 
     expect(optionOneInput).toBeChecked();
     expect(optionTwoInput).not.toBeChecked();
 
-    user.click(optionTwoInput);
+    await userEvent.click(optionTwoInput);
 
     expect(optionOneInput).not.toBeChecked();
     expect(optionTwoInput).toBeChecked();
   });
 
-  test('should submit the poll', () => {
+  test('should submit the poll', async () => {
     const textOptionOne = '::textOptionOne::';
     const textOptionTwo = '::textOptionTwo::';
 
@@ -144,11 +142,11 @@ describe('UnasnweredPoll component', () => {
       authedUser,
     };
 
-    const { getByRole } = render(<UnansweredPoll {...props} />);
+    render(<UnansweredPoll {...props} />);
 
-    const submitButton = getByRole('button');
+    const submitButton = screen.getByRole('button');
 
-    user.click(submitButton);
+    await userEvent.click(submitButton);
 
     expect(dispatch).toHaveBeenCalledTimes(1);
     expect(dispatch).toHaveBeenCalledWith(

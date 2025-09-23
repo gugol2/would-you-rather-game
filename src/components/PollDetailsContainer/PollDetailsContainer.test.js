@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { PollDetailsContainer } from './PollDetailsContainer';
 import React from 'react';
 
@@ -38,14 +38,14 @@ describe('PollDetailsContainer', () => {
       qid,
     };
 
-    const { queryByTestId } = render(<PollDetailsContainer {...props} />);
+    render(<PollDetailsContainer {...props} />);
 
-    const MockedUnansweredPoll = queryByTestId('mocked-unanswered-poll');
+    const MockedUnansweredPoll = screen.queryByTestId('mocked-unanswered-poll');
     expect(MockedUnansweredPoll).not.toBeInTheDocument();
-    const MockedAnsweredPoll = queryByTestId('mocked-answered-poll');
+    const MockedAnsweredPoll = screen.queryByTestId('mocked-answered-poll');
     expect(MockedAnsweredPoll).not.toBeInTheDocument();
 
-    const MockedNoMatch = queryByTestId('mocked-no-match');
+    const MockedNoMatch = screen.queryByTestId('mocked-no-match');
     expect(MockedNoMatch).toBeInTheDocument();
     expect(MockedNoMatch).toHaveTextContent('Mocked NoMatch');
   });
@@ -58,16 +58,16 @@ describe('PollDetailsContainer', () => {
       qid,
     };
 
-    const { queryByTestId } = render(<PollDetailsContainer {...props} />);
+    render(<PollDetailsContainer {...props} />);
 
-    const MockedUnansweredPoll = queryByTestId('mocked-unanswered-poll');
+    const MockedUnansweredPoll = screen.queryByTestId('mocked-unanswered-poll');
     expect(MockedUnansweredPoll).toBeInTheDocument();
     expect(MockedUnansweredPoll).toHaveAttribute('data-qid', qid);
 
-    const MockedAnsweredPoll = queryByTestId('mocked-answered-poll');
+    const MockedAnsweredPoll = screen.queryByTestId('mocked-answered-poll');
     expect(MockedAnsweredPoll).not.toBeInTheDocument();
 
-    const MockedNoMatch = queryByTestId('mocked-no-match');
+    const MockedNoMatch = screen.queryByTestId('mocked-no-match');
     expect(MockedNoMatch).not.toBeInTheDocument();
   });
 
@@ -79,16 +79,16 @@ describe('PollDetailsContainer', () => {
       qid,
     };
 
-    const { queryByTestId } = render(<PollDetailsContainer {...props} />);
+    render(<PollDetailsContainer {...props} />);
 
-    const MockedAnsweredPoll = queryByTestId('mocked-answered-poll');
+    const MockedAnsweredPoll = screen.queryByTestId('mocked-answered-poll');
     expect(MockedAnsweredPoll).toBeInTheDocument();
     expect(MockedAnsweredPoll).toHaveAttribute('data-qid', qid);
 
-    const MockedUnansweredPoll = queryByTestId('mocked-unanswered-poll');
+    const MockedUnansweredPoll = screen.queryByTestId('mocked-unanswered-poll');
     expect(MockedUnansweredPoll).not.toBeInTheDocument();
 
-    const MockedNoMatch = queryByTestId('mocked-no-match');
+    const MockedNoMatch = screen.queryByTestId('mocked-no-match');
     expect(MockedNoMatch).not.toBeInTheDocument();
   });
 });

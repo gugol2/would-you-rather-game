@@ -1,5 +1,6 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { PollTabs } from './PollTabs';
 
 /* eslint-disable react/prop-types */
@@ -22,10 +23,10 @@ afterEach(() => {
 
 const renderPollTabs = props => {
   const utils = render(<PollTabs {...props} />);
-  const pollTabsRendered = utils.getByTestId('poll-tabs');
-  const unansweredTab = utils.getByText(/unanswered questions/i);
-  const answeredTab = utils.getByText(/Answered Questions/);
-  const noPollsMessage = utils.queryByRole('alert');
+  const pollTabsRendered = screen.getByTestId('poll-tabs');
+  const unansweredTab = screen.getByText(/unanswered questions/i);
+  const answeredTab = screen.getByText(/Answered Questions/);
+  const noPollsMessage = screen.queryByRole('alert');
 
   return {
     ...utils,
@@ -36,7 +37,7 @@ const renderPollTabs = props => {
   };
 };
 
-test('should show the PollTabs component with the unaswered tab selected by default', () => {
+test('should show the PollTabs component with the unaswered tab selected by default', async () => {
   const unAnsweredQuestions = [];
   const answeredQuestions = [];
   const users = {};
@@ -49,12 +50,12 @@ test('should show the PollTabs component with the unaswered tab selected by defa
   expect(answeredTab).not.toHaveClass('active');
   expect(noPollsMessage).toBeInTheDocument();
 
-  fireEvent.click(answeredTab);
+  await userEvent.click(answeredTab);
   expect(unansweredTab).not.toHaveClass('active');
   expect(answeredTab).toHaveClass('active');
   expect(noPollsMessage).toBeInTheDocument();
 
-  fireEvent.click(unansweredTab);
+  await userEvent.click(unansweredTab);
   expect(unansweredTab).toHaveClass('active');
   expect(answeredTab).not.toHaveClass('active');
   expect(noPollsMessage).toBeInTheDocument();
@@ -74,15 +75,14 @@ test('should toggle the class active in the tabs when clicking on an tab', async
   const answeredQuestions = [];
   const users = { [author]: { name: author, avatarURL: 'test.jpg' } };
 
-  let { answeredTab, findByRole, noPollsMessage, queryByTestId } =
-    renderPollTabs({
-      unAnsweredQuestions,
-      answeredQuestions,
-      users,
-    });
+  let { answeredTab, noPollsMessage } = renderPollTabs({
+    unAnsweredQuestions,
+    answeredQuestions,
+    users,
+  });
 
   expect(answeredTab).not.toHaveClass('active');
-  const MockedPollBrief = queryByTestId('mocked-poll-brief');
+  const MockedPollBrief = screen.queryByTestId('mocked-poll-brief');
   expect(MockedPollBrief).toBeInTheDocument();
   expect(MockedPollBrief).toHaveAttribute(
     'data-question',
@@ -96,11 +96,11 @@ test('should toggle the class active in the tabs when clicking on an tab', async
   expect(noPollsMessage).toBeNull();
 
   // click on the answered tab
-  fireEvent.click(answeredTab);
+  await userEvent.click(answeredTab);
 
   // find by queries are asynchronous.
   // They'll continue to query the DOM as DOM changes are made until it can find the element that it's looking for or until a timeout time is reached.
-  noPollsMessage = await findByRole('alert');
+  noPollsMessage = await screen.findByRole('alert');
 
   expect(MockedPollBrief).not.toBeInTheDocument();
   expect(noPollsMessage).toBeInTheDocument();

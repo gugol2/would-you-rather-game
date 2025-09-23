@@ -1,12 +1,12 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { AvatarImage } from './AvatarImage';
 
 test('renders AvatarImage with a default user', () => {
   // eslint-disable-next-line no-undef
   const defaultImageSrc = `${process.env.PUBLIC_URL}/images/default_avatar.jpg`;
-  const { getByTestId } = render(<AvatarImage />);
-  const avatarImage = getByTestId('avatar-img');
+  render(<AvatarImage />);
+  const avatarImage = screen.getByTestId('avatar-img');
 
   expect(avatarImage).toBeInTheDocument();
   expect(avatarImage).toHaveAttribute('class', 'avatar-img');
@@ -24,8 +24,8 @@ test('renders AvatarImage with a real user and size', () => {
     name,
   };
 
-  const { getByTestId } = render(<AvatarImage user={user} size={size} />);
-  const avatarImage = getByTestId('avatar-img');
+  render(<AvatarImage user={user} size={size} />);
+  const avatarImage = screen.getByTestId('avatar-img');
 
   expect(avatarImage).toBeInTheDocument();
   expect(avatarImage).toHaveClass(`avatar-img avatar-img--${size}`);
@@ -42,8 +42,8 @@ test('renders AvatarImage without the size prop', () => {
     name,
   };
 
-  const { getByTestId } = render(<AvatarImage user={user} />);
-  const avatarImage = getByTestId('avatar-img');
+  render(<AvatarImage user={user} />);
+  const avatarImage = screen.getByTestId('avatar-img');
 
   expect(avatarImage).toBeInTheDocument();
   expect(avatarImage).toHaveAttribute('class', 'avatar-img');
@@ -61,10 +61,8 @@ test('renders AvatarImage with size and style props', () => {
     name,
   };
 
-  const { getByTestId } = render(
-    <AvatarImage user={user} size={size} style={{ borderRadius: 0 }} />,
-  );
-  const avatarImage = getByTestId('avatar-img');
+  render(<AvatarImage user={user} size={size} style={{ borderRadius: 0 }} />);
+  const avatarImage = screen.getByTestId('avatar-img');
 
   expect(avatarImage).toBeInTheDocument();
   expect(avatarImage).toHaveClass('avatar-img');

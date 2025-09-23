@@ -40,11 +40,11 @@ describe('LoggedUserInfo', () => {
   };
 
   test('should render LoggedUserInfo', () => {
-    const { getByTestId, getByRole } = render(<LoggedUserInfo {...props} />);
+    render(<LoggedUserInfo {...props} />);
 
-    const component = getByTestId('loggedUserInfo');
-    const greeting = getByTestId('greeting');
-    const logOutButton = getByRole('button');
+    const component = screen.getByTestId('loggedUserInfo');
+    const greeting = screen.getByTestId('greeting');
+    const logOutButton = screen.getByRole('button');
 
     expect(component).toBeInTheDocument();
     expect(greeting).toHaveTextContent(`Hello, ${userLogged.name}`);
@@ -58,11 +58,11 @@ describe('LoggedUserInfo', () => {
   });
 
   test('should call dispatch and return to path / when logging out', async () => {
-    const { getByRole } = render(<LoggedUserInfo {...props} />);
+    render(<LoggedUserInfo {...props} />);
 
-    const logOutButton = getByRole('button');
+    const logOutButton = screen.getByRole('button');
 
-    userEvent.click(logOutButton);
+    await userEvent.click(logOutButton);
 
     expect(dispatch).toHaveBeenCalledTimes(1);
     expect(dispatch).toHaveBeenCalledWith({ type: 'LOGOUT_AUTHED_USER' });

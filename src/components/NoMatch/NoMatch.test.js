@@ -1,11 +1,11 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { NoMatch } from './NoMatch';
 
 test('renders NoMatch', () => {
-  const { getByTestId, getByAltText } = render(<NoMatch />);
-  const noMatchRendered = getByTestId('no-match');
-  const noMatchImage = getByAltText('Page not found!');
+  render(<NoMatch />);
+  const noMatchRendered = screen.getByTestId('no-match');
+  const noMatchImage = screen.getByAltText('Page not found!');
   expect(noMatchRendered).toBeInTheDocument();
   expect(noMatchRendered).not.toHaveClass('no-match');
   expect(noMatchImage).toHaveClass('no-match');
