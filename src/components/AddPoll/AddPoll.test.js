@@ -93,3 +93,62 @@ test('should add a poll', async () => {
   expect(mockHistoryPush).toHaveBeenCalledTimes(1);
   expect(mockHistoryPush).toHaveBeenCalledWith('/');
 });
+
+test('should handle submission error without resetting form or navigating', async () => {
+  const consoleErrorSpy = jest
+    .spyOn(console, 'error')
+    .mockImplementation(() => {});
+  const dispatchSaveNewQuestion = jest.fn(() =>
+    Promise.reject(new Error('Submission failed')),
+  );
+  const authedUser = '::authedUser::';
+  const optionOneText = '::optionOneText::';
+  const optionTwoText = '::optionTwoText::';
+
+  renderWithRouter(
+    <AddPoll
+      dispatchSaveNewQuestion={dispatchSaveNewQuestion}
+      authedUser={authedUser}
+    />,
+  );
+
+  const inputOptionOne = screen.getByTestId('optionOneText');
+  const inputOptionTwo = screen.getByTestId('optionTwoText');
+  const submitPoll = screen.getByTestId('submitpoll');
+
+  // Fill the inputs
+  await userEvent.type(inputOptionOne, optionOneText);
+  await userEvent.type(inputOptionTwo, optionTwoText);
+
+  expect(inputOptionOne.value).toBe(optionOneText);
+  expect(inputOptionTwo.value).toBe(optionTwoText);
+
+  // Submit the poll (this will fail)
+  // eslint-disable-next-line testing-library/no-unnecessary-act
+  await act(async () => {
+    await userEvent.click(submitPoll);
+  });
+
+  expect(dispatchSaveNewQuestion).toHaveBeenCalled();
+  expect(dispatchSaveNewQuestion).toHaveBeenCalledTimes(1);
+  expect(dispatchSaveNewQuestion).toHaveBeenCalledWith({
+    author: authedUser,
+    optionOneText,
+    optionTwoText,
+  });
+
+  // Form should NOT be reset on error
+  expect(inputOptionOne.value).toBe(optionOneText);
+  expect(inputOptionTwo.value).toBe(optionTwoText);
+
+  // Should NOT navigate on error
+  expect(mockHistoryPush).not.toHaveBeenCalled();
+
+  // Should log the error
+  expect(consoleErrorSpy).toHaveBeenCalledWith(
+    'Failed to save question:',
+    expect.any(Error),
+  );
+
+  consoleErrorSpy.mockRestore();
+});

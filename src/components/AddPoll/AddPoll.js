@@ -23,18 +23,24 @@ export const AddPoll = ({ dispatchSaveNewQuestion, authedUser }) => {
     event.preventDefault();
     const { optionOneText, optionTwoText } = optionTexts;
 
-    await dispatchSaveNewQuestion({
-      optionOneText,
-      optionTwoText,
-      author: authedUser,
-    });
+    try {
+      await dispatchSaveNewQuestion({
+        optionOneText,
+        optionTwoText,
+        author: authedUser,
+      });
 
-    await setOptionTexts({
-      optionOneText: '',
-      optionTwoText: '',
-    });
+      // Reset form and navigate on success
+      setOptionTexts({
+        optionOneText: '',
+        optionTwoText: '',
+      });
 
-    history.push('/');
+      history.push('/');
+    } catch (error) {
+      // Handle error case - don't reset form or navigate
+      console.error('Failed to save question:', error);
+    }
   };
 
   return (
