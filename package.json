@@ -2,27 +2,6 @@
   "name": "would-you-rather-game",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^12.1.5",
-    "@testing-library/user-event": "^12.8.3",
-    "@types/jest": "^25.2.3",
-    "@types/node": "^14.0.12",
-    "@types/react": "^17.0.50",
-    "@types/react-dom": "^17.0.17",
-    "@types/react-router-dom": "^5.1.5",
-    "ajv": "^8.12.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-redux": "^7.2.0",
-    "react-redux-loading": "^1.0.1",
-    "react-router-dom": "^5.1.2",
-    "react-scripts": "5.0.1",
-    "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0",
-    "sass": "^1.77.0",
-    "typescript": "^4.9.5"
-  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -90,14 +69,35 @@
       "last 1 safari version"
     ]
   },
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^12.1.5",
+    "@testing-library/user-event": "^12.8.3",
+    "@types/jest": "^25.2.3",
+    "@types/node": "^14.0.12",
+    "@types/react": "^17.0.50",
+    "@types/react-dom": "^17.0.17",
+    "@types/react-router-dom": "^5.1.5",
+    "ajv": "^8.12.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.0",
+    "react-redux-loading-bar": "^5.0.4",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "5.0.1",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0",
+    "sass": "^1.77.0",
+    "typescript": "^4.9.5"
+  },
   "devDependencies": {
-    "eslint": "^7.32.0",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-react": "^7.19.0",
-    "eslint-plugin-testing-library": "^3.1.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react": "^7.35.0",
+    "eslint-plugin-testing-library": "^6.3.0",
     "husky": "^4.2.5",
     "lint-staged": "^10.1.7",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.0.5"
+    "prettier": "^3.3.0"
   }
 }

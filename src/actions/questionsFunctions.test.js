@@ -14,7 +14,7 @@ import {
   saveQuestionAnswer as mockedSaveQuestionAnswer,
 } from '../utils/api';
 
-import { showLoading, hideLoading } from 'react-redux-loading';
+import { showLoading, hideLoading } from 'react-redux-loading-bar';
 
 jest.mock('../utils/api', () => ({
   saveQuestion: jest.fn(),

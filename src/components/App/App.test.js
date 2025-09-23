@@ -22,7 +22,7 @@ jest.mock('../LoggedUserInfo', () => ({
   ),
 }));
 
-jest.mock('react-redux-loading', () => {
+jest.mock('react-redux-loading-bar', () => {
   const MockLoadingBar = ({ className }) => (
     <div data-testid='mocked-loading-bar' className={className}>
       Mocked LoadingBar

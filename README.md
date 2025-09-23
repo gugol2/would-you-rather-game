@@ -30,7 +30,7 @@ Clone this repository on your local machine:
 
 ```sh
 cd into it
-npm install --legacy-peer-deps
+npm install
 npm start
 ```
 

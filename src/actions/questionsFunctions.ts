@@ -4,7 +4,7 @@ import {
   saveNewQuestion,
 } from './questions';
 import { saveQuestionAnswer, saveQuestion } from '../utils/api';
-import { showLoading, hideLoading } from 'react-redux-loading';
+import { showLoading, hideLoading } from 'react-redux-loading-bar';
 import {
   Answer,
   AppDispatch,

@@ -1,7 +1,7 @@
 import { receiveUsers } from './users';
 import { receiveQuestions } from './questions';
 import { getInitialData } from '../utils/api';
-import { showLoading, hideLoading } from 'react-redux-loading';
+import { showLoading, hideLoading } from 'react-redux-loading-bar';
 
 export const handleReceiveData = () => {
   return async dispatch => {
