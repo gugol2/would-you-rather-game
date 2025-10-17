@@ -18,7 +18,8 @@
     "prettier:format": "npm run prettier -- --write",
     "prettier:check-format": "npm run prettier -- --list-different",
     "validate": "npm-run-all --parallel prettier:check-format lint test:coverage",
-    "check-config": "npx jest --showConfig"
+    "check-config": "npx jest --showConfig",
+    "postinstall": "patch-package"
   },
   "jest": {
     "displayName": "client",
@@ -98,6 +99,11 @@
     "husky": "^4.2.5",
     "lint-staged": "^10.1.7",
     "npm-run-all": "^4.1.5",
+    "patch-package": "^8.0.1",
+    "postinstall-postinstall": "^2.1.0",
     "prettier": "^3.3.0"
+  },
+  "overrides": {
+    "webpack-dev-server": "^5.2.1"
   }
 }
